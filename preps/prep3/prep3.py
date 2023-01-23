@@ -221,7 +221,7 @@ class Company:
     === Public attributes ===
     employees: the employees in the company.
 
-    === Private attributes === 
+    === Private attributes ===
     _mixed_salary: The total amount of money earned by everyone in the company.
     """
     employees: list[Employee]
