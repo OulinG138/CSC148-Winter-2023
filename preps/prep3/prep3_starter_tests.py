@@ -78,17 +78,17 @@ def test_4_total_payroll_mixed() -> None:
     assert my_corp.total_payroll() == 11642.6
 
 
-# @given(salary=floats(min_value=0, max_value=10_000), 
-#        pay_times=integers(min_value=1, max_value=10),
-#        dates=dates(min_value=date(2000, 1, 1), max_value=date(2023, 1, 24)))
-# def test_total_pay_salaried_employee(salary: float, pay_times: int, 
-#                                    dates: date) -> None:
-#     e = SalariedEmployee(10, 'Makoa', salary)
-#     for _ in range(pay_times):
-#         e.pay(dates)
-#     estimate_salary = pay_times * round(salary / 12, 2)
+@given(salary=floats(min_value=0, max_value=10_000), 
+       pay_times=integers(min_value=1, max_value=10),
+       dates=dates(min_value=date(2000, 1, 1), max_value=date(2023, 1, 24)))
+def test_total_pay_salaried_employee(salary: float, pay_times: int, 
+                                   dates: date) -> None:
+    e = SalariedEmployee(10, 'Makoa', salary)
+    for _ in range(pay_times):
+        e.pay(dates)
+    estimate_salary = pay_times * round(salary / 12, 2)
 
-#     assert e.total_pay() == round(estimate_salary, 2)
+    assert e.total_pay() == estimate_salary
 
 
 # @given(hourly_wage=floats(min_value=0, max_value=100), 

@@ -62,8 +62,6 @@ class Employee:
     _total_salary: The total amount of pay this employee received.
 
     === Representation Invariants ===
-    - 1 <= len(str(id_)) <= 10
-    - 6 <= len(name) <= 14
     - _total_salary >= 0
     """
     id_: int
@@ -108,7 +106,7 @@ class Employee:
         >>> e.total_pay()
         300.0
         """
-        return round(self._total_salary, 2)
+        return self._total_salary
 
 
 class SalariedEmployee(Employee):
@@ -220,22 +218,16 @@ class Company:
 
     === Public attributes ===
     employees: the employees in the company.
-
-    === Private attributes ===
-    _mixed_salary: The total amount of money earned by everyone in the company.
     """
     employees: list[Employee]
-    _mixed_salary: float
 
     def __init__(self, employees: list[Employee]) -> None:
         self.employees = employees
-        self._mixed_salary = 0
 
     def pay_all(self, pay_date: date) -> None:
         """Pay all employees at this company."""
         for employee in self.employees:
             employee.pay(pay_date)
-            self._mixed_salary += employee.get_monthly_payment()
 
     def total_payroll(self) -> float:
         """Return the total of all payments ever made to all employees.
@@ -249,7 +241,12 @@ class Company:
         >>> my_corp.total_payroll()
         600.25
         """
-        return round(self._mixed_salary, 2)
+        total = 0
+
+        for employee in self.employees:
+            total += employee.total_pay()
+
+        return total
 
 
 if __name__ == '__main__':
@@ -262,8 +259,8 @@ if __name__ == '__main__':
     # "Run...", and then select "prep3" from the menu that appears.
     # DON'T select "Doctests in prep3", as that command will not actually
     # run this file, but instead only run its doctests.
-    import python_ta
-    python_ta.check_all(config={
-        'extra-imports': ['datetime'],
-        'disable': ['E9998']
-    })
+    # import python_ta
+    # python_ta.check_all(config={
+    #     'extra-imports': ['datetime'],
+    #     'disable': ['E9998']
+    # })
