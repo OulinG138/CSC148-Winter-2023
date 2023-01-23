@@ -4,7 +4,10 @@
 		{
 			"path": ".",
 			"folder_exclude_patterns": [".svn", "._d", ".metadata", ".settings", ".idea", ".pytest_cache"],
-        	"file_exclude_patterns": ["*.pyc", "*.pyo", ".project"]
+        	"file_exclude_patterns": ["*.pyc", "*.pyo", ".project"],
 		}
-	]
+	],
+	"debugger_configurations":
+	[
+	],
 }

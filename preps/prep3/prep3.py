@@ -259,8 +259,8 @@ if __name__ == '__main__':
     # "Run...", and then select "prep3" from the menu that appears.
     # DON'T select "Doctests in prep3", as that command will not actually
     # run this file, but instead only run its doctests.
-    # import python_ta
-    # python_ta.check_all(config={
-    #     'extra-imports': ['datetime'],
-    #     'disable': ['E9998']
-    # })
+    import python_ta
+    python_ta.check_all(config={
+        'extra-imports': ['datetime'],
+        'disable': ['E9998']
+    })

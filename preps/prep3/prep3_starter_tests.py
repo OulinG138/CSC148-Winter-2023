@@ -29,6 +29,7 @@ def test_my_test_case():
     # Your test here
 """
 from datetime import date
+from math import isclose
 from hypothesis import given
 from hypothesis.strategies import integers, floats, dates 
 from prep3 import SalariedEmployee, HourlyEmployee, Company
@@ -55,8 +56,8 @@ from prep3 import SalariedEmployee, HourlyEmployee, Company
 ################################################################################
 
 @given(salary=floats(min_value=0, max_value=10_000),
-    hourly_wage=floats(min_value=0, max_value=100), 
-    hours_per_month=floats(min_value=0, max_value=744))
+       hourly_wage=floats(min_value=0, max_value=100), 
+       hours_per_month=floats(min_value=0, max_value=744))
 def test_new_employee_total_salary(salary: float, 
                                    hourly_wage: float, 
                                    hours_per_month: float) -> None:
@@ -67,6 +68,8 @@ def test_new_employee_total_salary(salary: float,
 
 
 def test_4_total_payroll_mixed() -> None:
+    """Test that total_payroll returns the correct value for 4 employees and 4 
+    paydays."""
     my_corp = Company([SalariedEmployee(24, 'Gilbert the cat', 1200.0),
                        SalariedEmployee(25, 'Gilberg the cat', 3242.14324),
                        HourlyEmployee(26, 'Chairman Keow', 1200.13, 1.7),
@@ -82,44 +85,49 @@ def test_4_total_payroll_mixed() -> None:
        pay_times=integers(min_value=1, max_value=10),
        dates=dates(min_value=date(2000, 1, 1), max_value=date(2023, 1, 24)))
 def test_total_pay_salaried_employee(salary: float, pay_times: int, 
-                                   dates: date) -> None:
+                                     dates: date) -> None:
+    """Test total_pay method with an instance of SalariedEmployee."""
     e = SalariedEmployee(10, 'Makoa', salary)
     for _ in range(pay_times):
         e.pay(dates)
     estimate_salary = pay_times * round(salary / 12, 2)
 
-    assert e.total_pay() == estimate_salary
+    assert isclose(e.total_pay(), estimate_salary)
 
 
-# @given(hourly_wage=floats(min_value=0, max_value=100), 
-#        hours_per_month=floats(min_value=0, max_value=744),
-#        pay_times=integers(min_value=1, max_value=10),
-#        dates=dates(min_value=date(2000, 1, 1), max_value=date(2023, 1, 24)))
-# def test_total_pay_hourly_employee(hourly_wage: float, hours_per_month: float, 
-#                    pay_times: int, dates: date) -> None:
-#     e = HourlyEmployee(8, 'Anthony', hourly_wage, hours_per_month)
-#     for _ in range(pay_times):
-#         e.pay(dates)
-#     estimate_salary = pay_times * round(hours_per_month * hourly_wage, 2)
+@given(hourly_wage=floats(min_value=0, max_value=100), 
+       hours_per_month=floats(min_value=0, max_value=744),
+       pay_times=integers(min_value=1, max_value=10),
+       dates=dates(min_value=date(2000, 1, 1), max_value=date(2023, 1, 24)))
+def test_total_pay_hourly_employee(hourly_wage: float, hours_per_month: float, 
+                                   pay_times: int, dates: date) -> None:
+    """Test total_pay method with an instance of HourlyEmployee."""
+    e = HourlyEmployee(8, 'Anthony', hourly_wage, hours_per_month)
+    for _ in range(pay_times):
+        e.pay(dates)
+    estimate_salary = pay_times * round(hours_per_month * hourly_wage, 2)
 
-#     assert e.total_pay() == round(estimate_salary, 2)
+    assert isclose(e.total_pay(), estimate_salary)
 
 
-# @given(salary=floats(min_value=0, max_value=10_000), 
-#     hourly_wage=floats(min_value=0, max_value=100), 
-#     hours_per_month=floats(min_value=0, max_value=744),
-#     dates=dates(min_value=date(2000, 1, 1), max_value=date(2023, 1, 24)))
-# def test_total_pay_roll_mixed_multiple_days(salary: float, 
-#     hourly_wage: float, hours_per_month: float, dates: date) -> None:
-#     total = 0
-#     my_corp = Company([SalariedEmployee(2, 'Kevin', salary),
-#                        HourlyEmployee(3, 'James', hourly_wage, 
-#                         hours_per_month)])
-#     for _ in range(10):
-#         my_corp.pay_all(dates)
-#         total += round(salary / 12, 2) + round(hourly_wage * hours_per_month, 2)
+@given(salary=floats(min_value=0, max_value=10_000), 
+       hourly_wage=floats(min_value=0, max_value=100), 
+       hours_per_month=floats(min_value=0, max_value=744),
+       dates=dates(min_value=date(2000, 1, 1), max_value=date(2023, 1, 24)))
+def test_total_payroll_mixed_multiple_days(salary: float, 
+                                            hourly_wage: float, 
+                                            hours_per_month: float, 
+                                            dates: date) -> None:
+    """Test total_payroll method with mixed employees and mutiple pay days."""
+    total = 0
+    my_corp = Company([SalariedEmployee(2, 'Kevin', salary),
+                       HourlyEmployee(3, 'James', hourly_wage, 
+                       hours_per_month)])
+    for _ in range(10):
+        my_corp.pay_all(dates)
+        total += round(salary / 12, 2) + round(hourly_wage * hours_per_month, 2)
 
-#     assert my_corp.total_payroll() == round(total, 2)
+    assert isclose(my_corp.total_payroll(), total)
 
 # === Sample test cases below ===
 # Use the below test cases as an example for writing your own test cases,
@@ -145,3 +153,4 @@ def test_total_payroll_mixed() -> None:
 if __name__ == '__main__':
     import pytest
     pytest.main(['prep3_starter_tests.py'])
+    import python_ta
