@@ -25,6 +25,7 @@ There is also a task inside prep3_starter_tests.py.
 Make sure to look at that file and complete the TODO there as well.
 """
 from datetime import date
+from functools import reduce
 
 
 ################################################################################
