@@ -7,7 +7,31 @@
         	"file_exclude_patterns": ["*.pyc", "*.pyo", ".project"],
 		}
 	],
-	"debugger_configurations":
+	"version": "0.2.0",
+	"debugger_configurations":[
+		{
+			"name": "Python: Attach using Process Id",
+			"type":	"python",
+			"request": "attac",
+			"processId": "$(command:pickProcess)",
+			"justMyCode": true 
+		},
+		{
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+	],
+	"build_systems":
 	[
+		{
+			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "\"python\" -u \"$file\""
+		}
 	],
 }

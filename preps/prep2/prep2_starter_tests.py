@@ -149,3 +149,7 @@ def test_unlike_with_random_likes(n: int) -> None:
 if __name__ == '__main__':
     import pytest
     pytest.main(['prep2_starter_tests.py'])
+    import python_ta
+    python_ta.check_all(config={
+        'extra-imports': ['random', 'datetime']
+    })

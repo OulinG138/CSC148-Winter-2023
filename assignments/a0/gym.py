@@ -158,7 +158,11 @@ class Gym:
         >>> ac.name
         'Athletic Centre'
         """
-        # TODO: implement this method!
+        self.name = gym_name
+        self._instructors = {}
+        self._workouts = {}
+        self._room_capacities = {}
+        self._schedule = {}
 
     def add_instructor(self, instructor: Instructor) -> bool:
         """Add a new <instructor> to this Gym's roster iff the <instructor> does
@@ -171,7 +175,10 @@ class Gym:
         >>> ac.add_instructor(diane)
         True
         """
-        # TODO: implement this method!
+        if instructor.get_id() not in self._instructors:
+            self._instructors[instructor.get_id()] = instructor
+            return True
+        return False
 
     def add_workout_class(self, workout_class: WorkoutClass) -> bool:
         """Add a <workout_class> to this Gym iff the <workout_class> does not
@@ -184,7 +191,10 @@ class Gym:
         >>> ac.add_workout_class(kickboxing)
         True
         """
-        # TODO: implement this method!
+        if workout_class.name not in self._workouts:
+            self._workouts[workout_class.name] = workout_class
+            return True
+        return False
 
     def add_room(self, name: str, capacity: int) -> bool:
         """Add a room with <name> and <capacity> to this Gym iff there is not
@@ -196,7 +206,10 @@ class Gym:
         >>> ac.add_room('Dance Studio', 50)
         True
         """
-        # TODO: implement this method!
+        if name not in self._room_capacities:
+            self._room_capacities[name] = capacity
+            return True
+        return False
 
     def schedule_workout_class(self, time_point: datetime, room_name: str,
                                workout_name: str, instr_id: int) -> bool:
@@ -244,7 +257,24 @@ class Gym:
         tap.name, diane.get_id())
         True
         """
-        # TODO: implement this method!
+        if not self._schedule or time_point not in self._schedule:
+            self._schedule[time_point] = {room_name: (
+                                          self._instructors[instr_id],
+                                          self._workouts[workout_name], [])}
+            return True
+        elif room_name not in self._schedule[time_point] and \
+            set(self._workouts[workout_name].get_required_certificates(
+            )).issubset(set(self._instructors[instr_id].get_certificates())) \
+            and self._instructors[instr_id] not in \
+            [instr_name[0] for instr_name in
+                list(self._schedule[time_point].values())]:
+            self._schedule[time_point].update({room_name: (self._instructors[
+                                                           instr_id],
+                                                           self._workouts[
+                                                           workout_name], [])})
+            return True
+        else:
+            return False
 
     def register(self, time_point: datetime, client: str, workout_name: str) \
             -> bool:
@@ -283,7 +313,27 @@ class Gym:
         >>> ac.register(sep_9_2022_12_00, 'Philip', 'Boot Camp')
         False
         """
-        # TODO: implement this method!
+        room_capacity_dict: dict[str, list[str]] = {}
+        not_full_rooms: dict[str, int] = {}
+
+        for key in self._schedule[time_point]:
+            if self._schedule[time_point][key][1] == \
+                    self._workouts[workout_name]:
+                room_capacity_dict[key] = \
+                    self._schedule[time_point][key][2]
+
+        if any(client in val for val in list(room_capacity_dict.values())[0]):
+            return False
+        else:
+            for name in room_capacity_dict:
+                if self._room_capacities[name] > len(room_capacity_dict[name]):
+                    not_full_rooms[name] = len(room_capacity_dict[name])
+
+        for room_name in not_full_rooms:
+            if not_full_rooms[room_name] == max(list(not_full_rooms.values())):
+                self._schedule[time_point][room_name][2].append(client)
+
+        return True
 
     def instructor_hours(self, time1: datetime, time2: datetime) -> \
             dict[int, int]:
@@ -323,7 +373,18 @@ class Gym:
         >>> ac.instructor_hours(t1, t2) == {1: 2, 2: 0}
         True
         """
-        # TODO: implement this method!
+        time_dict = {}
+
+        for instr_id in list(self._instructors.keys()):
+            if instr_id not in time_dict:
+                time_dict[instr_id] = 0
+
+        for dt in self._schedule:
+            if time1 <= dt <= time2:
+                for room_name in self._schedule[dt]:
+                    time_dict[self._schedule[dt][room_name][0].get_id()] += 1
+
+        return time_dict
 
     def payroll(self, time1: datetime, time2: datetime, base_rate: float) \
             -> list[tuple[int, str, int, float]]:
@@ -370,7 +431,16 @@ class Gym:
         >>> ac.payroll(t1, t2, 25.0)
         [(1, 'Diane', 1, 26.5), (2, 'David', 0, 0.0)]
         """
-        # TODO: implement this method!
+        tuple_list = []
+        time_dict = self.instructor_hours(time1, time2)
+
+        for id_ in time_dict:
+            tuple_list.append((id_, self._instructors[id_].name,
+                               time_dict[id_], time_dict[
+                               id_] * base_rate + BONUS_RATE * len(
+                               self._instructors[id_].get_certificates())))
+
+        return sorted(tuple_list)
 
     def _is_instructor_name_unique(self, instructor: Instructor) -> bool:
         """Return True iff the name of <instructor> is used by <= 1 instructor
@@ -393,7 +463,9 @@ class Gym:
         >>> ac._is_instructor_name_unique(third_hire)
         True
         """
-        # TODO: implement this method!
+        name_list = [instr.name for instr in list(self._instructors.values())]
+
+        return True if name_list.count(instructor.name) <= 1 else False
 
     def offerings_at(self, time_point: datetime) -> list[dict[str, str | int]]:
         """Return a list of dictionaries, each representing a workout offered
@@ -464,7 +536,29 @@ class Gym:
         ... ]
         True
         """
-        # TODO: implement this method!
+        offered_list = []
+        result_list = []
+
+        if not self._schedule or time_point not in self._schedule:
+            return []
+        else:
+            for room_name in sorted(list(self._schedule[time_point].keys())):
+                registered = len(self._schedule[time_point][room_name][2])
+                instructor = self._schedule[time_point][room_name][0]
+                instr = f'{instructor.name}' if \
+                        self._is_instructor_name_unique(instructor) else \
+                        f'{instructor.name} ({instructor.get_id()})'
+                offered_list.append((time_point.strftime("%A, %Y-%m-%d"),
+                                     time_point.strftime('%H:%M'),
+                                     self._schedule[time_point][room_name][
+                                     1].name, room_name, registered,
+                                     self._room_capacities[
+                                     room_name] - registered, instr))
+
+        for d, t, c, n, r, a, i in offered_list:
+            result_list.append(create_offering_dict(d, t, c, n, r, a, i))
+
+        return result_list
 
     def to_schedule_list(self, week: datetime = None) \
             -> list[dict[str, str | int]]:
@@ -522,7 +616,14 @@ class Gym:
         ... ]
         True
         """
-        # TODO: implement this method!
+        result_list = []
+
+        for dt in sorted(list(self._schedule.keys())):
+            if in_week(dt, week):
+                result_list.extend(self.offerings_at(dt))
+            continue
+
+        return result_list
 
     def __eq__(self, other: Any) -> bool:
         """Return True iff this Gym is equal to <other>.
@@ -535,7 +636,12 @@ class Gym:
         >>> ac == ac2
         True
         """
-        # TODO: implement this method!
+        self_tuple = (self.name, self._instructors, self._workouts,
+                      self._room_capacities)
+        other_tuple = (other.name, other._instructors, other._workouts,
+                       other._room_capacities)
+
+        return True if self_tuple == other_tuple else False
 
     def to_webpage(self, filename: str = 'schedule.html') -> None:
         """Create a simple html webpage from data exported by
@@ -547,6 +653,75 @@ class Gym:
         """
         df = pd.DataFrame(self.to_schedule_list())
         write_schedule_to_html(df, filename)
+
+
+class Instructor:
+    """ An instructor that can teach workout classes in a gym.
+
+    === Public Attributes ===
+    name: the name of this instructor.
+
+    === Private Attributes ===
+    _id_: the id of this instructor.
+    _certificates: the certificates that this instructor has.
+    """
+    _id_: int
+    name: int
+    _certificates: list[str]
+
+    def __init__(self, id_: int, name: str) -> None:
+        """Initialize a new Instructor with <name> and <id_>.
+        Initially, this instructor has no certificates.
+
+        >>> aw = Instructor(1, 'Anthony Wang')
+        >>> aw.name
+        'Anthony Wang'
+        """
+        self._id_ = id_
+        self.name = name
+        self._certificates = []
+
+    def get_id(self) -> int:
+        """Return the id of this instructor.
+
+        >>> aw = Instructor(1, 'Anthony Wang')
+        >>> aw.get_id()
+        1
+        """
+        return self._id_
+
+    def add_certificate(self, certificate: str) -> bool:
+        """Add a new <certificate> to this Instructor iff the <instructor> does
+        not have the same certificate.
+
+        Return True iff the certificate has not already been added to this
+        Instructor.
+
+        >>> aw = Instructor(1, 'Anthony Wang')
+        >>> aw.add_certificate('Cardio 1')
+        True
+        >>> aw.add_certificate('Cardio 1')
+        False
+        """
+        if certificate not in self._certificates:
+            self._certificates.append(certificate)
+            return True
+        return False
+
+    def get_certificates(self) -> list[str]:
+        """Return all the certificates this Instructor has.
+
+        >>> aw = Instructor(1, 'Anthony Wang')
+        >>> aw.add_certificate('Cardio 1')
+        True
+        >>> aw.add_certificate('Strength Training')
+        True
+        >>> aw.get_certificates().append('a')
+        >>> aw.get_certificates()
+        ['Cardio 1', 'Strength Training']
+        """
+        new_list = self._certificates.copy()
+        return new_list
 
 
 def gym_from_yaml(filename: str) -> Gym:
@@ -650,19 +825,19 @@ def html_and_payroll_demo() -> None:
 
 
 if __name__ == '__main__':
-    import python_ta
-    python_ta.check_all(config={
-        'allowed-io': ['gym_from_yaml', 'html_and_payroll_demo'],
-        'allowed-import-modules': ['doctest', 'python_ta', 'typing',
-                                   'datetime', 'pandas', 'yaml', 'os',
-                                   'warnings', 'webbrowser',
-                                   'gym_utilities', '__future__'],
-        'disable': ['C0302'],
-        # Uncomment the line below to see the PythonTA report in your
-        # Python console instead:
-        'output-format': 'python_ta.reporters.ColorReporter'
-    })
-    # import doctest
-    # doctest.testmod()
+    # import python_ta
+    # python_ta.check_all(config={
+    #     'allowed-io': ['gym_from_yaml', 'html_and_payroll_demo'],
+    #     'allowed-import-modules': ['doctest', 'python_ta', 'typing',
+    #                                'datetime', 'pandas', 'yaml', 'os',
+    #                                'warnings', 'webbrowser',
+    #                                'gym_utilities', '__future__'],
+    #     'disable': ['C0302'],
+    #     # Uncomment the line below to see the PythonTA report in your
+    #     # Python console instead:
+    #     'output-format': 'python_ta.reporters.ColorReporter'
+    # })
+    import doctest
+    doctest.testmod()
     #
     # html_and_payroll_demo()
