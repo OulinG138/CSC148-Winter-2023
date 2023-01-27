@@ -634,14 +634,16 @@ class Gym:
         >>> ac = Gym('Athletic Centre')
         >>> ac2 = Gym('Athletic Centre')
         >>> ac == ac2
-        True
+        1
         """
         self_tuple = (self.name, self._instructors, self._workouts,
                       self._room_capacities)
         other_tuple = (other.name, other._instructors, other._workouts,
                        other._room_capacities)
 
-        return True if self_tuple == other_tuple else False
+        if not isinstance(other, Gym):
+            return False
+        return all([(a == b) for a, b in zip(self_tuple, other_tuple)])
 
     def to_webpage(self, filename: str = 'schedule.html') -> None:
         """Create a simple html webpage from data exported by
