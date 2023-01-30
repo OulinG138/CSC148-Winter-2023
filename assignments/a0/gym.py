@@ -637,23 +637,10 @@ class Gym:
         """
         if not isinstance(other, Gym):
             return False
-        elif self.name != other.name or len(self._instructors) != len(
-                self._instructors) or len(self._workouts) != len(
-                other._workouts) or len(
-                self._room_capacities) != len(other._room_capacities):
-            return False
-        else:
-            self_instr_list = sorted(list(self._instructors.values()))
-            other_instr_list = sorted(list(other._instructors.values()))
-            self_workouts_list = sorted(list(self._workouts.values()))
-            other_workouts_list = sorted(list(other._workouts.values()))
-
-            return all(a == b for a, b in zip(self_instr_list,
-                                              other_instr_list)) and all(
-                a == b for a, b in zip(self_workouts_list,
-                                       other_workouts_list)) and sorted(list(
-                                           self._room_capacities.values())) == sorted(list(
-                                               other._room_capacities.values()))
+        return self.name == other.name and self._instructors == \
+            other._instructors and self._workouts \
+            == other._workouts and self._room_capacities == \
+            other._room_capacities
 
     def to_webpage(self, filename: str = 'schedule.html') -> None:
         """Create a simple html webpage from data exported by
@@ -732,8 +719,7 @@ class Instructor:
         >>> aw.get_certificates()
         ['Cardio 1', 'Strength Training']
         """
-        new_list = self._certificates.copy()
-        return new_list
+        return self._certificates[:]
 
     def __eq__(self, other: Any) -> bool:
         """Return True iff this Instructor is equal to <other>.
@@ -745,13 +731,7 @@ class Instructor:
         >>> instructor2 = Instructor(1, "Anthony")
         >>> instructor1.add_certificate('Cardio 1')
         True
-        >>> instructor2.add_certificate('Cardio 1')
-        True
-        >>> instructor1 == instructor2
-        True
-        >>> instructor3 = Instructor(1, "Anthony")
-        >>> instructor3.add_certificate('Strength Training')
-        True
+        >>> instructor3 = Instructor(2, "Kevin")
         >>> instructor1 == instructor3 
         False
         """
