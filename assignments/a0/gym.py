@@ -621,7 +621,6 @@ class Gym:
         for dt in sorted(list(self._schedule.keys())):
             if in_week(dt, week):
                 result_list.extend(self.offerings_at(dt))
-            continue
 
         return result_list
 
@@ -634,16 +633,27 @@ class Gym:
         >>> ac = Gym('Athletic Centre')
         >>> ac2 = Gym('Athletic Centre')
         >>> ac == ac2
-        1
+        True
         """
-        self_tuple = (self.name, self._instructors, self._workouts,
-                      self._room_capacities)
-        other_tuple = (other.name, other._instructors, other._workouts,
-                       other._room_capacities)
-
         if not isinstance(other, Gym):
             return False
-        return all([(a == b) for a, b in zip(self_tuple, other_tuple)])
+        elif self.name != other.name or len(self._instructors) != len(
+                self._instructors) or len(self._workouts) != len(
+                other._workouts) or len(
+                self._room_capacities) != len(other._room_capacities):
+            return False
+        else:
+            self_instr_list = sorted(list(self._instructors.values()))
+            other_instr_list = sorted(list(other._instructors.values()))
+            self_workouts_list = sorted(list(self._workouts.values()))
+            other_workouts_list = sorted(list(other._workouts.values()))
+
+            return all(a == b for a, b in zip(self_instr_list,
+                                              other_instr_list)) and all(
+                a == b for a, b in zip(self_workouts_list,
+                                       other_workouts_list)) and sorted(list(
+                                           self._room_capacities.values())) == sorted(list(
+                                               other._room_capacities.values()))
 
     def to_webpage(self, filename: str = 'schedule.html') -> None:
         """Create a simple html webpage from data exported by
@@ -724,6 +734,31 @@ class Instructor:
         """
         new_list = self._certificates.copy()
         return new_list
+
+    def __eq__(self, other: Any) -> bool:
+        """Return True iff this Instructor is equal to <other>.
+
+        Two Instructors are considered equal if they have the same name, id and
+        certificates.
+
+        >>> instructor1 = Instructor(1, "Anthony")
+        >>> instructor2 = Instructor(1, "Anthony")
+        >>> instructor1.add_certificate('Cardio 1')
+        True
+        >>> instructor2.add_certificate('Cardio 1')
+        True
+        >>> instructor1 == instructor2
+        True
+        >>> instructor3 = Instructor(1, "Anthony")
+        >>> instructor3.add_certificate('Strength Training')
+        True
+        >>> instructor1 == instructor3 
+        False
+        """
+        if not isinstance(other, Instructor):
+            return False
+        return (self.name == other.name and self._id_ == other._id_
+                and self._certificates == other._certificates)
 
 
 def gym_from_yaml(filename: str) -> Gym:

@@ -14,7 +14,7 @@
 			"type":	"python",
 			"request": "attac",
 			"processId": "$(command:pickProcess)",
-			"justMyCode": true 
+			"justMyCode": true, 
 		},
 		{
             "name": "Python: Current File",
@@ -22,7 +22,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
         }
 	],
 	"build_systems":
@@ -31,7 +31,7 @@
 			"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
 			"name": "Anaconda Python Builder",
 			"selector": "source.python",
-			"shell_cmd": "\"python\" -u \"$file\""
+			"shell_cmd": "\"/usr/local/bin/python3\" -u \"$file\"",
 		}
 	],
 }
