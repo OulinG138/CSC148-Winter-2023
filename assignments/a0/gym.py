@@ -257,17 +257,20 @@ class Gym:
         tap.name, diane.get_id())
         True
         """
-        if not self._schedule or time_point not in self._schedule:
+        # Check if the instructor is qualified this course
+        if not set(self._instructors[instr_id].get_certificates(
+        )).issuperset(
+                self._workouts[workout_name].get_required_certificates()):
+            return False
+        elif not self._schedule or time_point not in self._schedule:
             self._schedule[time_point] = {room_name: (
                                           self._instructors[instr_id],
                                           self._workouts[workout_name], [])}
             return True
         elif room_name not in self._schedule[time_point] and \
-            set(self._workouts[workout_name].get_required_certificates(
-            )).issubset(set(self._instructors[instr_id].get_certificates())) \
-            and self._instructors[instr_id] not in \
+            self._instructors[instr_id] not in \
             [instr_name[0] for instr_name in
-                list(self._schedule[time_point].values())]:
+             list(self._schedule[time_point].values())]:
             self._schedule[time_point].update({room_name: (self._instructors[
                                                            instr_id],
                                                            self._workouts[
@@ -313,26 +316,39 @@ class Gym:
         >>> ac.register(sep_9_2022_12_00, 'Philip', 'Boot Camp')
         False
         """
+        client_list = []
         room_capacity_dict: dict[str, list[str]] = {}
         not_full_rooms: dict[str, int] = {}
 
-        for key in self._schedule[time_point]:
-            if self._schedule[time_point][key][1] == \
-                    self._workouts[workout_name]:
-                room_capacity_dict[key] = \
-                    self._schedule[time_point][key][2]
+        # Check if client is registered for any of the course at <time_point>
+        # Get the list of clients
+        for tup in list(self._schedule[time_point].values()):
+            client_list.extend(tup[2])
 
-        if any(client in val for val in list(room_capacity_dict.values())[0]):
+        # Get all the registered clients for <workout_name> at <time_point>
+        for room_name in self._schedule[time_point]:
+            if self._schedule[time_point][room_name][1] == \
+                    self._workouts[workout_name]:
+                room_capacity_dict[room_name] = \
+                    self._schedule[time_point][room_name][2]
+
+        # We'll collect full room names as key and room capacity as value
+        # from room_capacity_dict if the client not in the client list
+        if client in client_list:
             return False
         else:
             for name in room_capacity_dict:
                 if self._room_capacities[name] > len(room_capacity_dict[name]):
                     not_full_rooms[name] = len(room_capacity_dict[name])
 
-        for room_name in not_full_rooms:
-            if not_full_rooms[room_name] == max(list(not_full_rooms.values())):
-                self._schedule[time_point][room_name][2].append(client)
-
+        if not not_full_rooms:
+            return False
+        else:
+            for room_name in not_full_rooms:
+                if not_full_rooms[room_name] == max(
+                   list(not_full_rooms.values())):
+                    self._schedule[time_point][room_name][2].append(client)
+                    break
         return True
 
     def instructor_hours(self, time1: datetime, time2: datetime) -> \
@@ -437,7 +453,8 @@ class Gym:
         for id_ in time_dict:
             tuple_list.append((id_, self._instructors[id_].name,
                                time_dict[id_], time_dict[
-                               id_] * base_rate + BONUS_RATE * len(
+                               id_] * base_rate + time_dict[
+                               id_] * BONUS_RATE * len(
                                self._instructors[id_].get_certificates())))
 
         return sorted(tuple_list)
@@ -536,27 +553,26 @@ class Gym:
         ... ]
         True
         """
-        offered_list = []
         result_list = []
 
         if not self._schedule or time_point not in self._schedule:
             return []
         else:
             for room_name in sorted(list(self._schedule[time_point].keys())):
+
                 registered = len(self._schedule[time_point][room_name][2])
                 instructor = self._schedule[time_point][room_name][0]
                 instr = f'{instructor.name}' if \
                         self._is_instructor_name_unique(instructor) else \
                         f'{instructor.name} ({instructor.get_id()})'
-                offered_list.append((time_point.strftime("%A, %Y-%m-%d"),
-                                     time_point.strftime('%H:%M'),
-                                     self._schedule[time_point][room_name][
-                                     1].name, room_name, registered,
-                                     self._room_capacities[
-                                     room_name] - registered, instr))
 
-        for d, t, c, n, r, a, i in offered_list:
-            result_list.append(create_offering_dict(d, t, c, n, r, a, i))
+                result_list.append(create_offering_dict(
+                                   time_point.strftime("%A, %Y-%m-%d"),
+                                   time_point.strftime('%H:%M'),
+                                   self._schedule[time_point][room_name][
+                                       1].name, room_name, registered,
+                                   self._room_capacities[
+                                       room_name] - registered, instr))
 
         return result_list
 
@@ -637,10 +653,10 @@ class Gym:
         """
         if not isinstance(other, Gym):
             return False
-        return self.name == other.name and self._instructors == \
-            other._instructors and self._workouts \
-            == other._workouts and self._room_capacities == \
-            other._room_capacities
+        return (self.name == other.name
+                and self._instructors == other._instructors
+                and self._workouts == other._workouts
+                and self._room_capacities == other._room_capacities)
 
     def to_webpage(self, filename: str = 'schedule.html') -> None:
         """Create a simple html webpage from data exported by
@@ -728,11 +744,10 @@ class Instructor:
         certificates.
 
         >>> instructor1 = Instructor(1, "Anthony")
-        >>> instructor2 = Instructor(1, "Anthony")
         >>> instructor1.add_certificate('Cardio 1')
         True
-        >>> instructor3 = Instructor(2, "Kevin")
-        >>> instructor1 == instructor3 
+        >>> instructor2 = Instructor(2, "Kevin")
+        >>> instructor1 == instructor2
         False
         """
         if not isinstance(other, Instructor):
