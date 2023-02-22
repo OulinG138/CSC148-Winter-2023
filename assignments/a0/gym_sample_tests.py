@@ -912,4 +912,5 @@ class TestGym:
         ]
 
 if __name__ == '__main__':
-    pytest.main(['gym_sample_tests.py'])
+    import pytest
+    pytest.main(['./gym_sample_tests.py', "--capture=sys", "-W", "ignore:Module already imported:pytest.PytestWarning"])
