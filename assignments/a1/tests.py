@@ -178,6 +178,11 @@ class TestMultipleChoiceQuestion:
         answer = Answer('ok')
         assert question.validate_answer(answer) is False
 
+    def test_validate_answer_worksheet(self) -> None:
+        question = MultipleChoiceQuestion(1, 'q2:', ['Victoria', 'New', 'Woodsworth', 'Trinity'])
+        answer = Answer('Woodsworth')
+        assert question.validate_answer(answer) is True
+
     def test_get_similarity(self) -> None:
         question = MultipleChoiceQuestion(1, 'Make a choice:', ['1', '2', '3'])
         answer1 = Answer('1')
@@ -336,7 +341,17 @@ class TestHomogeneousCriterion:
         answer2 = Answer(['1', '3'])
         answer3 = Answer(['1', '4'])
         assert criterion.score_answers(
-                        question, [answer1, answer2, answer3]) == (1 / 3) 
+                        question, [answer1, answer2, answer3]) == (1 / 3)
+
+    def test_score_answers_worksheet(self) -> None:
+        criterion = HomogeneousCriterion()
+        question1 = NumericQuestion(1, 'q1:', 1, 6)
+        answer1 = Answer(3)
+        answer2 = Answer(2)
+        answer3 = Answer(3)
+        answer4 = Answer(3)
+        assert pytest.approx(criterion.score_answers(
+            question1, [answer1, answer2, answer3, answer4])) == (9 / 10)
 
 
 class TestHeterogeneousCriterion:
@@ -400,6 +415,14 @@ class TestLonelyMemberCriterion:
         assert criterion.score_answers(
                         question, [answer1, answer2, answer3, answer4]) == 1.0
 
+    def test_score_answers_worksheet(self) -> None:
+        criterion = LonelyMemberCriterion()
+        question2 = MultipleChoiceQuestion(2, 'q2:', ['Victoria', 'New', 'Woodsworth', 'Trinity'])
+        answer1 = Answer('Woodsworth')
+        answer2 = Answer('Woodsworth')
+        answer3 = Answer('Woodsworth')
+        assert criterion.score_answers(
+                        question2, [answer1, answer2, answer3]) == 1.0
 
 ###############################################################################
 # Task 7 Test cases
@@ -588,13 +611,136 @@ class TestSurvey:
         survey = Survey([])
         assert survey.score_students([std1]) == 0.0
 
-    def test_score_grouping(self) -> None:
-        pass
+    def test_score_students_worksheet_1(self) -> None:
+        question2 = MultipleChoiceQuestion(2, 'q2:', ['Victoria', 'New', 'Woodsworth', 'Trinity'])
+        survey = Survey([question2])
+        survey.set_weight(20, question2)
+        survey.set_criterion(LonelyMemberCriterion(), question2)
+        std9 = Student(9, 'Grace')
+        std9.set_answer(question2, Answer('Woodsworth'))
+        std10 = Student(10, 'Claire')
+        std10.set_answer(question2, Answer('Woodsworth'))
+        std11 = Student(11, 'Kai')
+        std11.set_answer(question2, Answer('Woodsworth')) 
+        assert survey.score_students([std9, std10, std11]) == 20
+
+    def test_score_students_worksheet_2(self) -> None:
+        question1 = NumericQuestion(1, 'q1:', 1, 6)
+        question2 = MultipleChoiceQuestion(2, 'q2:', ['Victoria', 'New', 'Woodsworth', 'Trinity'])
+        survey = Survey([question1, question2])
+        survey.set_weight(80, question1)
+        survey.set_weight(20, question2)
+        survey.set_criterion(LonelyMemberCriterion(), question2)
+        std1 = Student(1, 'Pyria')
+        std1.set_answer(question1, Answer(3))
+        std1.set_answer(question2, Answer('Victoria'))
+        std2 = Student(2, 'Alain')
+        std2.set_answer(question1, Answer(2))
+        std2.set_answer(question2, Answer('New'))
+        std3 = Student(3, 'Zoe')
+        std3.set_answer(question1, Answer(3))
+        std3.set_answer(question2, Answer('Woodsworth'))
+        std4 = Student(4, 'Francesco')
+        std4.set_answer(question1, Answer(3))
+        std4.set_answer(question2, Answer('Victoria'))
+        assert survey.score_students([std1, std2, std3, std4]) == 36
+
+    # FIXME: Unfinished
+    def test_score_grouping_worksheet(self) -> None:
+        question1 = NumericQuestion(1, 'q1:', 1, 6)
+        question2 = MultipleChoiceQuestion(2, 'q2:', ['Victoria', 'New', 'Woodsworth', 'Trinity'])
+        survey = Survey([question1, question2])
+        survey.set_weight(80, question1)
+        survey.set_weight(20, question2)
+        survey.set_criterion(LonelyMemberCriterion(), question2)
+        std1 = Student(1, 'Pyria')
+        std1.set_answer(question1, Answer(3))
+        std1.set_answer(question2, Answer('Victoria'))
+        std2 = Student(2, 'Alain')
+        std2.set_answer(question1, Answer(2))
+        std2.set_answer(question2, Answer('New'))
+        std3 = Student(3, 'Zoe')
+        std3.set_answer(question1, Answer(3))
+        std3.set_answer(question2, Answer('Woodsworth'))
+        std4 = Student(4, 'Francesco')
+        std4.set_answer(question1, Answer(3))
+        std4.set_answer(question2, Answer('Victoria'))
+        group1 = Group([std1, std2, std3, std4])
+        std5 = Student(5, 'Mohammed')
+        std5.set_answer(question1, Answer(4))
+        std5.set_answer(question2, Answer('Woodsworth'))
+        std6 = Student(6, 'Xiaoyuan')
+        std6.set_answer(question1, Answer(5))
+        std6.set_answer(question2, Answer('New'))
+        std7 = Student(7, 'Rohit')
+        std7.set_answer(question1, Answer(2))
+        std7.set_answer(question2, Answer('New'))
+        std8 = Student(8, 'Yimin')
+        std8.set_answer(question1, Answer(3))
+        std8.set_answer(question2, Answer('Trinity'))
+        group2 = Group([std5, std6, std7, std8])
+        std9 = Student(9, 'Grace')
+        std9.set_answer(question1, Answer(5))
+        std9.set_answer(question2, Answer('Woodsworth'))
+        std10 = Student(10, 'Claire')
+        std10.set_answer(question1, Answer(1))
+        std10.set_answer(question2, Answer('Woodsworth'))
+        std11 = Student(11, 'Kai')
+        std11.set_answer(question1, Answer(1))
+        std11.set_answer(question2, Answer('Woodsworth'))
+        group3 = Group([std9, std10, std11])
+        grouping = Grouping()
+        grouping.add_group(group1)
+        grouping.add_group(group2)
+        grouping.add_group(group3)
+        assert pytest.approx(survey.score_grouping(grouping)) == (72/2 +160/3/2 + (560/15+20)/2)/3
 
 ###############################################################################
 # Task 10 Test cases
 ###############################################################################
-# TODO: Add your test cases below
+class TestAlphaGrouper:
+
+    def test_make_grouping_group_size_2(self) -> None:
+        grouper = AlphaGrouper(2)
+        std1 = Student(1, 'Kevin')
+        std2 = Student(2, 'James')
+        std3 = Student(3, 'Baston')
+        std4 = Student(4, 'Anthony')
+        std5 = Student(5, 'Janos')
+        std6 = Student(6, 'Eric')
+        course = Course('CSC148')
+        course.enroll_students([std1, std2, std3, std4, std5, std6])
+        survey = Survey([])
+        grouping = grouper.make_grouping(course, survey)
+        group1 = [std4, std2]
+        group2 = [std3, std5]
+        group3 = [std6, std1]
+        assert grouping.get_groups()[0].get_members() == group1
+        assert grouping.get_groups()[1].get_members() == group2
+        assert grouping.get_groups()[2].get_members() == group3
+
+    def test_make_grouping_group_size_3(self) -> None:
+        grouper = AlphaGrouper(3)
+        std1 = Student(1, 'Kevin')
+        std2 = Student(2, 'James')
+        std3 = Student(3, 'Baston')
+        std4 = Student(4, 'Anthony')
+        std5 = Student(5, 'Janos')
+        std6 = Student(6, 'Eric')
+        course = Course('CSC148')
+        course.enroll_students([std1, std2, std3, std4, std5, std6])
+        survey = Survey([])
+        grouping = grouper.make_grouping(course, survey)
+        group1 = [std4, std6, std5]
+        group2 = [std3, std2, std1]
+        assert grouping.get_groups()[0].get_members() == group1
+        assert grouping.get_groups()[1].get_members() == group2
+
+
+class TestGreedyGrouper:
+
+    def test_make_grouping(self) -> None:
+        pass
 
 
 if __name__ == '__main__':

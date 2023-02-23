@@ -214,14 +214,14 @@ class TestLonelyMemberCriterion:
         assert lon_criterion.score_answers(questions[2], answers[2]) == 0.0
 
 
-# class TestAlphaGrouper:
-#     def test_make_grouping(self, course_with_students_with_answers,
-#                            alpha_grouping,
-#                            survey_) -> None:
-#         grouper_ = grouper.AlphaGrouper(2)
-#         grouping = grouper_.make_grouping(course_with_students_with_answers,
-#                                           survey_)
-#         compare_groupings(grouping, alpha_grouping)
+class TestAlphaGrouper:
+    def test_make_grouping(self, course_with_students_with_answers,
+                           alpha_grouping,
+                           survey_) -> None:
+        grouper_ = grouper.AlphaGrouper(2)
+        grouping = grouper_.make_grouping(course_with_students_with_answers,
+                                          survey_)
+        compare_groupings(grouping, alpha_grouping)
 
 
 class TestGreedyGrouper:

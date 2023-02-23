@@ -116,7 +116,7 @@ class MultipleChoiceQuestion(Question):
         An answer is valid if its content is one of the answer options for this
         question.
         """
-        return any(ans in self._options for ans in answer.content)
+        return answer.content in self._options
 
     def get_similarity(self, answer1: Answer, answer2: Answer) -> float:
         """Return 1.0 iff <answer1>.content and <answer2>.content are equal and
@@ -498,7 +498,7 @@ class Survey:
         for group in grouping.get_groups():
             score += self.score_students(group.get_members())
             count += 1
-
+     
         return score / count
 
 
