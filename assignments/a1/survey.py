@@ -174,8 +174,8 @@ class NumericQuestion(Question):
         """
         if not isinstance(answer.content, int):
             return False
-
-        return self._min_ <= answer.content <= self._max_
+        else:
+            return self._min_ <= answer.content <= self._max_
 
     def get_similarity(self, answer1: Answer, answer2: Answer) -> float:
         """Return the similarity between <answer1> and <answer2> over the range
@@ -286,8 +286,8 @@ class CheckboxQuestion(MultipleChoiceQuestion):
         if answer.content == [] or \
            len(set(answer.content)) != len(answer.content):
             return False
-
-        return all(ans in self._options for ans in answer.content)
+        else:
+            return all(ans in self._options for ans in answer.content)
 
     def get_similarity(self, answer1: Answer, answer2: Answer) -> float:
         """Return the similarity between <answer1> and <answer2>.
@@ -419,11 +419,11 @@ class Survey:
         If <question>.id does not occur in this survey, do not set the <weight>
         and return False instead.
         """
-        if question.id not in self._questions.keys():
+        if not question in self:
             return False
-
-        self._weights[question.id] = weight
-        return True
+        else:
+            self._weights[question.id] = weight
+            return True
 
     def set_criterion(self, criterion: Criterion, question: Question) -> bool:
         """Set the criterion associated with <question> to <criterion> and
@@ -432,11 +432,11 @@ class Survey:
         If <question>.id does not occur in this survey, do not set the <weight>
         and return False instead.
         """
-        if question.id not in self._questions.keys():
+        if not question in self:
             return False
-
-        self._criteria[question.id] = criterion
-        return True
+        else:
+            self._criteria[question.id] = criterion
+            return True
 
     def score_students(self, students: list[Student]) -> float:
         """Return a quality score for <students> calculated based on their
@@ -461,7 +461,7 @@ class Survey:
             survey
             - len(students) > 0
         """
-        if self.get_questions() == []:
+        if len(self) == 0:
             return 0.0
 
         try:
@@ -491,14 +491,14 @@ class Survey:
             - All students in the groups in <grouping> have an answer to
               all questions in this survey
         """
-        if grouping.get_groups() == []:
+        if len(grouping) == 0:
             return 0.0
 
         score, count = 0, 0
         for group in grouping.get_groups():
             score += self.score_students(group.get_members())
             count += 1
-     
+
         return score / count
 
 
@@ -510,3 +510,4 @@ if __name__ == '__main__':
                                                   'course',
                                                   'grouper'],
                                 'disable': ['E9992']})
+

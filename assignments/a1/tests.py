@@ -429,12 +429,19 @@ class TestLonelyMemberCriterion:
 ###############################################################################
 class TestGroup:
 
-    def test___len__(self) -> None:
+    def test___len__1(self) -> None:
         student1 = Student(1, 'Anthony')
         student2 = student1
         student3 = Student(2, 'Anthony')
         group = Group([student1, student2, student3])
         assert len(group._members) == 2
+
+    def test___len__2(self) -> None:
+        student1 = Student(1, 'Anthony')
+        student2 = Student(2, 'Anthony')
+        student3 = Student(3, 'Anthony')
+        group = Group([student1, student2, student3])
+        assert len(group._members) == 3
 
     def test___contains__1(self) -> None:
         student1 = Student(1, 'Anthony')
@@ -645,7 +652,6 @@ class TestSurvey:
         std4.set_answer(question2, Answer('Victoria'))
         assert survey.score_students([std1, std2, std3, std4]) == 36
 
-    # FIXME: Unfinished
     def test_score_grouping_worksheet(self) -> None:
         question1 = NumericQuestion(1, 'q1:', 1, 6)
         question2 = MultipleChoiceQuestion(2, 'q2:', ['Victoria', 'New', 'Woodsworth', 'Trinity'])
@@ -693,7 +699,7 @@ class TestSurvey:
         grouping.add_group(group1)
         grouping.add_group(group2)
         grouping.add_group(group3)
-        assert pytest.approx(survey.score_grouping(grouping)) == (72/2 +160/3/2 + (560/15+20)/2)/3
+        assert pytest.approx(survey.score_grouping(grouping)) == (72/2 + 160/3/2 + (560/15+20)/2)/3
 
 ###############################################################################
 # Task 10 Test cases
@@ -712,9 +718,9 @@ class TestAlphaGrouper:
         course.enroll_students([std1, std2, std3, std4, std5, std6])
         survey = Survey([])
         grouping = grouper.make_grouping(course, survey)
-        group1 = [std4, std2]
-        group2 = [std3, std5]
-        group3 = [std6, std1]
+        group1 = [std4, std3]
+        group2 = [std6, std2]
+        group3 = [std5, std1]
         assert grouping.get_groups()[0].get_members() == group1
         assert grouping.get_groups()[1].get_members() == group2
         assert grouping.get_groups()[2].get_members() == group3
@@ -726,13 +732,12 @@ class TestAlphaGrouper:
         std3 = Student(3, 'Baston')
         std4 = Student(4, 'Anthony')
         std5 = Student(5, 'Janos')
-        std6 = Student(6, 'Eric')
         course = Course('CSC148')
-        course.enroll_students([std1, std2, std3, std4, std5, std6])
+        course.enroll_students([std1, std2, std3, std4, std5])
         survey = Survey([])
         grouping = grouper.make_grouping(course, survey)
-        group1 = [std4, std6, std5]
-        group2 = [std3, std2, std1]
+        group1 = [std4, std3, std2]
+        group2 = [std5, std1]
         assert grouping.get_groups()[0].get_members() == group1
         assert grouping.get_groups()[1].get_members() == group2
 
@@ -740,7 +745,85 @@ class TestAlphaGrouper:
 class TestGreedyGrouper:
 
     def test_make_grouping(self) -> None:
-        pass
+        grouper = GreedyGrouper(2)
+        question = YesNoQuestion(1, 'True or False:')
+        survey = Survey([question])
+        std1 = Student(1, 'Kevin')
+        answer1 = Answer(True)
+        std1.set_answer(question, answer1)
+        std2 = Student(2, 'James')
+        answer2 = Answer(True)
+        std2.set_answer(question, answer2)
+        std3 = Student(3, 'Baston')
+        answer3 = Answer(True)
+        std3.set_answer(question, answer3)
+        std4 = Student(4, 'Anthony')
+        answer4 = Answer('great')
+        std4.set_answer(question, answer4)
+        std5 = Student(5, 'Janos')
+        answer5 = Answer('nice')
+        std5.set_answer(question, answer5)
+        std6 = Student(6, 'Eric')
+        answer6 = Answer([])
+        std6.set_answer(question, answer6)
+        course = Course('CSC148')
+        course.enroll_students([std1, std2, std3, std4, std5, std6])
+        grouping = grouper.make_grouping(course, survey)
+        group1 = [std1, std2]
+        group2 = [std3, std4]
+        group3 = [std5, std6]
+        assert grouping.get_groups()[0].get_members() == group1
+        assert grouping.get_groups()[1].get_members() == group2
+        assert grouping.get_groups()[2].get_members() == group3
+
+    # FIXME: Unfinished
+    # def test_make_grouping_worksheet(self) -> None:
+    #     grouper = GreedyGrouper(3)
+    #     question1 = NumericQuestion(1, 'q1:', 1, 6)
+    #     question2 = MultipleChoiceQuestion(2, 'q2:', ['Victoria', 'New', 'Woodsworth', 'Trinity'])
+    #     survey = Survey([question1, question2])
+    #     survey.set_weight(80, question1)
+    #     survey.set_weight(20, question2)
+    #     survey.set_criterion(LonelyMemberCriterion(), question2)
+    #     std1 = Student(1, 'Pyria')
+    #     std1.set_answer(question1, Answer(3))
+    #     std1.set_answer(question2, Answer('Victoria'))
+    #     std2 = Student(2, 'Alain')
+    #     std2.set_answer(question1, Answer(2))
+    #     std2.set_answer(question2, Answer('New'))
+    #     std3 = Student(3, 'Zoe')
+    #     std3.set_answer(question1, Answer(3))
+    #     std3.set_answer(question2, Answer('Woodsworth'))
+    #     std4 = Student(4, 'Francesco')
+    #     std4.set_answer(question1, Answer(3))
+    #     std4.set_answer(question2, Answer('Victoria'))
+    #     std5 = Student(5, 'Mohammed')
+    #     std5.set_answer(question1, Answer(4))
+    #     std5.set_answer(question2, Answer('Woodsworth'))
+    #     std6 = Student(6, 'Xiaoyuan')
+    #     std6.set_answer(question1, Answer(5))
+    #     std6.set_answer(question2, Answer('New'))
+    #     std7 = Student(7, 'Rohit')
+    #     std7.set_answer(question1, Answer(2))
+    #     std7.set_answer(question2, Answer('New'))
+    #     std8 = Student(8, 'Yimin')
+    #     std8.set_answer(question1, Answer(3))
+    #     std8.set_answer(question2, Answer('Trinity'))
+    #     std9 = Student(9, 'Grace')
+    #     std9.set_answer(question1, Answer(5))
+    #     std9.set_answer(question2, Answer('Woodsworth'))
+    #     std10 = Student(10, 'Claire')
+    #     std10.set_answer(question1, Answer(1))
+    #     std10.set_answer(question2, Answer('Woodsworth'))
+    #     std11 = Student(11, 'Kai')
+    #     std11.set_answer(question1, Answer(1))
+    #     std11.set_answer(question2, Answer('Woodsworth'))
+    #     course = Course('CSC148')
+    #     course.enroll_students([st1, std2, std3, std4, std5, std6, std7, std8, std9, std10, std11])
+    #     grouping = grouper.make_grouping(course, survey)
+    #     group1 = [std1, std2]
+    #     group2 = [std3, std4]
+    #     group3 = [std5, std6] 
 
 
 if __name__ == '__main__':

@@ -255,27 +255,19 @@ class Grouping:
         not violate a representation invariant; otherwise leave this grouping
         unchanged and return False.
         """
-        # Condition 1
-        if group.get_members() == []:
+        # RIs #1
+        if len(group) == 0:
             return False
-
-        all_members_ids: list[int] = []
-        if self._groups == []:
+        elif len(self._groups) == 0:
             self._groups.append(group)
             return True
+        # RIs #2
+        elif any(student in gp for gp in self._groups 
+            for student in group.get_members()):
+            return False
         else:
-            # Add all group members' ids in <self._groups> to a single list
-            for gp in self._groups:
-                for member in gp.get_members():
-                    all_members_ids.append(member.id)
-
-        # Condition 2
-        for student in group.get_members():
-            if student.id in all_members_ids:
-                return False
-
-        self._groups.append(group)
-        return True
+            self._groups.append(group)
+            return True
 
     def get_groups(self) -> list[Group]:
         """Return a list of all groups in this grouping.
@@ -351,15 +343,11 @@ class AlphaGrouper(Grouper):
         Preconditions:
             - <course> has more students than this Grouper's group_size
         """
-        # FIXME: Can't pass the example test
         grouping = Grouping()
         sorted_list = sort_students(course.students, 'name')
-        n = len(sorted_list) // self.group_size
-        sliced_list = slice_list(sorted_list, n)
+        sliced_list = slice_list(sorted_list, self.group_size)
 
-        for group in list(map(list, zip(*sliced_list[:-1]))):
-            if sliced_list[-1] != []:
-                group.append(sliced_list[-1].pop(0))
+        for group in sliced_list:
             grouping.add_group(Group(group))
 
         return grouping
@@ -531,25 +519,23 @@ class SimulatedAnnealingGrouper(Grouper):
         grouping = Grouping()
         student_list = list(course.get_students())
         sliced_list = slice_list(student_list, self.group_size)
-        score = total_score(survey, sliced_list)
+        old_score = total_score(survey, sliced_list)
+        best_score = old_score
         best_groups_list = sliced_list
 
         # Then
-        seed = 1
-        old_score = score
-        random_swap(new_sliced_list := deepcopy(sliced_list), seed)
-        new_score = total_score(survey, new_sliced_list)
-        iterations = self._iterations
-        temperature = self._initial_temperature * (1 - seed / (iterations - 1))
-        # 1 -> N iterations
-        while accept(old_score, new_score, temperature, seed):
-            if new_score > old_score:
-                best_groups_list = new_sliced_list
-            seed += 1
-            old_score = new_score
-            random_swap(new_sliced_list := deepcopy(new_sliced_list), seed)
-            new_score = total_score(survey, new_sliced_list)
-            temperature *= (1 - seed / (iterations - 1))
+        temperature = self._initial_temperature
+        for i in range(self._iterations):
+            seed = i + 1
+            sliced_list = deepcopy(sliced_list)
+            random_swap(sliced_list, seed)
+            new_score = total_score(survey, sliced_list)
+            if accept(old_score, new_score, temperature, seed):
+                if new_score >= old_score:
+                    best_groups_list = sliced_list
+                old_score = new_score
+            temperature *= (self._initial_temperature - seed / (
+                self._iterations - 1))
 
         for group in best_groups_list:
             grouping.add_group(Group(group))
