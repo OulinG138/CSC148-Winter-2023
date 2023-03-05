@@ -67,7 +67,7 @@ class Student:
     """
     id: int
     name: str
-    _answers: dict[Answer]
+    _answers: dict[int, Answer]
 
     def __init__(self, id_: int, name: str) -> None:
         """Initialize a student with name <name> and id <id>
@@ -81,7 +81,7 @@ class Student:
 
     def __str__(self) -> str:
         """Return the name of this student """
-        return f'The name of this student is {self.name}.'
+        return f'{self.name}'
 
     def has_answer(self, question: Question) -> bool:
         """Return True iff this student has an answer for a question with the
@@ -140,22 +140,21 @@ class Course:
         """
         id_list = [student.id for student in self.students]
 
-        for std in students:
-            if std.name != '' and std.id not in id_list:
-                self.students.append(std)
+        if all(std.name != '' and std.id not in id_list for std in students):
+            self.students.extend(students)
 
     def all_answered(self, survey: Survey) -> bool:
         """Return True iff all the students enrolled in this course have a
         valid answer for every question in <survey>.
         """
-        questions = survey.get_questions()
-
-        for student in self.students:
-            for question in questions:
-                if not student.has_answer(question):
-                    return False
-
-        return True
+        if len(survey) == 0 or len(self.students) == 0:
+            return True
+        else:
+            questions = survey.get_questions()
+            if not all(student.has_answer(question) for question in questions
+                       for student in self.students):
+                return False
+            return True
 
     def get_students(self) -> tuple[Student]:
         """Return a tuple of all students enrolled in this course.

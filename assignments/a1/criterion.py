@@ -82,7 +82,7 @@ class HomogeneousCriterion(Criterion):
         Preconditions:
             - len(answers) > 0
         """
-        if not all(question.validate_answer(answer) for answer in answers):
+        if not all(question.validate_answer(ans) for ans in answers):
             raise InvalidAnswerError
         elif len(answers) == 1:
             return 1.0

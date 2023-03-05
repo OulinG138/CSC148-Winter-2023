@@ -232,7 +232,7 @@ class YesNoQuestion(Question):
         You can choose the precise format of this string.
         """
         return self.text + \
-            '\nThe possible answer for this question is either True or False.'
+            '\nThe possible answer for this question is either yes or no.'
 
     def validate_answer(self, answer: Answer) -> bool:
         """Return True iff <answer> is a valid answer to this question.
@@ -280,14 +280,16 @@ class CheckboxQuestion(MultipleChoiceQuestion):
 
         An answer is valid iff:
             * It is a non-empty list.
-            * It has no duplicate entries.
+            * It has no duplicate entries
             * Every item in it is one of the answer options for this question.
         """
-        if answer.content == [] or \
-           len(set(answer.content)) != len(answer.content):
+        if not isinstance(answer.content, list) or answer.content == []:
             return False
         else:
-            return all(ans in self._options for ans in answer.content)
+            if len(set(answer.content)) != len(answer.content):
+                return False
+            else:
+                return all(ans in self._options for ans in answer.content)
 
     def get_similarity(self, answer1: Answer, answer2: Answer) -> float:
         """Return the similarity between <answer1> and <answer2>.
@@ -325,7 +327,10 @@ class Answer:
     def __init__(self,
                  content: Union[str, bool, int, list[str]]) -> None:
         """Initialize this answer with content <content>"""
-        self.content = content
+        if isinstance(content, list):
+            self.content = content.copy()
+        else:
+            self.content = content
 
     def is_valid(self, question: Question) -> bool:
         """Return True iff this answer is a valid answer to <question>"""
@@ -363,7 +368,7 @@ class Survey:
         and should use 1 as a default weight.
         """
         # If the list contains more than two questions with the same id, we
-        # keep the first added question.
+        # keep the first added one.
         self._questions = {question.id: question for question in questions}
         self._criteria = dict.fromkeys(
             self._questions.keys(), HomogeneousCriterion())
@@ -385,12 +390,9 @@ class Survey:
 
         You can choose the precise format of this string.
         """
-        output = 'Questions:\n'
+        output = ['why?'] + [str(qs) for qs in self._questions.values()]
 
-        for question in self._questions:
-            output += str(question)
-
-        return output
+        return '\n- '.join(output)
 
     def get_questions(self) -> list[Question]:
         """Return a list of all questions in this survey """
@@ -419,7 +421,7 @@ class Survey:
         If <question>.id does not occur in this survey, do not set the <weight>
         and return False instead.
         """
-        if not question in self:
+        if question not in self:
             return False
         else:
             self._weights[question.id] = weight
@@ -432,7 +434,7 @@ class Survey:
         If <question>.id does not occur in this survey, do not set the <weight>
         and return False instead.
         """
-        if not question in self:
+        if question not in self:
             return False
         else:
             self._criteria[question.id] = criterion
@@ -510,4 +512,3 @@ if __name__ == '__main__':
                                                   'course',
                                                   'grouper'],
                                 'disable': ['E9992']})
-

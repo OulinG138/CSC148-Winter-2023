@@ -208,9 +208,7 @@ class Group:
         This list should be a shallow copy of the self._members attribute.
         See the handout for more information about what a shallow copy is.
         """
-        members_list = self._members[:]
-
-        return members_list
+        return self._members.copy()
 
 
 class Grouping:
@@ -243,7 +241,7 @@ class Grouping:
         output = ''
 
         for group in self._groups:
-            name_list = [member.name for member in group]
+            name_list = [member.name for member in group.get_members()]
             for index, name in enumerate(name_list):
                 output += f'{index}.{name} '
             output += '\n'
@@ -255,15 +253,10 @@ class Grouping:
         not violate a representation invariant; otherwise leave this grouping
         unchanged and return False.
         """
-        # RIs #1
         if len(group) == 0:
             return False
-        elif len(self._groups) == 0:
-            self._groups.append(group)
-            return True
-        # RIs #2
-        elif any(student in gp for gp in self._groups 
-            for student in group.get_members()):
+        elif any(student in gp for gp in self._groups for student
+                 in group.get_members()):
             return False
         else:
             self._groups.append(group)
@@ -275,9 +268,7 @@ class Grouping:
         This list should be a shallow copy of the self._groups attribute.
         See the handout for more information about what a shallow copy is.
         """
-        grouping_list = self._groups[:]
-
-        return grouping_list
+        return self._groups.copy()
 
 
 class Grouper:
@@ -397,14 +388,14 @@ class GreedyGrouper(Grouper):
         """
         grouping = Grouping()
         non_members = list(course.get_students())
-        members = []
+        members: list[Student] = []
 
         while non_members != []:
             first_student = non_members.pop(0)
             members.append(first_student)
             student_list = [first_student]
 
-            while len(student_list) != self.group_size and non_members != []:
+            while len(student_list) < self.group_size and non_members != []:
                 best_student = find_best_addition_to_group(
                     survey, members, non_members)
                 non_members.remove(best_student)
@@ -520,21 +511,19 @@ class SimulatedAnnealingGrouper(Grouper):
         student_list = list(course.get_students())
         sliced_list = slice_list(student_list, self.group_size)
         old_score = total_score(survey, sliced_list)
-        best_score = old_score
         best_groups_list = sliced_list
 
         # Then
         temperature = self._initial_temperature
         for i in range(self._iterations):
-            seed = i + 1
-            sliced_list = deepcopy(sliced_list)
-            random_swap(sliced_list, seed)
+            seed = i + 1 
+            random_swap(sliced_list := deepcopy(sliced_list), seed)
             new_score = total_score(survey, sliced_list)
             if accept(old_score, new_score, temperature, seed):
                 if new_score >= old_score:
                     best_groups_list = sliced_list
-                old_score = new_score
-            temperature *= (self._initial_temperature - seed / (
+                    old_score = new_score
+            temperature = self._initial_temperature * (1 - seed / (
                 self._iterations - 1))
 
         for group in best_groups_list:
