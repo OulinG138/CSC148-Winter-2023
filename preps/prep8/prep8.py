@@ -107,8 +107,6 @@ class Tree:
         """
         if self.is_empty():
             return 0
-        elif self._subtrees == []:
-            return 1 if self._root < 0 else 0
         else:
             count = 1 if self._root < 0 else 0
             for subtree in self._subtrees:
@@ -131,8 +129,6 @@ class Tree:
         """
         if self.is_empty():
             return 0
-        elif self._subtrees == []:
-            return self._root
         else:
             maximum = self._root
             for subtree in self._subtrees:
@@ -155,13 +151,11 @@ class Tree:
         """
         if self.is_empty():
             return 0
-        elif self._subtrees == []:
-            return 1
         else:
             output = []
             for subtree in self._subtrees:
                 output.append(subtree.height())
-            return 1 + max(output)
+            return 1 + max(output) if output != [] else 1
 
     def __contains__(self, item: Any) -> bool:
         """Return whether this tree contains <item>.
@@ -174,8 +168,6 @@ class Tree:
         """
         if self.is_empty():
             return False
-        elif self._subtrees == []:
-            return self._root == item
         else:
             if self._root == item:
                 return True

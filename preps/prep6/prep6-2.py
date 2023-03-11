@@ -53,48 +53,119 @@ from datetime import date
 # (e.g. from typing import Optional)
 
 
-# TODO: Define the 3 necessary classes here.
-#       See the __main__ block below for an example of how the classes will
-#       be called and the expected output.
-#       Be sure to write class docstrings that describe all attributes that
-#       you create, and include type annotations for each attribute.
-class User:
-
-    def __init__(self, name: str) -> None:
-        self.name = name
-        self.total_items_checked = 0
-
-
-class Checklist:
-    """docstring for ClassName"""
-    _checklist: tuple[list[str, date, str, Optional[User]]]
-    def __init__(self, name: str) -> None:
-        self.name = name
-        self._checklist = tuple()
-
-    def create_item(self, item: str, deadline: date) -> None:
-        self._checklist += ([item, deadline, '[-]', None],)
-
-    def mark_item_complete(self, item: str, user: User) -> None: 
-        for i in range(len(self._checklist)):
-            if self._checklist[i][0] == item:
-                self._checklist[i][2] = '[x]'
-                self._checklist[i][3] = user
-                user.total_items_checked += 1
-
-    def has_item(self, item_description: str) -> bool:
-        return item_description in [sublst[0] for sublst in self._checklist]
-
-    def __str__(self) -> str:
-        output = f'{self.name}'
-
-        for sublst in self._checklist:
-            if sublst[3] is None:
-                output += f'\n{sublst[2]} {sublst[0]} {sublst[1]}'
-            else:
-                output += f'\n{sublst[2]} {sublst[0]} {sublst[1]}, complete by {sublst[3].name}'
-
-        return output
+class User:  
+    """A user who can checks off items in the checklist. 
+ 
+    === Attributes === 
+    name: The name of the user 
+    total_items_checked: the total number items the user has completed. 
+    """  
+    name: str  
+    total_items_checked: int  
+  
+    def __init__(self, name: str) -> None:  
+        """Initialize a new user"""  
+        self.name = name  
+        self.total_items_checked = 0  
+  
+  
+class _ChecklistItem:  
+    """An item in a check list 
+ 
+    === Public Attributes === 
+    description: The description of the item. 
+    deadline: The due date of the item. 
+    completed_user_name: The name of the user who completed the item. 
+ 
+    === Private Attributes === 
+    _next: The next item in the list, or None if there are no more items. 
+    """  
+    description: str  
+    deadline: date  
+    completed_user_name: Optional[str]  
+    _next: Any  
+  
+    def __init__(self, description: str, deadline: date) -> None:  
+        """Initialize a new item storing <description>, <deadline>, 
+        <completed_user_name>, with no next item. 
+        """  
+        self.description = description  
+        self.deadline = deadline  
+        self.completed_user_name = None  
+        self._next = None  
+  
+  
+class Checklist:  
+    """A check list that stores items. 
+ 
+    === Public Attributes === 
+    name: The name of the check list 
+ 
+    === Private Attributes === 
+    _first: The first item in the linked list, or None if the list is empty. 
+    """  
+    name: str  
+    _first: Optional[_ChecklistItem]  
+  
+    def __init__(self, name: str) -> None:  
+        """Initialize an empty check list."""  
+        self.name = name  
+        self._first = None  
+  
+    def is_empty(self) -> None:  
+        """Return whether this check list is empty."""  
+        return self._first is None  
+  
+    def create_item(self, description: str, deadline: date) -> None:  
+        """Create a new item with <description> and <deadline>."""  
+        if self.is_empty():  
+            self._first = _ChecklistItem(description, deadline)  
+        else:  
+            curr = self._first  
+            while curr._next is not None:  
+                curr = curr._next  
+            curr._next = _ChecklistItem(description, deadline)  
+  
+    def mark_item_complete(self, description: str, user: User) -> None:  
+        """Mark a item that is completed."""  
+        if self._first is not None:  
+            curr = self._first  
+            while curr is not None:  
+                if curr.description == description:  
+                    curr.completed_user_name = user.name  
+                    user.total_items_checked += 1  
+                    break  
+                curr = curr._next  
+  
+    def has_item(self, description: str) -> bool:  
+        """Check whether a item is in this check list."""  
+        if self.is_empty():  
+            return False  
+  
+        curr = self._first  
+        while curr is not None:  
+            if description == curr.description:  
+                return True  
+            curr = curr._next  
+        return False  
+  
+    def __str__(self) -> str:  
+        """Return a string representation of this list. """  
+        output = f'{self.name}'  
+  
+        if self.is_empty():  
+            return output  
+  
+        curr = self._first  
+        while curr is not None:  
+            if curr.completed_user_name is None:  
+                output += f'\n[-] {curr.description} ({curr.deadline})'  
+            else:  
+                output += f'\n[x] {curr.description} ({curr.deadline}), ' + \
+                          f'completed by {curr.completed_user_name}'  
+            curr = curr._next  
+  
+        return output  
 
 
 if __name__ == "__main__":

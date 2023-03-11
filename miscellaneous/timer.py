@@ -8,10 +8,3 @@ def display_time(func):
         print(f'Total run time: {t2 - t1:.4}s')
         return result
     return wrapper
-
-@display_time
-def f():
-    print(1)
-
-
-print(f())

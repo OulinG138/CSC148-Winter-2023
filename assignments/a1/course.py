@@ -113,9 +113,6 @@ class Course:
     name: the name of the course
     students: a list of students enrolled in the course
 
-    === Private Attributes ===
-    TODO: Describe any private attributes you create here
-
     === Representation Invariants ===
     - No two students in this course have the same id
     - name is not the empty string

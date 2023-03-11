@@ -1,7 +1,3 @@
-# TODO: Add the test cases that you'll be submitting to this file!
-#       Make sure your test cases are all named starting with
-#       test_ and that they have unique names.
-
 # You may need to import pytest in order to run your tests.
 # You are free to import hypothesis and use hypothesis for testing.
 # This file will not be graded for style with PythonTA
@@ -11,8 +7,7 @@ from survey import Question, MultipleChoiceQuestion, NumericQuestion, \
     YesNoQuestion, CheckboxQuestion, Answer, Survey
 from criterion import Criterion, HomogeneousCriterion, HeterogeneousCriterion, \
     LonelyMemberCriterion, InvalidAnswerError
-from grouper import Group, Grouping, Grouper, AlphaGrouper, GreedyGrouper, \
-    SimulatedAnnealingGrouper
+from grouper import Group, Grouping, Grouper, AlphaGrouper, GreedyGrouper
 from hypothesis import given, strategies as st
 
 ###############################################################################

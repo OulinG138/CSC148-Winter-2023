@@ -46,6 +46,7 @@ class RecursiveList:
             self._first = items[0]
             self._rest = RecursiveList(items[1:])
 
+
     def is_empty(self) -> bool:
         """Return whether this list is empty.
 
@@ -81,8 +82,15 @@ class RecursiveList:
         >>> lst = RecursiveList([1, 2, 3])
         >>> len(lst)
         3
+        >>> lst = RecursiveList([1, 2, 3, 3, 3, 3,])
+        >>> len(lst)
+        6
         """
-        pass
+        if self.is_empty():
+            return 0
+        else:
+            return 1 + len(self._rest)
+
 
     def __contains__(self, item: Any) -> bool:
         """Return whether <item> is in this list.
@@ -116,7 +124,16 @@ class RecursiveList:
         >>> lst.count(3)
         1
         """
-        pass
+        if self.is_empty():
+            return 0
+        else:
+            count = 0
+            if self._first == item:
+                count += 1
+            if not self._rest.is_empty():
+                count += self._rest.count(item)
+            return count
+
 
     def __getitem__(self, index: int) -> Any:
         """Return the item at position <index> in this list.
@@ -137,7 +154,26 @@ class RecursiveList:
         ...
         IndexError
         """
-        pass
+        # Method 1
+        if self.is_empty():
+            raise IndexError
+        else:
+            if index == 0:
+                return self._first
+            index -= 1
+            output = self._rest.__getitem__(index)
+            return output
+
+        # Method 2
+        # if index == 0:
+        #     return self._first
+        # else:
+        #     if index >= len(self):
+        #         raise IndexError
+        #     else:
+        #         index -= 1
+        #         return self._rest.__getitem__(index)
+
 
     ###########################################################################
     # Mutating methods: these methods modify the the list
@@ -159,13 +195,32 @@ class RecursiveList:
         >>> str(lst)
         '100 -> 200 -> 300'
         """
+        # Method 1
+        if self.is_empty():
+            raise IndexError
+        else:
+            if index == 0:
+                self._first = item
+                return None
+            index -= 1
+            self._rest.__setitem__(index, item)
+
+        # Method 2
+        # if index == 0:
+        #     self._first = item
+        # else:
+        #     if index >= len(self):
+        #         raise IndexError
+        #     else:
+        #         index -= 1
+        #         self._rest.__setitem__(index, item)
 
     def insert_first(self, item: object) -> None:
         """Insert item at the front of this list.
 
         This should work even if this list is empty.
         """
-        pass
+        self._first = item
 
     def pop(self, index: int) -> Any:
         """Remove and return the item at position <index> in this list.
@@ -191,7 +246,21 @@ class RecursiveList:
         ...
         IndexError
         """
-        pass
+        if index >= len(self):
+            raise IndexError
+        elif index == 0:
+            item = self._first
+            self._first = self._rest._first
+            self._rest = self._rest._rest
+            return item
+        else:
+            if index == 1:
+                item = self._rest._first
+                self._rest = self._rest._rest
+                return item
+            else:
+                index -= 1
+                return self._rest.pop(index)
 
     def insert(self, index: int, item: Any) -> None:
         """Insert the given item in to this list at position <index>.
@@ -201,8 +270,8 @@ class RecursiveList:
         Note that it is possible to add to the end of the list
         (when index == len(self)).
 
-        >>> lst = RecursiveList(['c'])
-        >>> lst.insert(0, 'a')
+        >>> lst = RecursiveList(['c']) # self._first = 'c' self._rest = None
+        >>> lst.insert(0, 'a')  RecursiveList(['a', 'c'])
         >>> str(lst)
         'a -> c'
         >>> lst.insert(1, 'b')
@@ -216,25 +285,26 @@ class RecursiveList:
         ...
         IndexError
         """
-        pass
+        
+            
 
-    def _pop_first(self) -> Any:
-        """Remove and return the first item in this list.
+    # def _pop_first(self) -> Any:
+    #     """Remove and return the first item in this list.
 
-        Raise an IndexError if this list is empty.
-        """
-        pass
+    #     Raise an IndexError if this list is empty.
+    #     """
+    #     pass
 
-    def _insert_first(self, item: Any) -> None:
-        """Insert item at the front of this list.
+    # def _insert_first(self, item: Any) -> None:
+    #     """Insert item at the front of this list.
 
-        This should work even if this list is empty.
-        """
-        pass
+    #     This should work even if this list is empty.
+    #     """
+    #     pass
 
-    ###########################################################################
-    # Additional Exercises
-    ###########################################################################
+    # ###########################################################################
+    # # Additional Exercises
+    # ###########################################################################
     def map(self, f: Callable[[Any], Any]) -> RecursiveList:
         """Return a new recursive list storing the items that are
         obtained by applying f to each item in this recursive list.
@@ -248,7 +318,16 @@ class RecursiveList:
         >>> str(lst.map(len))
         '5 -> 7'
         """
-        pass
+        if self.is_empty():
+            return RecursiveList([])
+        elif self._rest.is_empty():
+            return RecursiveList([f(self._first)])
+        else:
+            tmp = RecursiveList([f(self._first)])
+            tmp._rest = self._rest.map(f)
+            return tmp
+
+
 
 
 if __name__ == '__main__':

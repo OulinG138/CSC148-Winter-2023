@@ -108,7 +108,9 @@ class MultipleChoiceQuestion(Question):
 
         You can choose the precise format of this string.
         """
-        return '\n- '.join([self.text] + self._options)
+        output = f'{self.text}\n\n'
+
+        return output + '\n- '.join(['Possible Answers:'] + self._options)
 
     def validate_answer(self, answer: Answer) -> bool:
         """Return True iff <answer> is a valid answer to this question.
@@ -166,7 +168,7 @@ class NumericQuestion(Question):
         You can choose the precise format of this string.
         """
         return self.text + \
-            f'\nThe possible answers are between {self._min_}, {self._max_}'
+            f'\n\nThe possible answers are between {self._min_}, {self._max_}'
 
     def validate_answer(self, answer: Answer) -> bool:
         """Return True iff the content of <answer> is an integer between the
@@ -211,9 +213,6 @@ class YesNoQuestion(Question):
     id: the id of this question
     text: the text of this question
 
-    === Private Attributes ===
-    TODO: Describe any private attributes you create here
-
     === Representation Invariants ===
     text is not the empty string
     """
@@ -232,7 +231,7 @@ class YesNoQuestion(Question):
         You can choose the precise format of this string.
         """
         return self.text + \
-            '\nThe possible answer for this question is either yes or no.'
+            '\n\nThe possible answer for this question is either yes or no.'
 
     def validate_answer(self, answer: Answer) -> bool:
         """Return True iff <answer> is a valid answer to this question.
@@ -390,7 +389,7 @@ class Survey:
 
         You can choose the precise format of this string.
         """
-        output = ['why?'] + [str(qs) for qs in self._questions.values()]
+        output = ['Questions:'] + [str(qs) for qs in self._questions.values()]
 
         return '\n- '.join(output)
 

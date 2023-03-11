@@ -62,26 +62,24 @@ def nested_list_equal(obj1: Union[int, List], obj2: Union[int, List]) -> bool:
     False
     >>> nested_list_equal([1, 2, [1, 2]], [1, 2, [1, 2], 4])
     False
-    >>> nested_list_equal([1, 2, [1, 2]], [1, 2, [1, 2], 4])
+    >>> nested_list_equal([1, 2, 4, [1, 2]], [1, 2, [1, 2], 4])
     False
-    >>> nested_list_equal(17, 15)
+    >>> nested_list_equal(16, 15)
+    False
+    >>> nested_list_equal(15, 15)
     False
     """
-    # HINT: You'll need to modify the basic pattern to loop over indexes,
-    # so that you can iterate through both obj1 and obj2 in parallel.
-
     try:
-        if isinstance(obj1, int) or isinstance(obj2, int):
+        if isinstance(obj1, int) and isinstance(obj2, int):
             return obj1 == obj2
-        else:
-            if len(obj1) != len(obj2):
+        elif len(obj1) != len(obj2):
                 return False
-            else:
-                for i in range(len(obj1)):
-                    status = nested_list_equal(obj1[i], obj2[i])
-                    if not status:
-                        return False
-                return True
+        else:
+            for i in range(len(obj1)):
+                status = nested_list_equal(obj1[i], obj2[i])
+                if not status:
+                    return False
+            return True
     except TypeError:
         return False
         

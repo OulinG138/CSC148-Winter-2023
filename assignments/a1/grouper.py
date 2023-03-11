@@ -198,7 +198,7 @@ class Group:
         name_list = [member.name for member in self._members]
 
         for index, name in enumerate(name_list):
-            output += f'{index}.{name} '
+            output += f'{index + 1}.{name} '
 
         return output
 
@@ -215,7 +215,7 @@ class Grouping:
     """A collection of groups
 
     === Private Attributes ===
-    _groups: a list of Groups
+    _groups: a list of groups
 
     === Representation Invariants ===
     No group in _groups contains zero members
@@ -243,7 +243,7 @@ class Grouping:
         for group in self._groups:
             name_list = [member.name for member in group.get_members()]
             for index, name in enumerate(name_list):
-                output += f'{index}.{name} '
+                output += f'{index + 1}.{name} '
             output += '\n'
 
         return output
@@ -516,7 +516,7 @@ class SimulatedAnnealingGrouper(Grouper):
         # Then
         temperature = self._initial_temperature
         for i in range(self._iterations):
-            seed = i + 1 
+            seed = i + 1
             random_swap(sliced_list := deepcopy(sliced_list), seed)
             new_score = total_score(survey, sliced_list)
             if accept(old_score, new_score, temperature, seed):
