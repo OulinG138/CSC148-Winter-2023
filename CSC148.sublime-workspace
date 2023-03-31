@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"ite",
+				"items_in_range"
+			],
+			[
+				"item",
+				"items_in_range"
+			],
+			[
+				"is",
+				"is_displayed_tree_leaf"
+			],
+			[
+				"get",
+				"get_rectangles"
+			],
+			[
+				"su",
+				"subtrees_data_size"
+			],
+			[
+				"_get",
+				"_get_path_string_helper"
+			],
+			[
+				"path",
+				"get_path_string"
+			],
+			[
 				"compl",
 				"completed_user_name"
 			],
@@ -38,10 +66,6 @@
 			[
 				"iss",
 				"issuperset"
-			],
-			[
-				"get",
-				"get_certificates"
 			],
 			[
 				"instr",
@@ -88,18 +112,24 @@
 	"buffers":
 	[
 		{
-			"file": "preps/prep9/prep9.py",
-			"redo_stack":
+			"file": "assignments/a2/tm_trees.py",
+			"settings":
+			{
+				"buffer_size": 35812,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
 			[
 				[
-					64,
+					21,
 					1,
 					"sequence",
 					{
 						"commands":
 						[
 							[
-								"nv_vi_s",
+								"nv_vi_big_c",
 								{
 									"count": 1,
 									"mode": "mode_internal_normal",
@@ -109,34 +139,231 @@
 							[
 								"insert",
 								{
-									"characters": "e"
+									"characters": "d"
 								}
 							]
 						]
 					},
-					"AgAAAKckAAAAAAAApyQAAAAAAAABAAAAZackAAAAAAAAqCQAAAAAAAAAAAAA",
-					"BgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAKgkAAAAAAAAqCQAAAAAAAAAAAAAAADwvw"
+					"AgAAAKQoAAAAAAAApCgAAAAAAAABAAAAMKQoAAAAAAAApSgAAAAAAAAAAAAA",
+					"CwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACkKAAAAAAAAKQoAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					29,
+					1,
+					"sequence",
+					{
+						"commands":
+						[
+							[
+								"nv_vi_a",
+								{
+									"count": 1,
+									"mode": "mode_internal_normal"
+								}
+							],
+							[
+								"insert",
+								{
+									"characters": "ata-I"
+								}
+							],
+							[
+								"left_delete",
+								null
+							],
+							[
+								"left_delete",
+								null
+							],
+							[
+								"insert",
+								{
+									"characters": "_size"
+								}
+							]
+						]
+					},
+					"DAAAAKUoAAAAAAAApigAAAAAAAAAAAAApigAAAAAAACnKAAAAAAAAAAAAACnKAAAAAAAAKgoAAAAAAAAAAAAAKgoAAAAAAAAqSgAAAAAAAAAAAAAqSgAAAAAAACqKAAAAAAAAAAAAACpKAAAAAAAAKkoAAAAAAAAAQAAAEmoKAAAAAAAAKgoAAAAAAAAAQAAAC2oKAAAAAAAAKkoAAAAAAAAAAAAAKkoAAAAAAAAqigAAAAAAAAAAAAAqigAAAAAAACrKAAAAAAAAAAAAACrKAAAAAAAAKwoAAAAAAAAAAAAAKwoAAAAAAAArSgAAAAAAAAAAAAA",
+					"CwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAACkKAAAAAAAAKQoAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					37,
+					1,
+					"nv_vi_d",
+					{
+						"count": 1,
+						"mode": "mode_internal_normal",
+						"motion":
+						{
+							"motion": "nv_vi_w",
+							"motion_args":
+							{
+								"count": 1,
+								"mode": "mode_internal_normal"
+							}
+						},
+						"register": "\""
+					},
+					"AQAAAEspAAAAAAAASykAAAAAAAAKAAAAZGF0YV9zaXplIA",
+					"CwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAABLKQAAAAAAAEspAAAAAAAAAAAAAAAA8L8"
+				],
+				[
+					39,
+					1,
+					"nv_vi_x",
+					{
+						"count": 1,
+						"mode": "mode_internal_normal",
+						"register": "\""
+					},
+					"AQAAAEspAAAAAAAASykAAAAAAAABAAAAKw",
+					"BgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAEspAAAAAAAASykAAAAAAAAAAAAAAADwvw"
+				],
+				[
+					41,
+					1,
+					"nv_vi_x",
+					{
+						"count": 1,
+						"mode": "mode_internal_normal",
+						"register": "\""
+					},
+					"AQAAAEspAAAAAAAASykAAAAAAAABAAAAIA",
+					"BgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAEspAAAAAAAASykAAAAAAAAAAAAAAADwvw"
+				],
+				[
+					19,
+					1,
+					"nv_vi_d",
+					{
+						"count": 1,
+						"mode": "mode_visual",
+						"register": "\""
+					},
+					"AQAAAMI5AAAAAAAAwjkAAAAAAADjBwAAeCwgeSwgd2lkdGgsIGhlaWdodCA9IHJlY3QKICAgICAgICBzZWxmLnJlY3QgPSByZWN0CiAgICAgICAgaSA9IDAKICAgICAgICBzdGFydF92ZXIgPSB4CiAgICAgICAgc3RhcnRfaG9yID0geQogICAgICAgIHN1bV93aWR0aCA9IDAKICAgICAgICBzdW1faGVpZ2h0ID0gMAogICAgICAgIGZvciBzdWJ0cmVlIGluIHNlbGYuX3N1YnRyZWVzOgogICAgICAgICAgICBpZiB3aWR0aCA+IGhlaWdodCBhbmQgc2VsZi5kYXRhX3NpemUgPiAwIGFuZFwKICAgICAgICAgICAgICAgICAgICBpICE9IGxlbihzZWxmLl9zdWJ0cmVlcykgLSAxOgogICAgICAgICAgICAgICAgaWYgc3VidHJlZS5kYXRhX3NpemUgPiAwOgogICAgICAgICAgICAgICAgICAgIHdpZCA9IG1hdGguZmxvb3IoKHN1YnRyZWUuZGF0YV9zaXplIC8gc2VsZi5kYXRhX3NpemUpCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAqIHdpZHRoKQogICAgICAgICAgICAgICAgICAgIHN1YnRyZWUudXBkYXRlX3JlY3RhbmdsZXMoKHN0YXJ0X3ZlciwgeSwgd2lkLCBoZWlnaHQpKQogICAgICAgICAgICAgICAgICAgIHN0YXJ0X3ZlciArPSB3aWQKICAgICAgICAgICAgICAgICAgICBzdW1fd2lkdGggKz0gd2lkCiAgICAgICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgICAgIHN1YnRyZWUudXBkYXRlX3JlY3RhbmdsZXMoKHN0YXJ0X3ZlciwgeSwgMCwgMCkpCiAgICAgICAgICAgICAgICBpICs9IDEKICAgICAgICAgICAgZWxpZiB3aWR0aCA+IGhlaWdodCBhbmQgc2VsZi5kYXRhX3NpemUgPiAwIGFuZFwKICAgICAgICAgICAgICAgICAgICBpID09IGxlbihzZWxmLl9zdWJ0cmVlcykgLSAxOgogICAgICAgICAgICAgICAgaWYgc3VidHJlZS5kYXRhX3NpemUgPiAwOgogICAgICAgICAgICAgICAgICAgIHN1YnRyZWUudXBkYXRlX3JlY3RhbmdsZXMoKHN0YXJ0X3ZlciwgeSwgd2lkdGggLSBzdW1fd2lkdGgsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaGVpZ2h0KSkKICAgICAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICAgICAgc3VidHJlZS51cGRhdGVfcmVjdGFuZ2xlcygoc3RhcnRfdmVyLCB5LCAwLCAwKSkKICAgICAgICAgICAgZWxpZiBoZWlnaHQgPj0gd2lkdGggYW5kIHNlbGYuZGF0YV9zaXplID4gMCBhbmRcCiAgICAgICAgICAgICAgICAgICAgaSAhPSBsZW4oc2VsZi5fc3VidHJlZXMpIC0gMToKICAgICAgICAgICAgICAgIGlmIHN1YnRyZWUuZGF0YV9zaXplID4gMDoKICAgICAgICAgICAgICAgICAgICBoaWcgPSBtYXRoLmZsb29yKChzdWJ0cmVlLmRhdGFfc2l6ZSAvIHNlbGYuZGF0YV9zaXplKQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKiBoZWlnaHQpCiAgICAgICAgICAgICAgICAgICAgc3VidHJlZS51cGRhdGVfcmVjdGFuZ2xlcygoeCwgc3RhcnRfaG9yLCB3aWR0aCwgaGlnKSkKICAgICAgICAgICAgICAgICAgICBzdGFydF9ob3IgKz0gaGlnCiAgICAgICAgICAgICAgICAgICAgc3VtX2hlaWdodCArPSBoaWcKICAgICAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICAgICAgc3VidHJlZS51cGRhdGVfcmVjdGFuZ2xlcygoeCwgc3RhcnRfaG9yLCAwLCAwKSkKICAgICAgICAgICAgICAgIGkgKz0gMQogICAgICAgICAgICBlbGlmIGhlaWdodCA+PSB3aWR0aCBhbmQgc2VsZi5kYXRhX3NpemUgPiAwIGFuZFwKICAgICAgICAgICAgICAgICAgICBpID09IGxlbihzZWxmLl9zdWJ0cmVlcykgLSAxOgogICAgICAgICAgICAgICAgaWYgc3VidHJlZS5kYXRhX3NpemUgPiAwOgogICAgICAgICAgICAgICAgICAgIHN1YnRyZWUudXBkYXRlX3JlY3RhbmdsZXMoKHgsIHN0YXJ0X2hvciwgd2lkdGgsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaGVpZ2h0IC0gc3VtX2hlaWdodCkpCiAgICAgICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgICAgIHN1YnRyZWUudXBkYXRlX3JlY3RhbmdsZXMoKHgsIHN0YXJ0X2hvciwgMCwgMCkp",
+					"BgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAKVBAAAAAAAAwjkAAAAAAAAAAAAAAADwvw"
 				]
-			],
+			]
+		},
+		{
+			"file": "preps/prep11/prep11.py",
 			"settings":
 			{
-				"buffer_size": 9571,
+				"buffer_size": 6770,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "test.py",
+			"file": "assignments/a2/tm_trees_referece4.py",
 			"settings":
 			{
-				"buffer_size": 6043,
+				"buffer_size": 13602,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assignments/a2/tm_trees_referece3.py",
+			"settings":
+			{
+				"buffer_size": 14554,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
+		},
+		{
+			"file": "assignments/a2/tm_trees_referece2.py",
+			"settings":
+			{
+				"buffer_size": 14493,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					9,
+					1,
+					"nv_vi_d",
+					{
+						"count": 1,
+						"mode": "mode_visual",
+						"register": "\""
+					},
+					"AQAAAAAAAAAAAAAAAAAAAAAAAADeOAAAIyAgQ29weXJpZ2h0IChjKSAyMDE5LiBZdWVoYW8gSHVhbmcgaHVhbjEzODcgZ2l0aHViQEVyb1NrdWxsZWQKCiIiIkFzc2lnbm1lbnQgMjogVHJlZXMgZm9yIFRyZWVtYXAKCj09PSBDU0MxNDggV2ludGVyIDIwMTkgPT09ClRoaXMgY29kZSBpcyBwcm92aWRlZCBzb2xlbHkgZm9yIHRoZSBwZXJzb25hbCBhbmQgcHJpdmF0ZSB1c2Ugb2YKc3R1ZGVudHMgdGFraW5nIHRoZSBDU0MxNDggY291cnNlIGF0IHRoZSBVbml2ZXJzaXR5IG9mIFRvcm9udG8uCkNvcHlpbmcgZm9yIHB1cnBvc2VzIG90aGVyIHRoYW4gdGhpcyB1c2UgaXMgZXhwcmVzc2x5IHByb2hpYml0ZWQuCkFsbCBmb3JtcyBvZiBkaXN0cmlidXRpb24gb2YgdGhpcyBjb2RlLCB3aGV0aGVyIGFzIGdpdmVuIG9yIHdpdGgKYW55IGNoYW5nZXMsIGFyZSBleHByZXNzbHkgcHJvaGliaXRlZC4KCkFsbCBvZiB0aGUgZmlsZXMgaW4gdGhpcyBkaXJlY3RvcnkgYW5kIGFsbCBzdWJkaXJlY3RvcmllcyBhcmU6CkNvcHlyaWdodCAoYykgMjAxOSBCb2dkYW4gU2ltaW9uLCBEYXZpZCBMaXUsIERpYW5lIEhvcnRvbiwgSmFjcXVlbGluZSBTbWl0aAoKPT09IE1vZHVsZSBEZXNjcmlwdGlvbiA9PT0KVGhpcyBtb2R1bGUgY29udGFpbnMgdGhlIGJhc2ljIHRyZWUgaW50ZXJmYWNlIHJlcXVpcmVkIGJ5IHRoZSB0cmVlbWFwCnZpc3VhbGlzZXIuIFlvdSB3aWxsIGJvdGggYWRkIHRvIHRoZSBhYnN0cmFjdCBjbGFzcywgYW5kIGNvbXBsZXRlIGEKY29uY3JldGUgaW1wbGVtZW50YXRpb24gb2YgYSBzdWJjbGFzcyB0byByZXByZXNlbnQgZmlsZXMgYW5kIGZvbGRlcnMgb24geW91cgpjb21wdXRlcidzIGZpbGUgc3lzdGVtLgoiIiIKZnJvbSBfX2Z1dHVyZV9fIGltcG9ydCBhbm5vdGF0aW9ucwoKaW1wb3J0IG1hdGgKaW1wb3J0IG9zCmZyb20gcmFuZG9tIGltcG9ydCByYW5kaW50CmZyb20gdHlwaW5nIGltcG9ydCBMaXN0LCBUdXBsZSwgT3B0aW9uYWwKCgpjbGFzcyBUTVRyZWU6CiAgICAiIiJBIFRyZWVNYXBwYWJsZVRyZWU6IGEgdHJlZSB0aGF0IGlzIGNvbXBhdGlibGUgd2l0aCB0aGUgdHJlZW1hcAogICAgdmlzdWFsaXNlci4KCiAgICBUaGlzIGlzIGFuIGFic3RyYWN0IGNsYXNzIHRoYXQgc2hvdWxkIG5vdCBiZSBpbnN0YW50aWF0ZWQgZGlyZWN0bHkuCgogICAgWW91IG1heSBOT1QgYWRkIGFueSBhdHRyaWJ1dGVzLCBwdWJsaWMgb3IgcHJpdmF0ZSwgdG8gdGhpcyBjbGFzcy4KICAgIEhvd2V2ZXIsIHBhcnQgb2YgdGhpcyBhc3NpZ25tZW50IHdpbGwgaW52b2x2ZSB5b3UgaW1wbGVtZW50aW5nIG5ldyBwdWJsaWMKICAgICptZXRob2RzKiBmb3IgdGhpcyBpbnRlcmZhY2UuCiAgICBZb3Ugc2hvdWxkIG5vdCBhZGQgYW55IG5ldyBwdWJsaWMgbWV0aG9kcyBvdGhlciB0aGFuIHRob3NlIHJlcXVpcmVkIGJ5CiAgICB0aGUgY2xpZW50IGNvZGUuCiAgICBZb3UgY2FuLCBob3dldmVyLCBmcmVlbHkgYWRkIHByaXZhdGUgbWV0aG9kcyBhcyBuZWVkZWQuCgogICAgPT09IFB1YmxpYyBBdHRyaWJ1dGVzID09PQogICAgcmVjdDoKICAgICAgICBUaGUgcHlnYW1lIHJlY3RhbmdsZSByZXByZXNlbnRpbmcgdGhpcyBub2RlIGluIHRoZSB0cmVlbWFwCiAgICAgICAgdmlzdWFsaXphdGlvbi4KICAgIGRhdGFfc2l6ZToKICAgICAgICBUaGUgc2l6ZSBvZiB0aGUgZGF0YSByZXByZXNlbnRlZCBieSB0aGlzIHRyZWUuCgogICAgPT09IFByaXZhdGUgQXR0cmlidXRlcyA9PT0KICAgIF9jb2xvdXI6CiAgICAgICAgVGhlIFJHQiBjb2xvdXIgdmFsdWUgb2YgdGhlIHJvb3Qgb2YgdGhpcyB0cmVlLgogICAgX25hbWU6CiAgICAgICAgVGhlIHJvb3QgdmFsdWUgb2YgdGhpcyB0cmVlLCBvciBOb25lIGlmIHRoaXMgdHJlZSBpcyBlbXB0eS4KICAgIF9zdWJ0cmVlczoKICAgICAgICBUaGUgc3VidHJlZXMgb2YgdGhpcyB0cmVlLgogICAgX3BhcmVudF90cmVlOgogICAgICAgIFRoZSBwYXJlbnQgdHJlZSBvZiB0aGlzIHRyZWU7IGkuZS4sIHRoZSB0cmVlIHRoYXQgY29udGFpbnMgdGhpcyB0cmVlCiAgICAgICAgYXMgYSBzdWJ0cmVlLCBvciBOb25lIGlmIHRoaXMgdHJlZSBpcyBub3QgcGFydCBvZiBhIGxhcmdlciB0cmVlLgogICAgX2V4cGFuZGVkOgogICAgICAgIFdoZXRoZXIgb3Igbm90IHRoaXMgdHJlZSBpcyBjb25zaWRlcmVkIGV4cGFuZGVkIGZvciB2aXN1YWxpemF0aW9uLgoKICAgID09PSBSZXByZXNlbnRhdGlvbiBJbnZhcmlhbnRzID09PQogICAgLSBkYXRhX3NpemUgPj0gMAogICAgLSBJZiBfc3VidHJlZXMgaXMgbm90IGVtcHR5LCB0aGVuIGRhdGFfc2l6ZSBpcyBlcXVhbCB0byB0aGUgc3VtIG9mIHRoZQogICAgICBkYXRhX3NpemUgb2YgZWFjaCBzdWJ0cmVlLgoKICAgIC0gX2NvbG91cidzIGVsZW1lbnRzIGFyZSBlYWNoIGluIHRoZSByYW5nZSAwLTI1NS4KCiAgICAtIElmIF9uYW1lIGlzIE5vbmUsIHRoZW4gX3N1YnRyZWVzIGlzIGVtcHR5LCBfcGFyZW50X3RyZWUgaXMgTm9uZSwgYW5kCiAgICAgIGRhdGFfc2l6ZSBpcyAwLgogICAgICBUaGlzIHNldHRpbmcgb2YgYXR0cmlidXRlcyByZXByZXNlbnRzIGFuIGVtcHR5IHRyZWUuCgogICAgLSBpZiBfcGFyZW50X3RyZWUgaXMgbm90IE5vbmUsIHRoZW4gc2VsZiBpcyBpbiBfcGFyZW50X3RyZWUuX3N1YnRyZWVzCgogICAgLSBpZiBfZXhwYW5kZWQgaXMgVHJ1ZSwgdGhlbiBfcGFyZW50X3RyZWUuX2V4cGFuZGVkIGlzIFRydWUKICAgIC0gaWYgX2V4cGFuZGVkIGlzIEZhbHNlLCB0aGVuIF9leHBhbmRlZCBpcyBGYWxzZSBmb3IgZXZlcnkgdHJlZQogICAgICBpbiBfc3VidHJlZXMKICAgIC0gaWYgX3N1YnRyZWVzIGlzIGVtcHR5LCB0aGVuIF9leHBhbmRlZCBpcyBGYWxzZQogICAgIiIiCgogICAgcmVjdDogVHVwbGVbaW50LCBpbnQsIGludCwgaW50XQogICAgZGF0YV9zaXplOiBpbnQKICAgIF9jb2xvdXI6IFR1cGxlW2ludCwgaW50LCBpbnRdCiAgICBfbmFtZTogT3B0aW9uYWxbc3RyXQogICAgX3N1YnRyZWVzOiBMaXN0W1RNVHJlZV0KICAgIF9wYXJlbnRfdHJlZTogT3B0aW9uYWxbVE1UcmVlXQogICAgX2V4cGFuZGVkOiBib29sCgogICAgZGVmIF9faW5pdF9fKHNlbGYsIG5hbWU6IHN0ciwgc3VidHJlZXM6IExpc3RbVE1UcmVlXSwKICAgICAgICAgICAgICAgICBkYXRhX3NpemU6IGludCA9IDApIC0+IE5vbmU6CiAgICAgICAgIiIiSW5pdGlhbGl6ZSBhIG5ldyBUTVRyZWUgd2l0aCBhIHJhbmRvbSBjb2xvdXIgYW5kIHRoZSBwcm92aWRlZCA8bmFtZT4uCgogICAgICAgIElmIDxzdWJ0cmVlcz4gaXMgZW1wdHksIHVzZSA8ZGF0YV9zaXplPiB0byBpbml0aWFsaXplIHRoaXMgdHJlZSdzCiAgICAgICAgZGF0YV9zaXplLgoKICAgICAgICBJZiA8c3VidHJlZXM+IGlzIG5vdCBlbXB0eSwgaWdub3JlIHRoZSBwYXJhbWV0ZXIgPGRhdGFfc2l6ZT4sCiAgICAgICAgYW5kIGNhbGN1bGF0ZSB0aGlzIHRyZWUncyBkYXRhX3NpemUgaW5zdGVhZC4KCiAgICAgICAgU2V0IHRoaXMgdHJlZSBhcyB0aGUgcGFyZW50IGZvciBlYWNoIG9mIGl0cyBzdWJ0cmVlcy4KICAgICAgICBQcmVjb25kaXRpb246IGlmIDxuYW1lPiBpcyBOb25lLCB0aGVuIDxzdWJ0cmVlcz4gaXMgZW1wdHkuCiAgICAgICAgIiIiCiAgICAgICAgc2VsZi5yZWN0ID0gKDAsIDAsIDAsIDApCiAgICAgICAgc2VsZi5fbmFtZSA9IG5hbWUKICAgICAgICBzZWxmLl9zdWJ0cmVlcyA9IHN1YnRyZWVzWzpdCiAgICAgICAgc2VsZi5fcGFyZW50X3RyZWUgPSBOb25lCiAgICAgICAgc2VsZi5fZXhwYW5kZWQgPSBGYWxzZQogICAgICAgIHNlbGYuX2NvbG91ciA9IChyYW5kaW50KDAsIDI1NSksIHJhbmRpbnQoMCwgMjU1KSwgcmFuZGludCgwLCAyNTUpKQogICAgICAgIGlmIG5vdCBzdWJ0cmVlczoKICAgICAgICAgICAgc2VsZi5kYXRhX3NpemUgPSBkYXRhX3NpemUKICAgICAgICBlbHNlOgogICAgICAgICAgICBzZWxmLmRhdGFfc2l6ZSA9IDAKICAgICAgICAgICAgZm9yIHRyZWUgaW4gc3VidHJlZXM6CiAgICAgICAgICAgICAgICBzZWxmLmRhdGFfc2l6ZSArPSB0cmVlLmRhdGFfc2l6ZQogICAgICAgIGZvciB0cmVlIGluIHN1YnRyZWVzOgogICAgICAgICAgICBpZiBub3QgdHJlZS5pc19lbXB0eSgpOgogICAgICAgICAgICAgICAgdHJlZS5fcGFyZW50X3RyZWUgPSBzZWxmCgogICAgZGVmIGlzX2VtcHR5KHNlbGYpIC0+IGJvb2w6CiAgICAgICAgIiIiUmV0dXJuIFRydWUgaWZmIHRoaXMgdHJlZSBpcyBlbXB0eS4KICAgICAgICAiIiIKICAgICAgICByZXR1cm4gc2VsZi5fbmFtZSBpcyBOb25lCgogICAgZGVmIHVwZGF0ZV9yZWN0YW5nbGVzKHNlbGYsIHJlY3Q6IFR1cGxlW2ludCwgaW50LCBpbnQsIGludF0pIC0+IE5vbmU6CiAgICAgICAgIiIiVXBkYXRlIHRoZSByZWN0YW5nbGVzIGluIHRoaXMgdHJlZSBhbmQgaXRzIGRlc2NlbmRlbnRzIHVzaW5nIHRoZQogICAgICAgIHRyZWVtYXAgYWxnb3JpdGhtIHRvIGZpbGwgdGhlIGFyZWEgZGVmaW5lZCBieSBweWdhbWUgcmVjdGFuZ2xlIDxyZWN0Pi4KICAgICAgICAiIiIKICAgICAgICAjIFJlYWQgdGhlIGhhbmRvdXQgY2FyZWZ1bGx5IHRvIGhlbHAgZ2V0IHN0YXJ0ZWQgaWRlbnRpZnlpbmcgYmFzZSBjYXNlcywKICAgICAgICAjIHRoZW4gd3JpdGUgdGhlIG91dGxpbmUgb2YgYSByZWN1cnNpdmUgc3RlcC4KICAgICAgICAjCiAgICAgICAgIyBQcm9ncmFtbWluZyB0aXA6IHVzZSAidHVwbGUgdW5wYWNraW5nIGFzc2lnbm1lbnQiIHRvIGVhc2lseSBleHRyYWN0CiAgICAgICAgIyBlbGVtZW50cyBvZiBhIHJlY3RhbmdsZSwgYXMgZm9sbG93cy4KICAgICAgICB4LCB5LCB3aWR0aCwgaGVpZ2h0ID0gcmVjdAogICAgICAgIGlmIHNlbGYuZGF0YV9zaXplID09IDA6CiAgICAgICAgICAgIHNlbGYucmVjdCA9ICgwLCAwLCAwLCAwKQogICAgICAgIGVsaWYgd2lkdGggPiBoZWlnaHQ6CiAgICAgICAgICAgIHNlbGYucmVjdCA9IHJlY3QKICAgICAgICAgICAgY3VyciA9IHgKICAgICAgICAgICAgZm9yIGkgaW4gcmFuZ2UobGVuKHNlbGYuX3N1YnRyZWVzKSk6CiAgICAgICAgICAgICAgICBpZiBpICE9IGxlbihzZWxmLl9zdWJ0cmVlcykgLSAxOgogICAgICAgICAgICAgICAgICAgIHBlcmNlbnQgPSBzZWxmLl9zdWJ0cmVlc1tpXS5kYXRhX3NpemUgLyBzZWxmLmRhdGFfc2l6ZQogICAgICAgICAgICAgICAgICAgIG5ld193aWR0aCA9IG1hdGguZmxvb3IocGVyY2VudCAqIHdpZHRoKQogICAgICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgICAgICBuZXdfd2lkdGggPSB3aWR0aCArIHggLSBjdXJyCiAgICAgICAgICAgICAgICBzZWxmLl9zdWJ0cmVlc1tpXS51cGRhdGVfcmVjdGFuZ2xlcygoCiAgICAgICAgICAgICAgICAgICAgY3VyciwgeSwgbmV3X3dpZHRoLCBoZWlnaHQpKQogICAgICAgICAgICAgICAgY3VyciArPSBuZXdfd2lkdGgKICAgICAgICBlbHNlOgogICAgICAgICAgICBzZWxmLnJlY3QgPSByZWN0CiAgICAgICAgICAgIGN1cnIgPSB5CiAgICAgICAgICAgIGZvciBpIGluIHJhbmdlKGxlbihzZWxmLl9zdWJ0cmVlcykpOgogICAgICAgICAgICAgICAgaWYgaSAhPSBsZW4oc2VsZi5fc3VidHJlZXMpIC0gMToKICAgICAgICAgICAgICAgICAgICBwZXJjZW50ID0gc2VsZi5fc3VidHJlZXNbaV0uZGF0YV9zaXplIC8gc2VsZi5kYXRhX3NpemUKICAgICAgICAgICAgICAgICAgICBuZXdfaGVpZ2h0ID0gbWF0aC5mbG9vcihwZXJjZW50ICogaGVpZ2h0KQogICAgICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgICAgICBuZXdfaGVpZ2h0ID0gaGVpZ2h0ICsgeSAtIGN1cnIKICAgICAgICAgICAgICAgIHNlbGYuX3N1YnRyZWVzW2ldLnVwZGF0ZV9yZWN0YW5nbGVzKCgKICAgICAgICAgICAgICAgICAgICB4LCBjdXJyLCB3aWR0aCwgbmV3X2hlaWdodCkpCiAgICAgICAgICAgICAgICBjdXJyICs9IG5ld19oZWlnaHQKCiAgICBkZWYgZ2V0X3JlY3RhbmdsZXMoc2VsZikgLT4gTGlzdFtUdXBsZVtUdXBsZVtpbnQsIGludCwgaW50LCBpbnRdLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVHVwbGVbaW50LCBpbnQsIGludF1dXToKICAgICAgICAiIiJSZXR1cm4gYSBsaXN0IHdpdGggdHVwbGVzIGZvciBldmVyeSBsZWFmIGluIHRoZSBkaXNwbGF5ZWQtdHJlZQogICAgICAgIHJvb3RlZCBhdCB0aGlzIHRyZWUuIEVhY2ggdHVwbGUgY29uc2lzdHMgb2YgYSB0dXBsZSB0aGF0IGRlZmluZXMgdGhlCiAgICAgICAgYXBwcm9wcmlhdGUgcHlnYW1lIHJlY3RhbmdsZSB0byBkaXNwbGF5IGZvciBhIGxlYWYsIGFuZCB0aGUgY29sb3VyCiAgICAgICAgdG8gZmlsbCBpdCB3aXRoLgogICAgICAgICIiIgogICAgICAgIGlmIHNlbGYuZGF0YV9zaXplID09IDAgb3Igc2VsZi5pc19lbXB0eSgpOgogICAgICAgICAgICByZXR1cm4gW10KICAgICAgICBlbGlmIG5vdCBzZWxmLl9leHBhbmRlZDoKICAgICAgICAgICAgcmV0dXJuIFsoc2VsZi5yZWN0LCBzZWxmLl9jb2xvdXIpXQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGFucyA9IFtdCiAgICAgICAgICAgIGZvciB0cmVlIGluIHNlbGYuX3N1YnRyZWVzOgogICAgICAgICAgICAgICAgYW5zLmV4dGVuZCh0cmVlLmdldF9yZWN0YW5nbGVzKCkpCiAgICAgICAgICAgIHJldHVybiBhbnMKCiAgICBkZWYgZ2V0X3RyZWVfYXRfcG9zaXRpb24oc2VsZiwgcG9zOiBUdXBsZVtpbnQsIGludF0pIC0+IE9wdGlvbmFsW1RNVHJlZV06CiAgICAgICAgIiIiUmV0dXJuIHRoZSBsZWFmIGluIHRoZSBkaXNwbGF5ZWQtdHJlZSByb290ZWQgYXQgdGhpcyB0cmVlIHdob3NlCiAgICAgICAgcmVjdGFuZ2xlIGNvbnRhaW5zIHBvc2l0aW9uIDxwb3M+LCBvciBOb25lIGlmIDxwb3M+IGlzIG91dHNpZGUgb2YgdGhpcwogICAgICAgIHRyZWUncyByZWN0YW5nbGUuCgogICAgICAgIElmIDxwb3M+IGlzIG9uIHRoZSBzaGFyZWQgZWRnZSBiZXR3ZWVuIHR3byByZWN0YW5nbGVzLCByZXR1cm4gdGhlCiAgICAgICAgdHJlZSByZXByZXNlbnRlZCBieSB0aGUgcmVjdGFuZ2xlIHRoYXQgaXMgY2xvc2VyIHRvIHRoZSBvcmlnaW4uCiAgICAgICAgIiIiCiAgICAgICAgeCwgeSA9IHBvcwogICAgICAgIGxlZnQsIHVwID0gc2VsZi5yZWN0WzBdLCBzZWxmLnJlY3RbMV0KICAgICAgICByaWdodCwgZG93biA9IGxlZnQgKyBzZWxmLnJlY3RbMl0sIHVwICsgc2VsZi5yZWN0WzNdCiAgICAgICAgaWYgbm90IChsZWZ0IDw9IHggPD0gcmlnaHQgYW5kIHVwIDw9IHkgPD0gZG93bik6CiAgICAgICAgICAgIHJldHVybiBOb25lCiAgICAgICAgZWxpZiBub3Qgc2VsZi5fZXhwYW5kZWQ6CiAgICAgICAgICAgIHJldHVybiBzZWxmCiAgICAgICAgZWxpZiBzZWxmLl9zdWJ0cmVlczoKICAgICAgICAgICAgZm9yIHRyZWUgaW4gc2VsZi5fc3VidHJlZXM6CiAgICAgICAgICAgICAgICBpZiB0cmVlLmdldF90cmVlX2F0X3Bvc2l0aW9uKHBvcyk6CiAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHRyZWUuZ2V0X3RyZWVfYXRfcG9zaXRpb24ocG9zKQogICAgICAgIHJldHVybiBzZWxmCgogICAgZGVmIHVwZGF0ZV9kYXRhX3NpemVzKHNlbGYpIC0+IGludDoKICAgICAgICAiIiJVcGRhdGUgdGhlIGRhdGFfc2l6ZSBmb3IgdGhpcyB0cmVlIGFuZCBpdHMgc3VidHJlZXMsIGJhc2VkIG9uIHRoZQogICAgICAgIHNpemUgb2YgdGhlaXIgbGVhdmVzLCBhbmQgcmV0dXJuIHRoZSBuZXcgc2l6ZS4KCiAgICAgICAgSWYgdGhpcyB0cmVlIGlzIGEgbGVhZiwgcmV0dXJuIGl0cyBzaXplIHVuY2hhbmdlZC4KICAgICAgICAiIiIKICAgICAgICBpZiBub3Qgc2VsZi5fc3VidHJlZXM6CiAgICAgICAgICAgIHJldHVybiBzZWxmLmRhdGFfc2l6ZQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHNpemUgPSAwCiAgICAgICAgICAgIGZvciBzdWJ0cmVlIGluIHNlbGYuX3N1YnRyZWVzOgogICAgICAgICAgICAgICAgc2l6ZSArPSBzdWJ0cmVlLnVwZGF0ZV9kYXRhX3NpemVzKCkKICAgICAgICAgICAgc2VsZi5kYXRhX3NpemUgPSBzaXplCiAgICAgICAgICAgIHJldHVybiBzZWxmLmRhdGFfc2l6ZQoKICAgIGRlZiBtb3ZlKHNlbGYsIGRlc3RpbmF0aW9uOiBUTVRyZWUpIC0+IE5vbmU6CiAgICAgICAgIiIiSWYgdGhpcyB0cmVlIGlzIGEgbGVhZiwgYW5kIDxkZXN0aW5hdGlvbj4gaXMgbm90IGEgbGVhZiwgbW92ZSB0aGlzCiAgICAgICAgdHJlZSB0byBiZSB0aGUgbGFzdCBzdWJ0cmVlIG9mIDxkZXN0aW5hdGlvbj4uIE90aGVyd2lzZSwgZG8gbm90aGluZy4KICAgICAgICAiIiIKICAgICAgICBpZiBub3Qgc2VsZi5fc3VidHJlZXMgYW5kIGRlc3RpbmF0aW9uLl9zdWJ0cmVlczoKICAgICAgICAgICAgZGVzdGluYXRpb24uX3N1YnRyZWVzLmFwcGVuZChzZWxmKQogICAgICAgICAgICBzZWxmLl9wYXJlbnRfdHJlZS5kYXRhX3NpemUgLT0gc2VsZi5kYXRhX3NpemUKICAgICAgICAgICAgc2VsZi5fcGFyZW50X3RyZWUuX3N1YnRyZWVzLnJlbW92ZShzZWxmKQogICAgICAgICAgICBzZWxmLl9wYXJlbnRfdHJlZSA9IGRlc3RpbmF0aW9uCgogICAgZGVmIGNoYW5nZV9zaXplKHNlbGYsIGZhY3RvcjogZmxvYXQpIC0+IE5vbmU6CiAgICAgICAgIiIiQ2hhbmdlIHRoZSB2YWx1ZSBvZiB0aGlzIHRyZWUncyBkYXRhX3NpemUgYXR0cmlidXRlIGJ5IDxmYWN0b3I+LgoKICAgICAgICBBbHdheXMgcm91bmQgdXAgdGhlIGFtb3VudCB0byBjaGFuZ2UsIHNvIHRoYXQgaXQncyBhbiBpbnQsIGFuZAogICAgICAgIHNvbWUgY2hhbmdlIGlzIG1hZGUuCgogICAgICAgIERvIG5vdGhpbmcgaWYgdGhpcyB0cmVlIGlzIG5vdCBhIGxlYWYuCiAgICAgICAgIiIiCiAgICAgICAgaWYgc2VsZi5fc3VidHJlZXM6CiAgICAgICAgICAgIHBhc3MKICAgICAgICBlbHNlOgogICAgICAgICAgICBpZiBmYWN0b3IgPiAwOgogICAgICAgICAgICAgICAgc2VsZi5kYXRhX3NpemUgKz0gbWF0aC5jZWlsKHNlbGYuZGF0YV9zaXplICogZmFjdG9yKQogICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgYWRkID0gbWF0aC5mbG9vcihzZWxmLmRhdGFfc2l6ZSAqIGZhY3RvcikKICAgICAgICAgICAgICAgIGlmIHNlbGYuZGF0YV9zaXplID09IDA6CiAgICAgICAgICAgICAgICAgICAgcGFzcwogICAgICAgICAgICAgICAgZWxpZiBzZWxmLmRhdGFfc2l6ZSArIGFkZCA8IDE6CiAgICAgICAgICAgICAgICAgICAgc2VsZi5kYXRhX3NpemUgPSAxCiAgICAgICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgICAgIHNlbGYuZGF0YV9zaXplICs9IGFkZAoKICAgIGRlZiBleHBhbmQoc2VsZikgLT4gTm9uZToKICAgICAgICAiIiIKICAgICAgICBJZiB0aGUgdXNlciBzZWxlY3RzIGEgcmVjdGFuZ2xlLCBhbmQgdGhlbiBwcmVzc2VzIGUsIHRoZSB0cmVlCiAgICAgICAgY29ycmVzcG9uZGluZyB0byB0aGF0IHJlY3RhbmdsZSBpcyBleHBhbmRlZCBpbiB0aGUgZGlzcGxheWVkLXRyZWUuCiAgICAgICAgSWYgdGhlIHRyZWUgaXMgYSBsZWFmLCBub3RoaW5nIGhhcHBlbnMuCiAgICAgICAgOnJldHVybjoKICAgICAgICAiIiIKICAgICAgICBpZiBzZWxmLl9zdWJ0cmVlczoKICAgICAgICAgICAgc2VsZi5fZXhwYW5kZWQgPSBUcnVlCiAgICAgICAgaWYgc2VsZi5fcGFyZW50X3RyZWU6CiAgICAgICAgICAgIHNlbGYuX3BhcmVudF90cmVlLmV4cGFuZCgpCgogICAgZGVmIGV4cGFuZF9hbGwoc2VsZikgLT4gTm9uZToKICAgICAgICAiIiIKICAgICAgICBJZiB0aGUgdXNlciBzZWxlY3RzIGEgcmVjdGFuZ2xlLCBhbmQgdGhlbiBwcmVzc2VzIGEsIHRoZSB0cmVlCiAgICAgICAgY29ycmVzcG9uZGluZyB0byB0aGF0IHJlY3RhbmdsZSwgYXMgd2VsbCBhcyBhbGwgb2YgaXRzIHN1YnRyZWVzLAogICAgICAgIGFyZSBleHBhbmRlZCBpbiB0aGUgZGlzcGxheWVkLXRyZWUuIElmIHRoZSB0cmVlIGlzIGEgbGVhZiwKICAgICAgICBub3RoaW5nIGhhcHBlbnMuCiAgICAgICAgOnJldHVybjoKICAgICAgICAiIiIKICAgICAgICBpZiBub3Qgc2VsZi5fc3VidHJlZXM6CiAgICAgICAgICAgIHBhc3MKICAgICAgICBlbHNlOgogICAgICAgICAgICBzZWxmLmV4cGFuZCgpCiAgICAgICAgICAgIGZvciB0cmVlIGluIHNlbGYuX3N1YnRyZWVzOgogICAgICAgICAgICAgICAgdHJlZS5leHBhbmRfYWxsKCkKCiAgICBkZWYgY29sbGFwc2Uoc2VsZikgLT4gTm9uZToKICAgICAgICAiIiIKICAgICAgICBJZiB0aGUgdXNlciBzZWxlY3RzIGEgcmVjdGFuZ2xlLCBhbmQgdGhlbiBwcmVzc2VzIGMsIHRoZSBwYXJlbnQKICAgICAgICBvZiB0aGF0IHRyZWUgaXMgdW5leHBhbmRlZCAob3Ig4oCcY29sbGFwc2Vk4oCdKSBpbiB0aGUgZGlzcGxheWVkLXRyZWUuCiAgICAgICAgKE5vdGUgdGhhdCBzaW5jZSByZWN0YW5nbGVzIGNvcnJlc3BvbmQgdG8gbGVhdmVzIGluIHRoZSBkaXNwbGF5ZWQtdHJlZSwKICAgICAgICBpdCBpcyB0aGUgcGFyZW50IHRoYXQgbmVlZHMgdG8gYmUgdW5leHBhbmRlZC4pIElmIHRoZSBwYXJlbnQgaXMgTm9uZQogICAgICAgIGJlY2F1c2UgdGhpcyBpcyB0aGUgcm9vdCBvZiB0aGUgd2hvbGUgdHJlZSwgbm90aGluZyBoYXBwZW5zLgogICAgICAgIDpyZXR1cm46CiAgICAgICAgIiIiCiAgICAgICAgaWYgbm90IHNlbGYuaXNfZW1wdHkoKToKICAgICAgICAgICAgc2VsZi5fZXhwYW5kZWQgPSBGYWxzZQogICAgICAgIGlmIHNlbGYuX3BhcmVudF90cmVlOgogICAgICAgICAgICBzZWxmLl9wYXJlbnRfdHJlZS5fZXhwYW5kZWQgPSBGYWxzZQogICAgICAgICAgICBmb3IgdHJlZSBpbiBzZWxmLl9wYXJlbnRfdHJlZS5fc3VidHJlZXM6CiAgICAgICAgICAgICAgICB0cmVlLl9jb2xsYXBzZV9oZWxwZXIoKQoKICAgIGRlZiBfY29sbGFwc2VfaGVscGVyKHNlbGYpIC0+IE5vbmU6CiAgICAgICAgIiIiCiAgICAgICAgaGVscGVyIGZ1bmN0aW9uIGZvciB0aGUgY29sbGFwc2UKICAgICAgICA6cmV0dXJuOgogICAgICAgICIiIgogICAgICAgIHNlbGYuX2V4cGFuZGVkID0gRmFsc2UKICAgICAgICBmb3IgdHJlZSBpbiBzZWxmLl9zdWJ0cmVlczoKICAgICAgICAgICAgdHJlZS5jb2xsYXBzZSgpCgoKICAgIGRlZiBjb2xsYXBzZV9hbGwoc2VsZikgLT4gTm9uZToKICAgICAgICAiIiIKICAgICAgICBJZiB0aGUgdXNlciBzZWxlY3RzIGFueSByZWN0YW5nbGUsIGFuZCB0aGVuIHByZXNzZXMgeCwgdGhlCiAgICAgICAgZW50aXJlIGRpc3BsYXllZC10cmVlIGlzIGNvbGxhcHNlZCBkb3duIHRvIGp1c3QgYSBzaW5nbGUgdHJlZQogICAgICAgIG5vZGUuIElmIHRoZSBkaXNwbGF5ZWQtdHJlZSBpcyBhbHJlYWR5IGEgc2luZ2xlIG5vZGUsCiAgICAgICAgbm90aGluZyBoYXBwZW5zLgogICAgICAgIDpyZXR1cm46CiAgICAgICAgIiIiCiAgICAgICAgc2VsZi5jb2xsYXBzZSgpCiAgICAgICAgaWYgc2VsZi5fcGFyZW50X3RyZWU6CiAgICAgICAgICAgIHNlbGYuX3BhcmVudF90cmVlLmNvbGxhcHNlX2FsbCgpCgogICAgIyBNZXRob2RzIGZvciB0aGUgc3RyaW5nIHJlcHJlc2VudGF0aW9uCiAgICBkZWYgZ2V0X3BhdGhfc3RyaW5nKHNlbGYsIGZpbmFsX25vZGU6IGJvb2wgPSBUcnVlKSAtPiBzdHI6CiAgICAgICAgIiIiUmV0dXJuIGEgc3RyaW5nIHJlcHJlc2VudGluZyB0aGUgcGF0aCBjb250YWluaW5nIHRoaXMgdHJlZQogICAgICAgIGFuZCBpdHMgYW5jZXN0b3JzLCB1c2luZyB0aGUgc2VwYXJhdG9yIGZvciB0aGlzIHRyZWUgYmV0d2VlbiBlYWNoCiAgICAgICAgdHJlZSdzIG5hbWUuIElmIDxmaW5hbF9ub2RlPiwgdGhlbiBhZGQgdGhlIHN1ZmZpeCBmb3IgdGhlIHRyZWUuCiAgICAgICAgIiIiCiAgICAgICAgaWYgc2VsZi5fcGFyZW50X3RyZWUgaXMgTm9uZToKICAgICAgICAgICAgcGF0aF9zdHIgPSBzZWxmLl9uYW1lCiAgICAgICAgICAgIGlmIGZpbmFsX25vZGU6CiAgICAgICAgICAgICAgICBwYXRoX3N0ciArPSBzZWxmLmdldF9zdWZmaXgoKQogICAgICAgICAgICByZXR1cm4gcGF0aF9zdHIKICAgICAgICBlbHNlOgogICAgICAgICAgICBwYXRoX3N0ciA9IChzZWxmLl9wYXJlbnRfdHJlZS5nZXRfcGF0aF9zdHJpbmcoRmFsc2UpICsKICAgICAgICAgICAgICAgICAgICAgICAgc2VsZi5nZXRfc2VwYXJhdG9yKCkgKyBzZWxmLl9uYW1lKQogICAgICAgICAgICBpZiBmaW5hbF9ub2RlIG9yIGxlbihzZWxmLl9zdWJ0cmVlcykgPT0gMDoKICAgICAgICAgICAgICAgIHBhdGhfc3RyICs9IHNlbGYuZ2V0X3N1ZmZpeCgpCiAgICAgICAgICAgIHJldHVybiBwYXRoX3N0cgoKICAgIGRlZiBnZXRfc2VwYXJhdG9yKHNlbGYpIC0+IHN0cjoKICAgICAgICAiIiJSZXR1cm4gdGhlIHN0cmluZyB1c2VkIHRvIHNlcGFyYXRlIG5hbWVzIGluIHRoZSBzdHJpbmcKICAgICAgICByZXByZXNlbnRhdGlvbiBvZiBhIHBhdGggZnJvbSB0aGUgdHJlZSByb290IHRvIHRoaXMgdHJlZS4KICAgICAgICAiIiIKICAgICAgICByYWlzZSBOb3RJbXBsZW1lbnRlZEVycm9yCgogICAgZGVmIGdldF9zdWZmaXgoc2VsZikgLT4gc3RyOgogICAgICAgICIiIlJldHVybiB0aGUgc3RyaW5nIHVzZWQgYXQgdGhlIGVuZCBvZiB0aGUgc3RyaW5nIHJlcHJlc2VudGF0aW9uIG9mCiAgICAgICAgYSBwYXRoIGZyb20gdGhlIHRyZWUgcm9vdCB0byB0aGlzIHRyZWUuCiAgICAgICAgIiIiCiAgICAgICAgcmFpc2UgTm90SW1wbGVtZW50ZWRFcnJvcgoKCmNsYXNzIEZpbGVTeXN0ZW1UcmVlKFRNVHJlZSk6CiAgICAiIiJBIHRyZWUgcmVwcmVzZW50YXRpb24gb2YgZmlsZXMgYW5kIGZvbGRlcnMgaW4gYSBmaWxlIHN5c3RlbS4KCiAgICBUaGUgaW50ZXJuYWwgbm9kZXMgcmVwcmVzZW50IGZvbGRlcnMsIGFuZCB0aGUgbGVhdmVzIHJlcHJlc2VudCByZWd1bGFyCiAgICBmaWxlcyAoZS5nLiwgUERGIGRvY3VtZW50cywgbW92aWUgZmlsZXMsIFB5dGhvbiBzb3VyY2UgY29kZSBmaWxlcywgZXRjLikuCgogICAgVGhlIF9uYW1lIGF0dHJpYnV0ZSBzdG9yZXMgdGhlICpuYW1lKiBvZiB0aGUgZm9sZGVyIG9yIGZpbGUsIG5vdCBpdHMgZnVsbAogICAgcGF0aC4gRS5nLiwgc3RvcmUgJ2Fzc2lnbm1lbnRzJywgbm90ICcvVXNlcnMvRGlhbmUvY3NjMTQ4L2Fzc2lnbm1lbnRzJwoKICAgIFRoZSBkYXRhX3NpemUgYXR0cmlidXRlIGZvciByZWd1bGFyIGZpbGVzIGlzIHNpbXBseSB0aGUgc2l6ZSBvZiB0aGUgZmlsZSwKICAgIGFzIHJlcG9ydGVkIGJ5IG9zLnBhdGguZ2V0c2l6ZS4KICAgICIiIgoKICAgIGRlZiBfX2luaXRfXyhzZWxmLCBwYXRoOiBzdHIpIC0+IE5vbmU6CiAgICAgICAgIiIiU3RvcmUgdGhlIGZpbGUgdHJlZSBzdHJ1Y3R1cmUgY29udGFpbmVkIGluIHRoZSBnaXZlbiBmaWxlIG9yIGZvbGRlci4KCiAgICAgICAgUHJlY29uZGl0aW9uOiA8cGF0aD4gaXMgYSB2YWxpZCBwYXRoIGZvciB0aGlzIGNvbXB1dGVyLgogICAgICAgICIiIgogICAgICAgICMgUmVtZW1iZXIgdGhhdCB5b3Ugc2hvdWxkIHJlY3Vyc2l2ZWx5IGdvIHRocm91Z2ggdGhlIGZpbGUgc3lzdGVtCiAgICAgICAgIyBhbmQgY3JlYXRlIG5ldyBGaWxlU3lzdGVtVHJlZSBvYmplY3RzIGZvciBlYWNoIGZpbGUgYW5kIGZvbGRlcgogICAgICAgICMgZW5jb3VudGVyZWQuCiAgICAgICAgIwogICAgICAgICMgQWxzbyByZW1lbWJlciB0byBtYWtlIGdvb2QgdXNlIG9mIHRoZSBzdXBlcmNsYXNzIGNvbnN0cnVjdG9yIQogICAgICAgIGlmIG9zLnBhdGguaXNmaWxlKHBhdGgpOgogICAgICAgICAgICBUTVRyZWUuX19pbml0X18oc2VsZiwgb3MucGF0aC5iYXNlbmFtZShwYXRoKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgIFtdLCBvcy5wYXRoLmdldHNpemUocGF0aCkpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgcGF0aF9uYW1lcyA9IFtdCiAgICAgICAgICAgIGZvciBuYW1lIGluIG9zLmxpc3RkaXIocGF0aCk6CiAgICAgICAgICAgICAgICBwYXRoX25hbWVzLmFwcGVuZChvcy5wYXRoLmpvaW4ocGF0aCwgbmFtZSkpCiAgICAgICAgICAgIHN1YnRyZWVzID0gW10KICAgICAgICAgICAgZm9yIHBhdGhzIGluIHBhdGhfbmFtZXM6CiAgICAgICAgICAgICAgICBzdWJ0cmVlcy5hcHBlbmQoRmlsZVN5c3RlbVRyZWUocGF0aHMpKQogICAgICAgICAgICBUTVRyZWUuX19pbml0X18oc2VsZiwgb3MucGF0aC5iYXNlbmFtZShwYXRoKSwgc3VidHJlZXMsIDApCgogICAgZGVmIGdldF9zZXBhcmF0b3Ioc2VsZikgLT4gc3RyOgogICAgICAgICIiIlJldHVybiB0aGUgZmlsZSBzZXBhcmF0b3IgZm9yIHRoaXMgT1MuCiAgICAgICAgIiIiCiAgICAgICAgcmV0dXJuIG9zLnNlcAoKICAgIGRlZiBnZXRfc3VmZml4KHNlbGYpIC0+IHN0cjoKICAgICAgICAiIiJSZXR1cm4gdGhlIGZpbmFsIGRlc2NyaXB0b3Igb2YgdGhpcyB0cmVlLgogICAgICAgICIiIgogICAgICAgIGlmIGxlbihzZWxmLl9zdWJ0cmVlcykgPT0gMDoKICAgICAgICAgICAgcmV0dXJuICcgKGZpbGUpJwogICAgICAgIGVsc2U6CiAgICAgICAgICAgIHJldHVybiAnIChmb2xkZXIpJwoKCmlmIF9fbmFtZV9fID09ICdfX21haW5fXyc6CiAgICBpbXBvcnQgcHl0aG9uX3RhCiAgICBweXRob25fdGEuY2hlY2tfYWxsKGNvbmZpZz17CiAgICAgICAgJ2FsbG93ZWQtaW1wb3J0LW1vZHVsZXMnOiBbCiAgICAgICAgICAgICdweXRob25fdGEnLCAndHlwaW5nJywgJ21hdGgnLCAncmFuZG9tJywgJ29zJywgJ19fZnV0dXJlX18nCiAgICAgICAgXQogICAgfSk",
+					"BwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAADaOAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					11,
+					1,
+					"paste",
+					null,
+					"AQAAAAAAAAAAAAAAnTgAAAAAAAAAAAAA",
+					"BwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "assignments/a2/tm_trees_reference.py",
+			"settings":
+			{
+				"buffer_size": 16822,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\"\"\"Prep 11 Synthesize: Recursive Sorting Algorithms\n\n=== CSC148 Summer 2019 ===\nDepartment of Computer Science,\nUniversity of Toronto\n\n=== Module Description ===\nThis file includes the recursive sorting algorithms from this week's prep\nreadings, and two short programming exercises to extend your learning about\nthese algorithms in different ways.\n\"\"\"\nfrom typing import Any, List, Tuple\n\n\n################################################################################\n# Mergesort and Quicksort\n################################################################################\ndef mergesort(lst: List) -> List:\n    \"\"\"Return a sorted list with the same elements as <lst>.\n\n    This is a *non-mutating* version of mergesort; it does not mutate the\n    input list.\n\n    >>> mergesort([10, 2, 5, -6, 17, 10])\n    [-6, 2, 5, 10, 10, 17]\n    \"\"\"\n    if len(lst) < 2:\n        return lst[:]\n    else:\n        # Divide the list into two parts, and sort them recursively.\n        mid = len(lst) // 2\n        left_sorted = mergesort(lst[:mid])\n        right_sorted = mergesort(lst[mid:])\n\n        # Merge the two sorted halves. Need a helper here!\n        return _merge(left_sorted, right_sorted)\n\n\ndef _merge(lst1: List, lst2: List) -> List:\n    \"\"\"Return a sorted list with the elements in <lst1> and <lst2>.\n\n    Precondition: <lst1> and <lst2> are sorted.\n    \"\"\"\n    index1 = 0\n    index2 = 0\n    merged = []\n    while index1 < len(lst1) and index2 < len(lst2):\n        if lst1[index1] <= lst2[index2]:\n            merged.append(lst1[index1])\n            index1 += 1\n        else:\n            merged.append(lst2[index2])\n            index2 += 1\n\n    # Now either index1 == len(lst1) or index2 == len(lst2).\n    assert index1 == len(lst1) or index2 == len(lst2)\n    # The remaining elements of the other list\n    # can all be added to the end of <merged>.\n    # Note that at most ONE of lst1[index1:] and lst2[index2:]\n    # is non-empty, but to keep the code simple, we include both.\n    return merged + lst1[index1:] + lst2[index2:]\n\n\ndef quicksort(lst: List) -> List:\n    \"\"\"Return a sorted list with the same elements as <lst>.\n\n    This is a *non-mutating* version of quicksort; it does not mutate the\n    input list.\n\n    >>> quicksort([10, 2, 5, -6, 17, 10])\n    [-6, 2, 5, 10, 10, 17]\n    \"\"\"\n    if len(lst) < 2:\n        return lst[:]\n    else:\n        # Pick pivot to be first element.\n        # Could make lots of other choices here (e.g., last, random)\n        pivot = lst[0]\n\n        # Partition rest of list into two halves\n        smaller, bigger = _partition(lst[1:], pivot)\n\n        # Recurse on each partition\n        smaller_sorted = quicksort(smaller)\n        bigger_sorted = quicksort(bigger)\n\n        # Return! Notice the simple combining step\n        return smaller_sorted + [pivot] + bigger_sorted\n\n\ndef _partition(lst: List, pivot: Any) -> Tuple[List, List]:\n    \"\"\"Return a partition of <lst> with the chosen pivot.\n\n    Return two lists, where the first contains the items in <lst>\n    that are <= pivot, and the second is the items in <lst> that are > pivot.\n    \"\"\"\n    smaller = []\n    bigger = []\n\n    for item in lst:\n        if item <= pivot:\n            smaller.append(item)\n        else:\n            bigger.append(item)\n\n    return smaller, bigger\n\n\n################################################################################\n# Synthesize exercises\n################################################################################\n# TODO: Complete the implementation of this function!\ndef mergesort3(lst: List) -> List:\n    \"\"\"Return a sorted version of <lst> using three-way mergesort.\n\n    Three-way mergesort is similar to mergesort, except:\n        - it divides the input list into *three* lists of (almost) equal length\n        - the main helper merge3 takes in *three* sorted lists, and returns\n          a sorted list that contains elements from all of its inputs.\n\n    HINT: depending on your impementation, you might need another base case\n    when len(lst) == 2 to avoid an infinite recursion error.\n\n    >>> mergesort3([10, 2, 5, -6, 17, 10])\n    [-6, 2, 5, 10, 10, 17]\n\n    >>> mergesort3([1,2])\n    [1, 2]\n    \"\"\"\n    if len(lst) < 2:\n        return lst[:]\n    elif len(lst) == 2:\n        return mergesort(lst)\n    else:\n        split = len(lst) // 3\n        split2 = split * 2\n        left_sorted = mergesort3(lst[:split])\n        middle_sorted = mergesort3(lst[split:split2])\n        right_sorted = mergesort3(lst[split2:])\n    return merge3(left_sorted, middle_sorted, right_sorted)\n\n\n\n# TODO: Implement this function!\n# Note that we've made it public because we'll be testing it directly.\ndef merge3(lst1: List, lst2: List, lst3: List) -> List:\n    \"\"\"Return a sorted list with the elements in the given input lists.\n\n    Precondition: <lst1>, <lst2>, and <lst3> are all sorted.\n\n    This *must* be implemented using the same approach as _merge; in particular,\n    it should use indexes to keep track of where you are in each list.\n    This will keep your implementation efficient, which we will be checking for.\n\n    Since this involves some detailed work with indexes, we recommend splitting\n    up your code into one or more helpers to divide up (and test!) each part\n    separately.\n    \"\"\"\n    index1 = 0\n    index2 = 0\n    index3 = 0\n    merged = []\n    while index1 < len(lst1) and index2 < len(lst2) and index3 < len(lst3):\n        if lst1[index1] <= lst2[index2] and lst1[index1] <= lst3[index3]:\n            merged.append(lst1[index1])\n            index1 += 1\n        elif lst2[index2] <= lst1[index1] and lst2[index2] <= lst3[index3]:\n            merged.append(lst2[index2])\n            index2 += 1\n        else:\n            merged.append(lst3[index3])\n            index3 += 1\n\n    assert index1 == len(lst1) or index2 == len(lst2) or index3 == len(lst3)\n    # The remaining elements of the other list\n    # can all be added to the end of <merged>.\n    # Note that at most ONE of lst1[index1:] and lst2[index2:]\n    # is non-empty, but to keep the code simple, we include both.\n    return merged + lst1[index1:] + lst2[index2:] + lst3[index3:]\n\n\n# TODO: Implement this function\ndef kth_smallest(lst: List, k: int) -> Any:\n    \"\"\"Return the <k>-th smallest element in <lst>.\n\n    Raise IndexError if k < 0 or k >= len(lst).\n    Note: for convenience, k counts from 0, so kth_smallest(lst, 0) == min(lst).\n\n    Precondition: <lst> does not contain duplicates.\n\n    >>> kth_smallest([10, 20, -4, 3], 0)\n    -4\n    >>> kth_smallest([10, 20, -4, 3], 2)\n    10\n    \"\"\"\n    # You may *not* sort the list here (this is easy but not very efficient).\n    # Instead, use the following approach, based on quicksort:\n    #   1. partition the list based on a chosen pivot:\n    #       smaller, bigger = partition(...)\n    #   2. Compare len(smaller) against k, and use the result to decide which\n    #      list to recurse on (if any). As in your BST prep, you should only\n    #      make one recursive call into either <smaller> or <bigger>, not both!\n    if k >= len(lst) or k < 0:\n        raise IndexError\n    p = lst[0]\n    smaller, bigger = _partition(lst[1:], p)\n    if len(smaller) > k:\n        return kth_smallest(smaller, k)\n    elif k == len(smaller):\n        return p\n    else:\n        return kth_smallest(bigger, k - len(smaller) - 1)\n\n\nif __name__ == '__main__':\n    import doctest\n    doctest.testmod()\n\n    import python_ta\n    python_ta.check_all()",
+			"file": "preps/prep11/prep11 copy 2.py",
+			"file_size": 3256,
+			"file_write_time": 133244275382491267,
+			"settings":
+			{
+				"buffer_size": 7412,
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					7,
+					1,
+					"paste",
+					null,
+					"AgAAAAAAAAAAAAAA9BwAAAAAAAAAAAAA9BwAAAAAAAD0HAAAAAAAAEsMAABpbXBvcnQgcHJlcDExIGFzIHAxMQppbXBvcnQgdW5pdHRlc3QKaW1wb3J0IHJhbmRvbQppbXBvcnQgdGltZWl0CgpjbGFzcyBUZXN0TWVyZ2VTb3J0KHVuaXR0ZXN0LlRlc3RDYXNlKToKICAgIGRlZiB0ZXN0X2FzY2VuZGluZyhzZWxmKToKICAgICAgICBhcmcgPSBbMSwgMiwgMywgNCwgNSwgNl0KICAgICAgICBleHAgPSBbMSwgMiwgMywgNCwgNSwgNl0KICAgICAgICBhY3R1YWwgPSBwMTEubWVyZ2Vzb3J0MyhhcmcpCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChhY3R1YWwsIGV4cCkKCiAgICBkZWYgdGVzdF9kZXNjZW5kaW5nKHNlbGYpOgogICAgICAgIGFyZyA9IFs2LCA1LCA0LCAzLCAyLCAxXQogICAgICAgIGV4cCA9IFsxLCAyLCAzLCA0LCA1LCA2XQogICAgICAgIGFjdCA9IHAxMS5tZXJnZXNvcnQzKGFyZykKICAgICAgICBzZWxmLmFzc2VydEVxdWFsKGFjdCwgZXhwKQoKICAgIGRlZiB0ZXN0X2Jhc2VfY2FzZTEoc2VsZik6CiAgICAgICAgYXJnID0gWzFdCiAgICAgICAgZXhwID0gWzFdCiAgICAgICAgYWN0ID0gcDExLm1lcmdlc29ydDMoYXJnKQogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWwoYWN0LCBleHApCgogICAgZGVmIHRlc3RfYmFzZV9jYXNlMihzZWxmKToKICAgICAgICBhcmcgPSBbMiwgMV0KICAgICAgICBleHAgPSBbMSwgMl0KICAgICAgICBhY3QgPSBwMTEubWVyZ2Vzb3J0MyhhcmcpCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChhY3QsIGV4cCkKCiAgICBkZWYgdGVzdF9hdmVyYWdlKHNlbGYpOgogICAgICAgIGFyZyA9IFsyLCAxLCA0LCAzLCA2LCA1XQogICAgICAgIGV4cCA9IHNvcnRlZChhcmcpCiAgICAgICAgYWN0ID0gcDExLm1lcmdlc29ydDMoYXJnKQogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWwoYWN0LCBleHApCgogICAgZGVmIHRlc3RfcmFuZG9tKHNlbGYpOgogICAgICAgIGFyZyA9IHJhbmRvbS5zYW1wbGUoW2sgZm9yIGsgaW4gcmFuZ2UoMTApXSwgNSkKICAgICAgICBleHAgPSBzb3J0ZWQoYXJnKQogICAgICAgIGFjdCA9IHAxMS5tZXJnZXNvcnQzKGFyZykKICAgICAgICBzZWxmLmFzc2VydEVxdWFsKGFjdCwgZXhwKQoKICAgIGRlZiB0ZXN0X3JhbmRvbV9kdXBsaWNhdGUoc2VsZik6CiAgICAgICAgYXJnID0gW3JhbmRvbS5yYW5kaW50KDEsMTApIGZvciBrIGluIHJhbmdlKDExKV0KICAgICAgICBleHAgPSBzb3J0ZWQoYXJnKQogICAgICAgIGFjdCA9IHAxMS5tZXJnZXNvcnQzKGFyZykKICAgICAgICBzZWxmLmFzc2VydEVxdWFsKGFjdCwgZXhwKQoKICAgIGRlZiB0ZXN0X3dvcnN0X2Nhc2VfdGltZShzZWxmKToKICAgICAgICBhcmcgPSBbaSBmb3IgaSBpbiByYW5nZSgxMDAwMCwgMCwgLTEpXQogICAgICAgIGV4cCA9IHNvcnRlZChhcmcpCiAgICAgICAgc3RhcnQgPSB0aW1laXQuZGVmYXVsdF90aW1lcigpCiAgICAgICAgYWN0ID0gcDExLm1lcmdlc29ydDMoYXJnKQogICAgICAgIGVuZCA9IHRpbWVpdC5kZWZhdWx0X3RpbWVyKCkKICAgICAgICBwcmludCgiRXhlY3V0aW9uIHRpbWU6ICIgKyBzdHIoZW5kIC0gc3RhcnQpKQogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWwoYWN0LCBleHApCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChlbmQgLSBzdGFydCA8IDUsIFRydWUsICJZb3Ugc2hvdWxkIG1ha2UgeW91ciBwcm9ncmFtIGZpbmlzaCBpbiA1IHNlY29uZHMiKQoKY2xhc3MgVGVzdEt0aCh1bml0dGVzdC5UZXN0Q2FzZSk6CiAgICBkZWYgdGVzdF9taW4oc2VsZik6CiAgICAgICAgYXJnID0gcmFuZG9tLnNhbXBsZShbayBmb3IgayBpbiByYW5nZSgxMCldLCA3KQogICAgICAgIGV4cCA9IG1pbihhcmcpCiAgICAgICAgYWN0ID0gcDExLmt0aF9zbWFsbGVzdChhcmcsIDApCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChhY3QsIGV4cCkKCiAgICBkZWYgdGVzdF9tYXgoc2VsZik6CiAgICAgICAgYXJnID0gcmFuZG9tLnNhbXBsZShbayBmb3IgayBpbiByYW5nZSgxMCldLCA3KQogICAgICAgIGV4cCA9IG1heChhcmcpCiAgICAgICAgYWN0ID0gcDExLmt0aF9zbWFsbGVzdChhcmcsIGxlbihhcmcpLTEpCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChhY3QsIGV4cCkKCiAgICBkZWYgdGVzdF9sZWZ0KHNlbGYpOgogICAgICAgIGFyZyA9IHJhbmRvbS5zYW1wbGUoW2sgZm9yIGsgaW4gcmFuZ2UoMTApXSwgNykKICAgICAgICBleHAgPSBzb3J0ZWQoYXJnKVsyXQogICAgICAgIGFjdCA9IHAxMS5rdGhfc21hbGxlc3QoYXJnLCAyKQogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWwoYWN0LCBleHApCgogICAgZGVmIHRlc3RfcGl2b3Qoc2VsZik6CiAgICAgICAgYXJnID0gcmFuZG9tLnNhbXBsZShbayBmb3IgayBpbiByYW5nZSgxMCldLCA3KQogICAgICAgIGV4cCA9IHNvcnRlZChhcmcpWzRdCiAgICAgICAgYWN0ID0gcDExLmt0aF9zbWFsbGVzdChhcmcsIDQpCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChhY3QsIGV4cCkKCiAgICBkZWYgdGVzdF9yaWdodChzZWxmKToKICAgICAgICBhcmcgPSByYW5kb20uc2FtcGxlKFtrIGZvciBrIGluIHJhbmdlKDEwKV0sIDcpCiAgICAgICAgZXhwID0gc29ydGVkKGFyZylbNV0KICAgICAgICBhY3QgPSBwMTEua3RoX3NtYWxsZXN0KGFyZywgNSkKICAgICAgICBzZWxmLmFzc2VydEVxdWFsKGFjdCwgZXhwKQoKICAgIGRlZiB0ZXN0X2Vycm9yXzEoc2VsZik6CiAgICAgICAgYXJnID0gcmFuZG9tLnNhbXBsZShbayBmb3IgayBpbiByYW5nZSgxMCldLCA3KQogICAgICAgIGV4cCA9IC0xCiAgICAgICAgdHJ5OgogICAgICAgICAgICBhY3QgPSBwMTEua3RoX3NtYWxsZXN0KGFyZywgLTEpCiAgICAgICAgZXhjZXB0IEluZGV4RXJyb3I6CiAgICAgICAgICAgIGFjdCA9IC0xCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbChhY3QsIGV4cCkKCiAgICBkZWYgdGVzdF9lcnJvcl8yKHNlbGYpOgogICAgICAgIGFyZyA9IHJhbmRvbS5zYW1wbGUoW2sgZm9yIGsgaW4gcmFuZ2UoMTApXSwgNykKICAgICAgICBleHAgPSAtMQogICAgICAgIHRyeToKICAgICAgICAgICAgYWN0ID0gcDExLmt0aF9zbWFsbGVzdChhcmcsIDEwKQogICAgICAgIGV4Y2VwdCBJbmRleEVycm9yOgogICAgICAgICAgICBhY3QgPSAtMQogICAgICAgIHNlbGYuYXNzZXJ0RXF1YWwoYWN0LCBleHApCgoKaWYgX19uYW1lX18gPT0gIl9fbWFpbl9fIjoKICAgIHVuaXR0ZXN0Lm1haW4oZXhpdD1GYWxzZSk",
+					"BAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwvwAAAAABAAAAAAAAAAAAAABLDAAAAAAAAAAAAAAAAPC/"
+				]
+			]
 		}
 	],
-	"build_system": "Packages/User/R-IDE/R-IDE.sublime-build",
+	"build_system": "Packages/Python/Python.sublime-build",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/SendCode/build_systems/IPython - Source File.sublime-build",
+					""
+				],
+				[
+					"Packages/SublimeREPL/sublimerepl_build_system_hack.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		],
 		[
 			[
 				[
@@ -185,6 +412,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"rena",
+				"Rename File"
+			],
+			[
+				"r",
+				"Rename File"
+			],
+			[
+				"rename",
+				"Rename File"
+			],
 			[
 				"R",
 				"Build With: R"
@@ -236,10 +475,6 @@
 			[
 				"package dis",
 				"Package Control: Disable Package"
-			],
-			[
-				"rename",
-				"Rename File"
 			],
 			[
 				"tod",
@@ -379,19 +614,31 @@
 	"expanded_folders":
 	[
 		"/Users/wangantony/Downloads/CSC148-Winter-2023",
-		"/Users/wangantony/Downloads/CSC148-Winter-2023/assignments",
 		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps",
-		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep7",
-		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep9"
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep11"
 	],
 	"file_history":
 	[
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep11/prep11.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep11/prep11 copy.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep11/prep12.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep10/prep10.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/labs/lab9/bst.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/miscellaneous/test.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/lectures/week10/bst_week10_starter_L0101.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a1/data/generated_course_hetero.json",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/tm_trees_reference.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a2/tm_trees.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a2/tm_trees_referece2.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/labs/lab8/tree.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/labs/lab7/nested.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a1/grouper.py",
+		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep9/prep9.py",
 		"/Users/wangantony/Downloads/CSC148-Winter-2023/test.R",
 		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep4/prep4.py",
 		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep4/adts.py",
 		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep3/prep3.py",
 		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep6/prep6-2.py",
-		"/Users/wangantony/Downloads/CSC148-Winter-2023/labs/lab8/tree.py",
 		"/Users/wangantony/Downloads/CSC148-Winter-2023/test.py",
 		"/Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep6/prep6.py",
 		"/Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a0/gym.py",
@@ -466,6 +713,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"max_tree",
+			"root.right",
+			"root.left",
+			"root.val",
+			"key",
 			"reduce",
 			"if self._first is None:",
 			"first",
@@ -495,6 +747,11 @@
 		"regex": false,
 		"replace_history":
 		[
+			"tree_to_swap",
+			"self._right",
+			"self._left",
+			"self._root",
+			"item",
 			"if self.is_empty():",
 			"_first",
 			"_next",
@@ -525,49 +782,35 @@
 			[
 				{
 					"buffer": 0,
-					"file": "preps/prep9/prep9.py",
+					"file": "assignments/a2/tm_trees.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9571,
+						"buffer_size": 35812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9149,
-								9149
+								549,
+								549
 							]
 						],
 						"settings":
 						{
+							"_nv_visual_sel_mode": "mode_visual",
 							"bracket_highlighter.busy": false,
 							"bracket_highlighter.locations":
 							{
 								"close":
 								{
-									"1":
-									[
-										9149,
-										9150
-									]
 								},
 								"icon":
 								{
-									"1":
-									[
-										"Packages/BracketHighlighter/icons/square_bracket.png",
-										"region.bluish"
-									]
 								},
 								"open":
 								{
-									"1":
-									[
-										9148,
-										9149
-									]
 								},
 								"unmatched":
 								{
@@ -575,65 +818,64 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
 							],
 							"git_gutter_is_enabled": true,
-							"highlight_line": false,
-							"lsp_uri": "file:///Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep9/prep9.py",
+							"lsp_uri": "file:///Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a2/tm_trees.py",
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
@@ -648,20 +890,20 @@
 				},
 				{
 					"buffer": 1,
-					"file": "test.py",
+					"file": "preps/prep11/prep11.py",
 					"selected": true,
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 6043,
+						"buffer_size": 6770,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								612,
-								612
+								0,
+								0
 							]
 						],
 						"settings":
@@ -684,16 +926,6 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -704,53 +936,614 @@
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content"
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
 							],
 							"git_gutter_is_enabled": true,
-							"lsp_uri": "file:///Users/wangantony/Downloads/CSC148-Winter-2023/test.py",
+							"lsp_uri": "file:///Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep11/prep11.py",
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5512.0,
+						"translation.y": 2987.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "assignments/a2/tm_trees_referece4.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13602,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"git_gutter_is_enabled": true,
+							"lsp_uri": "file:///Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a2/tm_trees_referece4.py",
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 19.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "assignments/a2/tm_trees_referece3.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14554,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"git_gutter_is_enabled": true,
+							"lsp_uri": "file:///Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a2/tm_trees_referece3.py",
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "assignments/a2/tm_trees_referece2.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14493,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6534,
+								6534
+							]
+						],
+						"settings":
+						{
+							"_nv_visual_sel_mode": "mode_visual",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										6539,
+										6540
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										6534,
+										6535
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"git_gutter_is_enabled": true,
+							"lsp_uri": "file:///Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a2/tm_trees_referece2.py",
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 1.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "assignments/a2/tm_trees_reference.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16822,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content"
+							],
+							"git_gutter_is_enabled": true,
+							"lsp_uri": "file:///Users/wangantony/Downloads/CSC148-Winter-2023/assignments/a2/tm_trees_reference.py",
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "preps/prep11/prep11 copy 2.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12,
+								12
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"git_gutter_is_enabled": false,
+							"lsp_uri": "file:///Users/wangantony/Downloads/CSC148-Winter-2023/preps/prep11/prep11%20copy%202.py",
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"stack_multiselect": false,
 					"type": "text"
 				}
@@ -895,7 +1688,7 @@
 	{
 		"_vintageous_last_buff_search_command": "nv_vi_octothorp",
 		"_vintageous_last_buff_search_pattern": "import",
-		"_vintageous_last_char_search_character": "'",
+		"_vintageous_last_char_search_character": "l",
 		"_vintageous_last_char_search_command": "vi_f",
 		"_vintageous_reset_during_init": true
 	},

@@ -15,17 +15,16 @@ def greater_than_all(obj: Union[int, List], n: int) -> bool:
 
     >>> greater_than_all(10, 3)
     False
-    >>> greater_than_all([1, 2, [1, 2], 4], 10)
-    True
+    >>> greater_than_all([1, 2, [1, 2], 4], 0)
+    False
     >>> greater_than_all([], 0)
     True
     """
     if isinstance(obj, int):
-        return obj < n
+        return obj <= n
     else:
         for sublist in obj:
-            num = greater_than_all(sublist, n)
-            if num > n:
+            if not greater_than_all(sublist, n):
                 return False
         return True
         
@@ -38,14 +37,20 @@ def add_n(obj: Union[int, List], n: int) -> Union[int, List]:
     >>> add_n([1, 2, [1, 2], 4], 10)
     [11, 12, [11, 12], 14]
     """
+    # if isinstance(obj, int):
+    #     return obj + n
+    # else:
+    #     for i in range(len(obj)):
+    #         if isinstance(add_n(obj[i], n), int):
+    #             obj[i] += n
+    #     return obj
     if isinstance(obj, int):
         return obj + n
     else:
-        for i in range(len(obj)):
-            if isinstance(add_n(obj[i], n), int):
-                obj[i] += n
-        return obj
-
+        lst = []
+        for sublist in obj:
+            lst.append(add_n(sublist, n))
+        return lst
 
 def nested_list_equal(obj1: Union[int, List], obj2: Union[int, List]) -> bool:
     """Return whether two nested lists are equal, i.e., have the same value.
@@ -64,24 +69,20 @@ def nested_list_equal(obj1: Union[int, List], obj2: Union[int, List]) -> bool:
     False
     >>> nested_list_equal([1, 2, 4, [1, 2]], [1, 2, [1, 2], 4])
     False
-    >>> nested_list_equal(16, 15)
-    False
-    >>> nested_list_equal(15, 15)
-    False
     """
-    try:
-        if isinstance(obj1, int) and isinstance(obj2, int):
-            return obj1 == obj2
-        elif len(obj1) != len(obj2):
-                return False
-        else:
-            for i in range(len(obj1)):
-                status = nested_list_equal(obj1[i], obj2[i])
-                if not status:
-                    return False
-            return True
-    except TypeError:
-        return False
+#     try:
+#         if isinstance(obj1, int) and isinstance(obj2, int):
+#             return obj1 == obj2
+#         elif len(obj1) != len(obj2):
+#                 return False
+#         else:
+#             for i in range(len(obj1)):
+#                 status = nested_list_equal(obj1[i], obj2[i])
+#                 if not status:
+#                     return False
+#             return True
+#     except TypeError:
+#         return False
         
 
 

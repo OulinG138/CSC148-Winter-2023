@@ -287,15 +287,12 @@ class Tree:
         """
         if self.is_empty():
             self._root = item
-            return None
         elif self._subtrees == []:
             self._subtrees = [Tree(item, [])]
-            return None
         else:
             rnd = random.randint(1, 3)
             if rnd == 3:
                 self._subtrees.append(Tree(item, []))
-                return None
             else:
                 index = random.randrange(len(self._subtrees))
                 self._subtrees[index].insert(item)
@@ -304,18 +301,7 @@ class Tree:
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
-    # lt = Tree(2, [Tree(4, []), Tree(5, [])])
-    # rt = Tree(3, [Tree(6, []), Tree(7, []), Tree(8, []), Tree(9, []),\
-    #                       Tree(10, [])])
-    # t3 = Tree(1, [Tree(4, [])])
-    # t3.insert(100)
-    # print(t3)
 
-
-
-    # t = Tree(1, [Tree(2, [Tree(4, []), Tree(5, [Tree(11, [])])]), Tree(3, [Tree(6, []), Tree(7, []), Tree(8, []), Tree(9, []), Tree(10, [])])])
-    # print(t._branching_factor_helper())
-    # print((len(t) - 1) / (len(t) - t._branching_factor_helper()))
-    # import python_ta
-    # python_ta.check_all(config={'extra-imports': ['random'],
-    #                             'disable': ['E1136']})
+    import python_ta
+    python_ta.check_all(config={'extra-imports': ['random'],
+                                'disable': ['E1136']})
