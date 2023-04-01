@@ -205,50 +205,50 @@ class TestTMTree:
 # ###########################################
 # # _FileTree and DirectoryTree provided basic testing
 # ###########################################
-# class TestFileSystem:
+class TestFileSystem:
 
-#     def test_directorytree_class_doctest(self) -> None:
-#         my_dir = dir_tree_from_nested_tuple((
-#             (".", [
-#                 ("documents", [("report.pdf", 13), ("data.xlsx", 10)]),
-#                 ("images", [("vacation", [("beach.png", 5)])]),
-#                 ("my_song.mp3", 14),
-#                 ("empty_dir", [])
-#             ])
-#         ))
-#         assert my_dir.data_size == 47
-#         assert len(my_dir._subtrees) == 4
-#         documents = my_dir._subtrees[0]
-#         assert isinstance(documents, DirectoryTree)
-#         assert isinstance(documents, TMTree)
-#         images = my_dir._subtrees[1]
-#         empty_dir = my_dir._subtrees[3]
-#         report_file = documents._subtrees[0]
-#         data_file = documents._subtrees[1]
-#         assert isinstance(data_file, FileTree)
-#         assert isinstance(data_file, TMTree)
-#         assert documents.data_size == 24
-#         assert images.data_size == 7
+    def test_directorytree_class_doctest(self) -> None:
+        my_dir = dir_tree_from_nested_tuple((
+            (".", [
+                ("documents", [("report.pdf", 13), ("data.xlsx", 10)]),
+                ("images", [("vacation", [("beach.png", 5)])]),
+                ("my_song.mp3", 14),
+                ("empty_dir", [])
+            ])
+        ))
+        assert my_dir.data_size == 47
+        assert len(my_dir._subtrees) == 4
+        documents = my_dir._subtrees[0]
+        assert isinstance(documents, DirectoryTree)
+        assert isinstance(documents, TMTree)
+        images = my_dir._subtrees[1]
+        empty_dir = my_dir._subtrees[3]
+        report_file = documents._subtrees[0]
+        data_file = documents._subtrees[1]
+        assert isinstance(data_file, FileTree)
+        assert isinstance(data_file, TMTree)
+        assert documents.data_size == 24
+        assert images.data_size == 7
 
-#         assert str(my_dir) == DIRECTORYTREE_EXAMPLE_RESULT
+        assert str(my_dir) == DIRECTORYTREE_EXAMPLE_RESULT
 
-#         expected_str = "./documents (directory)".replace("/", os.path.sep)
-#         assert str(documents.get_path_string()) == expected_str
+        expected_str = "./documents (directory)".replace("/", os.path.sep)
+        assert str(documents.get_path_string()) == expected_str
 
-#         expected_str = "./documents/data.xlsx (file)".replace("/", os.path.sep)
-#         assert str(data_file.get_path_string()) == expected_str
+        expected_str = "./documents/data.xlsx (file)".replace("/", os.path.sep)
+        assert str(data_file.get_path_string()) == expected_str
 
-#         my_dir.update_rectangles((0, 0, 200, 400))
+        my_dir.update_rectangles((0, 0, 200, 400))
 
-#         with pytest.raises(OperationNotSupportedError):
-#             data_file.move(report_file)
+        with pytest.raises(OperationNotSupportedError):
+            data_file.move(report_file)
 
-#         expected_str = "./documents/data.xlsx (file)".replace("/", os.path.sep)
-#         assert str(data_file.get_path_string()) == expected_str
+        expected_str = "./documents/data.xlsx (file)".replace("/", os.path.sep)
+        assert str(data_file.get_path_string()) == expected_str
 
-#         data_file.move(empty_dir)
-#         expected_str = "./empty_dir/data.xlsx (file)".replace("/", os.path.sep)
-#         assert str(data_file.get_path_string()) == expected_str
+        data_file.move(empty_dir)
+        expected_str = "./empty_dir/data.xlsx (file)".replace("/", os.path.sep)
+        assert str(data_file.get_path_string()) == expected_str
 
     def test_path_to_nested_tuple_doctest(self) -> None:
         path = os.path.join("example-directory", "workshop", "prep")
@@ -256,63 +256,63 @@ class TestTMTree:
         assert rslt[0] == 'prep'
         assert rslt[1] == [('images', [('Cats.pdf', 17)]), ('reading.md', 7)]
 
-#     def test_example_data(self) -> None:
-#         """
-#         Test that the root of the tree at the 'workshop' directory is correct.
-#         """
-#         nested_tuple = path_to_nested_tuple(EXAMPLE_PATH)
-#         tree = dir_tree_from_nested_tuple(nested_tuple)
-#         assert tree._name == 'workshop'
-#         assert tree._parent_tree is None
-#         assert tree.data_size == 162
-#         assert is_valid_colour(tree._colour)
-#         assert len(tree._subtrees) == 3
-#         for subtree in tree._subtrees:
-#             # Note the use of is rather than ==.
-#             # This checks ids rather than values.
-#             assert subtree._parent_tree is tree
+    def test_example_data(self) -> None:
+        """
+        Test that the root of the tree at the 'workshop' directory is correct.
+        """
+        nested_tuple = path_to_nested_tuple(EXAMPLE_PATH)
+        tree = dir_tree_from_nested_tuple(nested_tuple)
+        assert tree._name == 'workshop'
+        assert tree._parent_tree is None
+        assert tree.data_size == 162
+        assert is_valid_colour(tree._colour)
+        assert len(tree._subtrees) == 3
+        for subtree in tree._subtrees:
+            # Note the use of is rather than ==.
+            # This checks ids rather than values.
+            assert subtree._parent_tree is tree
 
-#     @given(integers(min_value=100, max_value=1000),
-#            integers(min_value=100, max_value=1000),
-#            integers(min_value=100, max_value=1000),
-#            integers(min_value=100, max_value=1000))
-#     def test_single_directory_rectangles(self, x, y, width, height) -> None:
-#         """
-#         Test that the correct rectangle is produced for a single directory, for
-#         a range of possible rect parameter values passed to update_rectangles.
-#         """
-#         tree = dir_tree_from_nested_tuple(('empty_dir', []))
-#         tree.update_rectangles((x, y, width, height))
-#         rects = tree.get_rectangles()
+    @given(integers(min_value=100, max_value=1000),
+           integers(min_value=100, max_value=1000),
+           integers(min_value=100, max_value=1000),
+           integers(min_value=100, max_value=1000))
+    def test_single_directory_rectangles(self, x, y, width, height) -> None:
+        """
+        Test that the correct rectangle is produced for a single directory, for
+        a range of possible rect parameter values passed to update_rectangles.
+        """
+        tree = dir_tree_from_nested_tuple(('empty_dir', []))
+        tree.update_rectangles((x, y, width, height))
+        rects = tree.get_rectangles()
 
-#         # This should be just a single rectangle and colour returned.
-#         assert len(rects) == 1
-#         rect, colour = rects[0]
-#         assert rect == (x, y, width, height)
-#         assert is_valid_colour(colour)
+        # This should be just a single rectangle and colour returned.
+        assert len(rects) == 1
+        rect, colour = rects[0]
+        assert rect == (x, y, width, height)
+        assert is_valid_colour(colour)
 
-#     def test_example_data_rectangles(self) -> None:
-#         """
-#         Test that the correct rectangles are produced for
-#         the EXAMPLE_PATH directory.
-#         """
-#         nested_tuple = path_to_nested_tuple(EXAMPLE_PATH)
-#         tree = dir_tree_from_nested_tuple(nested_tuple)
+    def test_example_data_rectangles(self) -> None:
+        """
+        Test that the correct rectangles are produced for
+        the EXAMPLE_PATH directory.
+        """
+        nested_tuple = path_to_nested_tuple(EXAMPLE_PATH)
+        tree = dir_tree_from_nested_tuple(nested_tuple)
 
-#         tree.update_rectangles((0, 0, 200, 100))
-#         rects = tree.get_rectangles()
+        tree.update_rectangles((0, 0, 200, 100))
+        rects = tree.get_rectangles()
 
-#         # IMPORTANT: This test should pass when you have completed Task 2.
-#         assert len(rects) == 6
+        # IMPORTANT: This test should pass when you have completed Task 2.
+        assert len(rects) == 6
 
-#         # Here, we illustrate the correct order of the returned rectangles.
-#         actual_rects = [r[0] for r in rects]
-#         expected_rects = [(0, 0, 94, 4), (0, 4, 94, 28), (0, 32, 94, 68),
-#                           (94, 0, 73, 100), (167, 0, 33, 72), (167, 72, 33, 28)]
+        # Here, we illustrate the correct order of the returned rectangles.
+        actual_rects = [r[0] for r in rects]
+        expected_rects = [(0, 0, 94, 4), (0, 4, 94, 28), (0, 32, 94, 68),
+                          (94, 0, 73, 100), (167, 0, 33, 72), (167, 72, 33, 28)]
 
-#         assert len(actual_rects) == len(expected_rects)
-#         for i in range(len(actual_rects)):
-#             assert actual_rects[i] == expected_rects[i]
+        assert len(actual_rects) == len(expected_rects)
+        for i in range(len(actual_rects)):
+            assert actual_rects[i] == expected_rects[i]
 
 
 # ###########################################

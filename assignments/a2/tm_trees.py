@@ -109,8 +109,8 @@ def path_to_nested_tuple(path: str) -> tuple[str, int | list]:
     else:
         output = (os.path.basename(path), [])
         for dir_name in ordered_listdir(path):
-            new_path = os.path.join(path, dir_name)
-            output[1].append(path_to_nested_tuple(new_path))
+            sub_path = os.path.join(path, dir_name)
+            output[1].append(path_to_nested_tuple(sub_path))
 
         return output
 
@@ -141,8 +141,13 @@ def dir_tree_from_nested_tuple(obj: tuple[str, int | list]) -> DirectoryTree:
 
     See the DirectoryTree's doctest examples for sample usage.
     """
-    # TODO: (Task 5) Implement this function
-
+    if isinstance(obj[1], int):
+        return FileTree(obj[0], [], obj[1])
+    else:
+        lst = []
+        for item in obj[1]:
+            lst.append(dir_tree_from_nested_tuple(item))
+        return DirectoryTree(obj[0], lst)
 
 # provided, do not modify this helper function
 def url_from_moves(moves: list[str]) -> str:
@@ -313,7 +318,7 @@ class TMTree:
         self._colour = (randint(0, 255), randint(0, 255), randint(0, 255))
         self._expanded = bool(self._subtrees)
 
-        if not self._expanded:
+        if not self._subtrees:
             self.data_size = data_size
         else:
             acc = data_size
@@ -356,7 +361,7 @@ class TMTree:
         >>> d1.get_path_string()
         'C | C2 | C1(5) None'
         """
-        output = f'{self._name}' + self.get_suffix()
+        output = self._name + self.get_suffix()
 
         parent = self._parent_tree
         while parent is not None:
@@ -553,7 +558,7 @@ class TMTree:
         else:
             for subtree in self._subtrees:
                 if (tree := subtree.get_tree_at_position(pos)) is not None:
-                    return tree 
+                    return tree
 
     # TODO: (Task 4) Write the bodies of methods expand, expand_all, collapse,
     #       collapse_all, move, change_size, and test the displayed-tree
@@ -773,19 +778,21 @@ class TMTree:
         >>> s2.is_displayed_tree_leaf()
         True
         """
+        # Initial parent tree
         initial_parent_tree = self._parent_tree
         initial_parent_tree._subtrees.remove(self)
         if initial_parent_tree._subtrees == []:
             initial_parent_tree._expanded = False
+        self._update_data_sizes(-self.data_size)
         
+        # Destination
         destination._subtrees.append(self)
         destination.expand()
         self._parent_tree = destination
-
-        initial_parent_tree.change_size(
-            -self.data_size / initial_parent_tree.data_size)
-        destination.change_size(
-            self.data_size / destination.data_size)
+        root = self._update_data_sizes(self.data_size)
+        
+        # Reapply the treemap algorithm
+        root.update_rectangles(root.rect)
 
     def change_size(self, factor: float) -> None:
         """
@@ -852,15 +859,22 @@ class TMTree:
         self.data_size = max(1, new_data_size, subtree_data_sizes)
 
         # Update data sizes
-        root = self
         change_of_value = self.data_size - initial_data_size
-
-        while root._parent_tree is not None:
-            root._parent_tree.data_size += change_of_value
-            root = root._parent_tree
+        root = self._update_data_sizes(change_of_value)
 
         # Reapply the treemap algorithm
         root.update_rectangles(root.rect)
+
+    def _update_data_sizes(self, value: int) -> TMTree:
+        """Update the <data_size> for its ancestors, and return 
+        <self>'s root."""
+        root = self
+
+        while root._parent_tree is not None:
+            root._parent_tree.data_size += value
+            root = root._parent_tree
+
+        return root
 
 ######################
 # subclasses of TMTree
@@ -896,10 +910,37 @@ class FileTree(TMTree):
     """
     # TODO: (Task) 5 override or extend any methods as needed
     # Hint: you should only have to write a fairly small amount of code here.
+    def move(self, destination: DirectoryTree) -> None:
+        """Move this object into a directory."""
+        if not isinstance(destination, DirectoryTree):
+            raise OperationNotSupportedError
+        else:
+            TMTree.move(self, destination)
+
+    def change_size(self, factor: float) -> None:
+        """Change the value of this tree's data_size attribute by <factor> of
+        its current size."""
+        if isinstance(self, DirectoryTree):
+            raise OperationNotSupportedError
+        else:
+            TMTree.change_size(self, factor)
+  
+    def get_separator(self) -> str:
+        """Return the path separator."""
+        return os.path.sep
+  
+    def get_suffix(self) -> str:
+        """Return the string used at the end of the string representation of
+        a path.
+        """
+        if not self._subtrees:
+            return ' (file)'
+        else:
+            return ' (directory)'
 
 
 # TODO: (Task 5) make this class inherit from another class
-class DirectoryTree:
+class DirectoryTree(FileTree):
     """A tree representation of a directory in a file system for use with
     our treemap visualizer.
 
@@ -989,7 +1030,7 @@ class DirectoryTree:
     #  parent class, based on the docstring examples AND any behaviour
     #  specified in the handout.
     # Hint: you should only have to write a fairly small amount of code here.
-
+     
 
 class ChessTree(TMTree):
     """
@@ -1115,15 +1156,15 @@ if __name__ == '__main__':
     print(worksheet_tree)
 
     print('=' * 80)
-    # # this should run after you finish Task 5
-    # nested_tuple = path_to_nested_tuple("example-directory")
-    # tree = dir_tree_from_nested_tuple(nested_tuple)
-    # # after you finish task 2, the rectangles should be updated properly
-    # # and no longer be all None
-    # tree.update_rectangles((0, 0, 100, 200))
-    # print(tree)
+    # this should run after you finish Task 5
+    nested_tuple = path_to_nested_tuple("example-directory")
+    tree = dir_tree_from_nested_tuple(nested_tuple)
+    # after you finish task 2, the rectangles should be updated properly
+    # and no longer be all None
+    tree.update_rectangles((0, 0, 100, 200))
+    print(tree)
 
-    # print('=' * 80)
+    print('=' * 80)
 
     # # this should run after you finish Task 6
     # with open('wgm_10.json', 'r') as game_file:
@@ -1133,3 +1174,4 @@ if __name__ == '__main__':
     # # this tree will be quite large, so rather than printing the whole thing,
     # # we can expand_all and print the path of the "last" tree as a simple check.
     # print(tree.expand_all().get_path_string())
+  
