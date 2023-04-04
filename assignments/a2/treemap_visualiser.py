@@ -381,7 +381,7 @@ def run_treemap_chess() -> None:
     """Run a treemap visualization for chess games.
     """
     # you can choose which data set to load or make your own!
-    with open(CHESS_DATA_SETS[1]) as file:
+    with open(CHESS_DATA_SETS[2]) as file:
         chess_moves = json.load(file)
     chess_dict = moves_to_nested_dict(chess_moves)
     chess_tree = ChessTree(chess_dict)
