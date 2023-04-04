@@ -315,33 +315,33 @@ class TestFileSystem:
             assert actual_rects[i] == expected_rects[i]
 
 
-# ###########################################
-# # ChessTree provided basic testing
-# ###########################################
+###########################################
+# ChessTree provided basic testing
+###########################################
 
-# class TestChessTree:
+class TestChessTree:
 
-#     def test_moves_to_nested_dict_doctest(self) -> None:
-#         assert moves_to_nested_dict([[]]) == {}
-#         assert moves_to_nested_dict([]) == {}
-#         assert moves_to_nested_dict([['a'], []]) == {('a', 1): {}}
-#         d = moves_to_nested_dict([["a", "b", "c"],
-#                                   ["a", "b"], ["d", "e"], ["d", "e"]])
-#         assert d == {('a', 0): {('b', 1): {('c', 1): {}}},
-#                      ('d', 0): {('e', 2): {}}}
-#         d = moves_to_nested_dict([["a", "b", "c"], ["a", "b"],
-#                                   ["d", "e", "a"], ["d", "e"]])
-#         assert d == {('a', 0): {('b', 1): {('c', 1): {}}},
-#                      ('d', 0): {('e', 1): {('a', 1): {}}}}
+    def test_moves_to_nested_dict_doctest(self) -> None:
+        assert moves_to_nested_dict([[]]) == {}
+        assert moves_to_nested_dict([]) == {}
+        assert moves_to_nested_dict([['a'], []]) == {('a', 1): {}}
+        d = moves_to_nested_dict([["a", "b", "c"],
+                                  ["a", "b"], ["d", "e"], ["d", "e"]])
+        assert d == {('a', 0): {('b', 1): {('c', 1): {}}},
+                     ('d', 0): {('e', 2): {}}}
+        d = moves_to_nested_dict([["a", "b", "c"], ["a", "b"],
+                                  ["d", "e", "a"], ["d", "e"]])
+        assert d == {('a', 0): {('b', 1): {('c', 1): {}}},
+                     ('d', 0): {('e', 1): {('a', 1): {}}}}
 
-#     def test_init_doctest(self) -> None:
-#         ct = ChessTree({('e2e4', 0): {('e7e5', 1): {}}})
-#         assert ct.is_displayed_tree_leaf() is False
-#         assert ct.data_size == 1
-#         assert ct.rect is None
-#         assert str(ct) == "- | (1) None\n" \
-#                           "    e2e4 | (1) None\n" \
-#                           "        e7e5(1) None"
+    def test_init_doctest(self) -> None:
+        ct = ChessTree({('e2e4', 0): {('e7e5', 1): {}}})
+        assert ct.is_displayed_tree_leaf() is False
+        assert ct.data_size == 1
+        assert ct.rect is None
+        assert str(ct) == "- | (1) None\n" \
+                          "    e2e4 | (1) None\n" \
+                          "        e7e5(1) None"
 
 
 if __name__ == '__main__':

@@ -5,6 +5,6 @@ def display_time(func):
         t1 = time.time()
         result = func(*args, **kwargs)
         t2 = time.time()
-        print(f'Total run time: {t2 - t1:.4}s')
+        print(f'Total run time of {func.__name__}: {t2 - t1:.8f}s')
         return result
     return wrapper

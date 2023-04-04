@@ -25,6 +25,7 @@ of several subclasses to represent specific types of data.
 from __future__ import annotations
 import os
 import math  # You can remove this math import if you don't end up using it.
+import random
 from random import randint
 from typing import Optional
 import webbrowser
@@ -104,15 +105,18 @@ def path_to_nested_tuple(path: str) -> tuple[str, int | list]:
     >>> rslt[1]
     [('images', [('Cats.pdf', 17)]), ('reading.md', 7)]
     """
-    if os.path.isfile(path):
-        return (os.path.basename(path), os.path.getsize(path) + 1)
-    else:
-        output = (os.path.basename(path), [])
-        for dir_name in ordered_listdir(path):
-            sub_path = os.path.join(path, dir_name)
-            output[1].append(path_to_nested_tuple(sub_path))
-
-        return output
+    directory = ordered_listdir(path)
+    subitems = []
+    for filename in directory:
+        subitem = os.path.join(path, filename)
+        if os.path.isdir(subitem):
+            subitems.append(path_to_nested_tuple(subitem))
+        else:
+            subitems.append(tuple([os.path.basename(subitem), 1
+                            + os.path.getsize(subitem)]))
+    tuple_ = [os.path.basename(path), subitems]
+    tuple_ = tuple(tuple_)
+    return tuple_
 
 
 def ordered_listdir(path: str) -> list[str]:
@@ -141,14 +145,19 @@ def dir_tree_from_nested_tuple(obj: tuple[str, int | list]) -> DirectoryTree:
 
     See the DirectoryTree's doctest examples for sample usage.
     """
-    if isinstance(obj[1], int):
-        return FileTree(obj[0], [], obj[1])
-    else:
-        lst = []
-        for item in obj[1]:
-            lst.append(dir_tree_from_nested_tuple(item))
+    directory_tree: DirectoryTree
 
-        return DirectoryTree(obj[0], lst)
+    if isinstance(obj[1], list):
+        subtrees = []
+        for directory in obj[1]:
+            subtrees.append(dir_tree_from_nested_tuple(directory))
+
+        directory_tree = DirectoryTree(obj[0], subtrees)
+
+    else:
+        directory_tree = FileTree(obj[0], [], obj[1])
+
+    return directory_tree
 
 
 # provided, do not modify this helper function
@@ -174,10 +183,10 @@ def url_from_moves(moves: list[str]) -> str:
 def moves_to_nested_dict(moves: list[list[str]]) -> dict[tuple[str,
                                                                int], dict]:
     """
-    Convert <moves> into a nested dictionary representing the sequence of moves
+    Convert <games> into a nested dictionary representing the sequence of moves
     made in the games.
 
-    Each list in <moves> corresponds to one game, with the i'th str being the
+    Each list in <games> corresponds to one game, with the i'th str being the
     i'th move of the game.
 
     The nested dictionary's keys are tuples containing the string representing
@@ -209,29 +218,12 @@ def moves_to_nested_dict(moves: list[list[str]]) -> dict[tuple[str,
     >>> d
     {('a', 0): {('b', 1): {('c', 1): {}}}, ('d', 0): {('e', 1): {('a', 1): {}}}}
     """
-    if moves == []:
-        return {}
-    else:
-        tmp = {}
-        for move in moves:
-            if move == []:
-                continue
-            elif move[0] not in tmp:
-                tmp[move[0]] = []
-            tmp[move[0]].append(move[1:])
-
-        lst = {}
-        for key, value in tmp.items():
-            count = value.count([])
-            lst[(key, count)] = moves_to_nested_dict(value)
-
-        return lst
+    # TODO: (Task 6) Implement this function
 
 
 ########
 # TMTree and subclasses
 ########
-
 
 class TMTree:
     """A TreeMappableTree: a tree that is compatible with the treemap
@@ -330,18 +322,24 @@ class TMTree:
         >>> t2.data_size
         6
         """
-        self.rect = None
         self._name = name
-        self._subtrees = subtrees[:]
+        self._colour = tuple([randint(0, 255), randint(0, 255),
+                             randint(0, 255)])
+        self._subtrees = subtrees
+        self.rect = None
         self._parent_tree = None
-        self._colour = (randint(0, 255), randint(0, 255), randint(0, 255))
-        self._expanded = bool(self._subtrees)
 
-        acc = data_size
+        subtree_size = 0
         for subtree in self._subtrees:
-            acc += subtree.data_size
             subtree._parent_tree = self
-        self.data_size = acc
+            subtree_size += subtree.data_size
+        self.data_size = data_size + subtree_size
+
+        if self._subtrees:
+            self._expanded = True
+        else:
+            self._expanded = False
+
 
     def is_displayed_tree_leaf(self) -> bool:
         """
@@ -366,7 +364,7 @@ class TMTree:
         """
         Return a string representing the path containing this tree
         and its ancestors, using the separator for this tree between each
-        tree's name, and the suffix for this tree at the end. See the following
+        tree's name, and the suffic for this tree at the end. See the following
         doctest examples for the format.
 
         >>> d1 = TMTree('C1', [], 5)
@@ -377,14 +375,17 @@ class TMTree:
         >>> d1.get_path_string()
         'C | C2 | C1(5) None'
         """
-        output = self._name + self.get_suffix()
+        return self.get_path_string_helper()
 
-        parent = self._parent_tree
-        while parent is not None:
-            output = parent._name + self.get_separator() + output
-            parent = parent._parent_tree
+    def get_path_string_helper(self, string: str = "") -> str:
 
-        return output
+        if string == "":
+            string += f"{self._name}({self.data_size}) {self.rect}"
+        else:
+            string = f"{self._name}{self.get_separator()}" + string
+        if self._parent_tree is not None:
+            string = self._parent_tree.get_path_string_helper(string)
+        return string
 
     # Note: you may encounter an "R0201 (no self use error)" pyTA error related
     # to this method (and PyCharm might show a warning as well), but it should
@@ -473,31 +474,28 @@ class TMTree:
         (0, 0, 100, 200)
         """
         self.rect = rect
-        x, y, width, height = self.rect
-        total_size = sum(tree.data_size for tree in self._subtrees)
-
-        if width > height:
-            curr_x = x
-            for i in range(len(self._subtrees)):
-                subtree = self._subtrees[i]
-                if i == len(self._subtrees) - 1:
-                    new_width = width + x - curr_x
-                else:
-                    new_width = math.floor(
-                        subtree.data_size * width / total_size)
-                subtree.update_rectangles((curr_x, y, new_width, height))
-                curr_x += new_width
-        else:
-            curr_y = y
-            for i in range(len(self._subtrees)):
-                subtree = self._subtrees[i]
-                if i == len(self._subtrees) - 1:
-                    new_height = height + y - curr_y
-                else:
-                    new_height = math.floor(
-                        subtree.data_size * height / total_size)
-                subtree.update_rectangles((x, curr_y, width, new_height))
-                curr_y += new_height
+        subtrees = self._subtrees
+        if subtrees:
+            count = 0
+            for subtree in subtrees:
+                count += subtree.data_size
+            coord1 = rect[0]
+            coord2 = rect[1]
+            sizex = rect[2]
+            sizey = rect[3]
+            if sizex > sizey:
+                for subtree in subtrees:
+                    subtree.update_rectangles(tuple([coord1, coord2, int(sizex
+                                                    * (subtree.data_size
+                                                       / count)), sizey]))
+                    coord1 += int(sizex * (subtree.data_size / count))
+            else:
+                for subtree in subtrees:
+                    subtree.update_rectangles(tuple([coord1, coord2, sizex,
+                                                     int(sizey
+                                                         * (subtree.data_size
+                                                            / count))]))
+                    coord2 += int(sizey * (subtree.data_size / count))
 
     def get_rectangles(self) -> list[tuple[tuple[int, int, int, int],
                                            tuple[int, int, int]]]:
@@ -521,13 +519,16 @@ class TMTree:
         >>> rectangles[1][0]
         (0, 50, 100, 150)
         """
-        if self.is_displayed_tree_leaf():
-            return [(self.rect, self._colour)]
-        else:
-            lst = []
-            for subtree in self._subtrees:
-                lst.extend(subtree.get_rectangles())
-            return lst
+        leaf_lst = []
+        if self.rect is not None:
+            if not self._expanded:
+                t = (self.rect, self._colour)
+                leaf_lst.append(t)
+            else:
+                for subtree in self._subtrees:
+                    if subtree.get_rectangles():
+                        leaf_lst.extend(subtree.get_rectangles())
+        return leaf_lst
 
     def get_tree_at_position(self, pos: tuple[int, int]) -> Optional[TMTree]:
         """
@@ -563,23 +564,25 @@ class TMTree:
         >>> t3.get_tree_at_position((100, 100)) is s2
         True
         """
-        x, y, width, height = self.rect
-        left, right, up, down = x, x + width, y, y + height
-        pos_x, pos_y = pos
-
-        if not (left <= pos_x <= right and up <= pos_y <= down):
+        if pos[0] < self.rect[0] or pos[1] < self.rect[1] \
+                or pos[0] > self.rect[0] + self.rect[2] \
+                or pos[1] > self.rect[1] + self.rect[3]:
             return None
-        elif self.is_displayed_tree_leaf():
-            return self
         else:
-            output = None
-            for subtree in self._subtrees:
-                output = subtree.get_tree_at_position(pos)
-                if output is not None:
-                    break
+            if self._subtrees:
+                for subtree in self._subtrees:
+                    position = subtree.get_tree_at_position(pos)
+                    if position is not None \
+                            and position.is_displayed_tree_leaf():
+                        return position
 
-            return output
+            return self
 
+    # TODO: (Task 4) Write the bodies of methods expand, expand_all, collapse,
+    #       collapse_all, move, change_size, and test the displayed-tree
+    #       functionality for the methods from Tasks 2 and 3 if you haven't
+    #       done so yet, since you can now expand and collapse the
+    #       displayed-tree.
     def expand(self) -> TMTree:
         """
         Set this tree to be expanded, and return its first (leftmost) subtree.
@@ -604,11 +607,11 @@ class TMTree:
         >>> s1.is_displayed_tree_leaf()
         True
         """
-        if not self._subtrees:
-            return self
-        else:
-            self._expand_helper()
+        if self._subtrees:
+            self._expanded = True
             return self._subtrees[0]
+        else:
+            return self
 
     def expand_all(self) -> TMTree:
         """
@@ -642,24 +645,15 @@ class TMTree:
         >>> d2.is_displayed_tree_leaf()
         False
         """
-        if not self._subtrees:
-            return self
-        else:
-            self._expand_helper()
-            rightmost_subtree = None
+        self.expand()
+        last = self
+
+        if self._subtrees:
             for subtree in self._subtrees:
-                rightmost_subtree = subtree.expand_all()
+                last = subtree.expand_all()
 
-            return rightmost_subtree
-
-    def _expand_helper(self) -> None:
-        """Expand all <self>'s parent trees including <self>."""
-        self._expanded = True
-        parent_tree = self._parent_tree
-
-        while parent_tree is not None and parent_tree._expanded is False:
-            parent_tree._expanded = True
-            parent_tree = parent_tree._parent_tree
+        last._expanded = False
+        return last
 
     def collapse(self) -> TMTree:
         """
@@ -688,13 +682,17 @@ class TMTree:
         >>> d2.is_displayed_tree_leaf()
         True
         """
-        if self._parent_tree is None:
-            return self
-        else:
-            self._collapse_helper()
+        if self._parent_tree is not None:
             self._parent_tree._expanded = False
+            for subtree in self._parent_tree._subtrees:
+                if subtree._subtrees:
+                    for subtree1 in subtree._subtrees:
+                        subtree1.collapse()
 
             return self._parent_tree
+
+        return self
+
 
     def collapse_all(self) -> TMTree:
         """
@@ -719,19 +717,10 @@ class TMTree:
         True
         """
         root = self
-
-        while root._parent_tree is not None:
+        while root._parent_tree._parent_tree is not None:
             root = root._parent_tree
-        root._collapse_helper()
-
-        return root
-
-    def _collapse_helper(self) -> None:
-        """Collapse all <self>'s subtrees including <self>."""
-        self._expanded = False
-
-        for subtree in self._subtrees:
-            subtree._collapse_helper()
+        root.collapse()
+        return root._parent_tree
 
     def move(self, destination: TMTree) -> None:
         """
@@ -793,21 +782,28 @@ class TMTree:
         >>> s2.is_displayed_tree_leaf()
         True
         """
-        # Initial parent tree
-        initial_parent_tree = self._parent_tree
-        initial_parent_tree._subtrees.remove(self)
-        if not initial_parent_tree._subtrees:
-            initial_parent_tree._expanded = False
-        self._update_data_sizes(-self.data_size)
+        displaced_tree = self
+        if len(self._parent_tree._subtrees) > 1:
+            self._parent_tree._expanded = True
+        else:
+            self._parent_tree._expanded = False
 
-        # Destination
-        destination._subtrees.append(self)
-        destination.expand()
-        self._parent_tree = destination
-        root = self._update_data_sizes(self.data_size)
+        parent_tree = self._parent_tree
+        while parent_tree._parent_tree is not None:
+            parent_tree.data_size -= displaced_tree.data_size
+            parent_tree = parent_tree._parent_tree
 
-        # Reapply the treemap algorithm
-        root.update_rectangles(root.rect)
+        self._parent_tree._subtrees.remove(self)
+        destination._subtrees.append(displaced_tree)
+        displaced_tree._parent_tree = destination
+        destination._expanded = True
+
+        parent_tree = destination
+        while parent_tree._parent_tree is not None:
+            parent_tree.data_size += displaced_tree.data_size
+            parent_tree = parent_tree._parent_tree
+
+        parent_tree.update_rectangles(parent_tree.rect)
 
     def change_size(self, factor: float) -> None:
         """
@@ -829,8 +825,8 @@ class TMTree:
         the new data_size would be 4.
 
         Example II: if data_size is 140, then 1% of this is 1.4,
-        which is "rounded up" to 2. So its value could increase up to 142,
-        or decrease down to 138.
+        which is "rounded up" to 2. So its value could increase up to 152,
+        or decrease down to 148.
 
         Importantly, this method must:
 
@@ -862,40 +858,32 @@ class TMTree:
         >>> s2.rect
         (0, 100, 100, 100)
         """
-        subtree_data_sizes = sum(tree.data_size for tree in self._subtrees)
-        initial_data_size = self.data_size
-        if factor < 0:
-            value = math.floor(initial_data_size * factor)
+        if factor >= 0:
+            change = math.ceil(self.data_size*factor)
         else:
-            value = math.ceil(initial_data_size * factor)
+            change = math.floor(self.data_size*factor)
+        self.data_size += change
+        data_size_sum = 0
+        for subtree in self._subtrees:
+            data_size_sum += subtree.data_size
+        if self.data_size < data_size_sum:
+            self.data_size = data_size_sum
+        if self.data_size < 1:
+            self.data_size = 1
 
-        new_data_size = initial_data_size + value
-        # subtree_data_sizes >= 0
-        self.data_size = max(1, new_data_size, subtree_data_sizes)
+        parent_tree = self
+        while parent_tree._parent_tree is not None:
+            parent_tree = parent_tree._parent_tree
+            parent_tree.data_size += change
 
-        # Update data sizes
-        change_of_value = self.data_size - initial_data_size
-        root = self._update_data_sizes(change_of_value)
+        parent_tree.update_rectangles(parent_tree.rect)
 
-        # Reapply the treemap algorithm
-        root.update_rectangles(root.rect)
-
-    def _update_data_sizes(self, value: int) -> TMTree:
-        """Update the <data_size> for its ancestors, and return
-        <self>'s root."""
-        root = self
-
-        while root._parent_tree is not None:
-            root._parent_tree.data_size += value
-            root = root._parent_tree
-
-        return root
 
 ######################
 # subclasses of TMTree
 ######################
 
-
+# TODO: (Task 5) make this class inherit from another class
 class FileTree(TMTree):
     """
     A tree representation of a file in a file system, for use with our
@@ -923,28 +911,17 @@ class FileTree(TMTree):
          dir_tree_from_nested_tuple, so please make sure to implement
          that function correctly.
     """
-    def move(self, destination: DirectoryTree) -> None:
-        """Move this object into a directory."""
-        if not isinstance(destination, DirectoryTree):
+    # TODO: (Task) 5 override or extend any methods as needed
+    # Hint: you should only have to write a fairly small amount of code here.
+    def move(self, destination: TMTree) -> None:
+        if isinstance(destination, FileTree):
             raise OperationNotSupportedError
         else:
             TMTree.move(self, destination)
 
-    def get_separator(self) -> str:
-        """Return the path separator."""
-        return os.sep
 
-    def get_suffix(self) -> str:
-        """Return the string used at the end of the string representation of
-        a path.
-        """
-        if not self._subtrees:
-            return ' (file)'
-        else:
-            return ' (directory)'
-
-
-class DirectoryTree(FileTree):
+# TODO: (Task 5) make this class inherit from another class
+class DirectoryTree(TMTree):
     """A tree representation of a directory in a file system for use with
     our treemap visualizer.
 
@@ -1030,21 +1007,49 @@ class DirectoryTree(FileTree):
     >>> path_string == './empty_dir/data.xlsx (file)'.replace("/", os.path.sep)
     True
     """
+    # TODO: (Task 5) override or extend any methods that you need to from the
+    #  parent class, based on the docstring examples AND any behaviour
+    #  specified in the handout.
+    # Hint: you should only have to write a fairly small amount of code here.
+    def __str__(self, string: str = "", indent: int = 0) -> str:
+        tab = "    "
+        if string == "":
+            string = f"{indent * tab}{self._name}/" \
+                     f"({self.data_size}) {self.rect}"
+        for subtree in self._subtrees:
+            if isinstance(subtree, DirectoryTree):
+                string += f"\n{indent * tab}{subtree._name}/" \
+                          f"({subtree.data_size}) {subtree.rect}"
+            else:
+                string += f"\n{indent * tab}{subtree._name}" \
+                          f"({subtree.data_size}) {subtree.rect}"
+            if subtree._subtrees:
+                string = DirectoryTree.__str__(subtree, string,
+                                               indent + 1)
+        string.replace("/", os.path.sep)
+        return string
+
     def change_size(self, factor: float) -> None:
-        """Change the value of this tree's data_size attribute by <factor> of
-        its current size."""
         raise OperationNotSupportedError
+
+    def move(self, destination: TMTree) -> None:
+        if isinstance(destination, FileTree):
+            raise OperationNotSupportedError
+        else:
+            TMTree.move(self, destination)
 
 
 class ChessTree(TMTree):
     """
     A chess tree representing sequences of moves in a collection of chess games
-
-    === Private Attributes ===
-    _white_to_play: True iff it is white's turn to make the next move.
     """
+    # === Private Attributes ===
+    # _white_to_play: True iff it is white's turn to make the next move.
 
     _white_to_play: bool
+
+    # TODO: (Task 6) complete the implementation of this class, including
+    #       extending or overriding any methods inherited from TMTree.
 
     def __init__(self, move_dict: dict[tuple[str, int], dict],
                  last_move: str = "-",
@@ -1083,18 +1088,7 @@ class ChessTree(TMTree):
             e2e4 | (1) None
                 e7e5(1) None
         """
-        if move_dict == {}:
-            TMTree.__init__(self, last_move, [], num_games_ended)
-            self._white_to_play = white_to_play
-        else:
-            lst = []
-            for subtree in move_dict:
-                curr_dict = move_dict[subtree]
-                name, num = subtree
-                lst.append(ChessTree(curr_dict, name, not white_to_play, num))
-
-            TMTree.__init__(self, last_move, lst, num_games_ended)
-            self._white_to_play = white_to_play
+        # TODO: (Task 6) Implement this method
 
     def get_suffix(self) -> str:
         """
@@ -1112,12 +1106,7 @@ class ChessTree(TMTree):
         >>> second_last_node.get_suffix()
         ' (black to play)'
         """
-        if not self._subtrees:
-            return ' (end)'
-        elif self._white_to_play:
-            return ' (white to play)'
-        else:
-            return ' (black to play)'
+        # TODO: (Task 6) Implement this method
 
     def open_page(self) -> None:
         """
@@ -1174,7 +1163,7 @@ if __name__ == '__main__':
     print(worksheet_tree)
 
     print('=' * 80)
-    # this should run after you finish Task 5
+    # this should run after you finish Task 1
     nested_tuple = path_to_nested_tuple("example-directory")
     tree = dir_tree_from_nested_tuple(nested_tuple)
     # after you finish task 2, the rectangles should be updated properly

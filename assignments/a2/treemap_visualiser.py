@@ -66,7 +66,8 @@ KEY_MAP = {pygame.K_m: 'm = move',
            pygame.K_e: 'e = expand',
            pygame.K_a: 'a = expand all',
            pygame.K_c: 'c = collapse',
-           pygame.K_x: 'x = collapse all'}
+           pygame.K_x: 'x = collapse all',
+           pygame.K_o: 'o = open'}
 
 
 def get_screen_rect(screen: pygame.Surface,
@@ -380,7 +381,7 @@ def run_treemap_chess() -> None:
     """Run a treemap visualization for chess games.
     """
     # you can choose which data set to load or make your own!
-    with open(CHESS_DATA_SETS[0]) as file:
+    with open(CHESS_DATA_SETS[1]) as file:
         chess_moves = json.load(file)
     chess_dict = moves_to_nested_dict(chess_moves)
     chess_tree = ChessTree(chess_dict)
@@ -406,7 +407,7 @@ if __name__ == '__main__':
     # Reminder, you are encouraged to modify this while trying out your code.
 
     RUN_OPTIONS = ['TMTree', 'DirectoryTree', 'ChessTree']
-    which = RUN_OPTIONS[0]
+    which = RUN_OPTIONS[2]
     # change the line above to choose which type of tree to visualize.
 
     if which == RUN_OPTIONS[0]:
