@@ -216,16 +216,14 @@ def moves_to_nested_dict(moves: list[list[str]]) -> dict[tuple[str,
         for move in moves:
             if move == []:
                 continue
-            elif move[0] not in tmp:
-                tmp[move[0]] = []
-            tmp[move[0]].append(move[1:])
+            tmp.setdefault(move[0], []).append(move[1:])
 
-        lst = {}
+        res = {}
         for key, value in tmp.items():
             count = value.count([])
-            lst[(key, count)] = moves_to_nested_dict(value)
+            res[(key, count)] = moves_to_nested_dict(value)
 
-        return lst
+        return res
 
 
 ########
@@ -653,7 +651,7 @@ class TMTree:
             return rightmost_subtree
 
     def _expand_helper(self) -> None:
-        """Expand all <self>'s parent trees including <self>."""
+        """Expand all <self>'s parent trees, including <self>."""
         self._expanded = True
         parent_tree = self._parent_tree
 
@@ -881,8 +879,7 @@ class TMTree:
         root.update_rectangles(root.rect)
 
     def _update_data_sizes(self, value: int) -> TMTree:
-        """Update the <data_size> for its ancestors, and return
-        <self>'s root."""
+        """Update its ancestors' <data_size>, and return <self>'s root."""
         root = self
 
         while root._parent_tree is not None:

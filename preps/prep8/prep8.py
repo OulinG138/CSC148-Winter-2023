@@ -87,6 +87,29 @@ class Tree:
             for subtree in self._subtrees:
                 size += subtree.__len__()  # could also do len(subtree) here
             return size
+    def __str__(self) -> str:
+        """Return a string representation of this tree.
+        For each node, its item is printed before any of its
+        descendants' items. The output is nicely indented.
+        You may find this method helpful for debugging.
+        """
+
+        return self._str_indented()
+
+    def _str_indented(self, depth: int = 0) -> str:
+        """Return an indented string representation of this tree.
+        The indentation level is specified by the <depth> parameter.
+        """
+        if self.is_empty():
+            return ''
+        else:
+            s = ' ' * depth + str(self._root) + '\n'
+            for subtree in self._subtrees:
+            # Note that the 'depth' argument to the recursive call is
+            # modified.
+                s += subtree._str_indented(depth + 1)
+            return s
+
 
     def num_negatives(self) -> int:
         """Return the number of negative integers in this tree.
@@ -132,8 +155,7 @@ class Tree:
         else:
             maximum = self._root
             for subtree in self._subtrees:
-                num = subtree.maximum()
-                if num > maximum:
+                if (num := subtree.maximum()) > maximum:
                     maximum = num
             return maximum
 
@@ -155,7 +177,7 @@ class Tree:
             output = []
             for subtree in self._subtrees:
                 output.append(subtree.height())
-            return 1 + max(output) if output != [] else 1
+            return 1 if not output else 1 + max(output)
 
     def __contains__(self, item: Any) -> bool:
         """Return whether this tree contains <item>.
@@ -176,10 +198,93 @@ class Tree:
                     return True
             return False
 
+    def delete_item(self, item: Any) -> bool:
+        """Delete *one* occurrence of the given item from this tree.
+        Return True if <item> was deleted, and False otherwise.
+        Do not modify this tr`ee if it does not contain <item>.
+        >>> t = Tree(2, [Tree(4, []), Tree(5, [])])
+        >>> t.delete_item(4)
+        True
+        >>> print(t)
+        2
+        5
+        <BLANKLINE>
+        >>> t.delete_item(5)
+        True
+        >>> print(t)
+        2
+        <BLANKLINE>
+        >>> t.delete_item(2)
+        True
+        >>> t.is_empty()
+        True
+        """
+        if self.is_empty():
+            return False # item isn’t in the tree
+        elif self._root == item:
+            self._delete_root()
+            return True # item was deleted
+        else:
+            for subtree in self._subtrees:
+                if subtree.delete_item(item):
+                    if subtree.is_empty():
+                        self._subtrees.remove(subtree)
+                return True
+            return False
+
+    def _delete_root(self) -> None:
+        """Remove the root of this tree.
+        Precondition: this tree is not empty.
+        """
+        # Base case: if it's a leaf
+        if self._subtrees == []:
+            self._root = None
+        else:
+            leaf = self._extract_leaf()
+            self._root = leaf
+
+    def _extract_leaf(self) -> Any:
+        """Remove and return the leftmost leaf in a tree.
+        Precondition: this tree is non-empty.
+        """
+        if self._subtrees == []:
+            leaf_value = self._root
+            self._root = None
+            return leaf_value
+        else:
+            val = self._subtrees[0]._extract_leaf()
+            if self._subtrees[0].is_empty():
+                self._subtrees.pop(0)
+            return val
+
+    def all_strings(self) -> list[str]:
+        """
+        >>> t = Tree('i', [Tree('t', []), Tree('n', []), Tree('f', [])])
+        >>> t.all_strings()
+        ['it', 'in', 'if']
+        >>> tiny = Tree('r', [Tree('t', [])])
+        >>> child1 = Tree('a', [tiny, Tree('t', []), Tree('d', [])])
+        >>> child2 = Tree('r', [Tree('a', [Tree('m', [])])])
+        >>> child3 = Tree('i', [])
+        >>> t = Tree('p', [child1, child2, child3])
+        >>> t.all_strings()
+        ['part', 'pat', 'pad', 'pram', 'pi']
+        """
+        if self.is_empty():
+            return []
+        elif not self._subtrees:
+            return self._root
+        else:
+            res = []
+            for subtree in self._subtrees:
+                for string in subtree.all_strings():
+                    res.append(self._root + string)
+
+            return res
 
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
 
-    import python_ta
-    python_ta.check_all(config={'disable': ['E1136']})
+    # import python_ta
+    # python_ta.check_all(config={'disable': ['E1136']})

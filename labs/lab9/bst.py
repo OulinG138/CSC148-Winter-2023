@@ -249,7 +249,6 @@ class BinarySearchTree:
         >>> bst._right._root
         20
         """
-        # FIXME: Wrong base case??
         if self.is_empty():
             self._root = item
             self._left = BinarySearchTree(None)
@@ -260,94 +259,109 @@ class BinarySearchTree:
             self._right.insert(item)
 
 
-    # # ------------------------------------------------------------------------
-    # # Task 4
-    # # ------------------------------------------------------------------------
-    # def rotate_right(self) -> None:
-    #     """Rotate the BST clockwise, i.e. make the left subtree the root.
+    # ------------------------------------------------------------------------
+    # Task 4
+    # ------------------------------------------------------------------------
+    def rotate_right(self) -> None:
+        """Rotate the BST clockwise, i.e. make the left subtree the root.
 
-    #     >>> bst = BinarySearchTree(7)
-    #     >>> left = BinarySearchTree(3)
-    #     >>> right = BinarySearchTree(11)
-    #     >>> left._left = BinarySearchTree(2)
-    #     >>> left._right = BinarySearchTree(5)
-    #     >>> bst._left = left
-    #     >>> bst._right = right
-    #     >>> print(bst)
-    #     7
-    #       3
-    #         2
-    #         5
-    #       11
-    #     <BLANKLINE>
-    #     >>> bst.rotate_right()
-    #     >>> print(bst)
-    #     3
-    #       2
-    #       7
-    #         5
-    #         11
-    #     <BLANKLINE>
-    #     >>> bst.rotate_right()
-    #     >>> print(bst)
-    #     2
-    #       3
-    #         7
-    #           5
-    #           11
-    #     <BLANKLINE>
-    #     """
-    #     # TODO: implement this method
+        >>> bst = BinarySearchTree(7)
+        >>> left = BinarySearchTree(3)
+        >>> right = BinarySearchTree(11)
+        >>> left._left = BinarySearchTree(2)
+        >>> left._right = BinarySearchTree(5)
+        >>> bst._left = left
+        >>> bst._right = right
+        >>> print(bst)
+        7
+          3
+            2
+            5
+          11
+        <BLANKLINE>
+        >>> bst.rotate_right()
+        >>> print(bst)
+        3
+          2
+          7
+            5
+            11
+        <BLANKLINE>
+        >>> bst.rotate_right()
+        >>> print(bst)
+        2
+          3
+            7
+              5
+              11
+        <BLANKLINE>
+        """
+        if self.is_empty() or self._left.is_empty():  
+            pass
+        else:  
+            new_right = BinarySearchTree(self._root)  
+            new_right._right = self._right  
+            new_left = self._left._left   
+            new_right._left = self._left._right 
+            self._root, self._left, self._right = self._left._root, new_left, \
+                new_right
 
-    # def rotate_left(self) -> None:
-    #     """Rotate the BST counter-clockwise,
-    #     i.e. make the right subtree the root.
+    def rotate_left(self) -> None:
+        """Rotate the BST counter-clockwise,
+        i.e. make the right subtree the root.
 
-    #     >>> bst = BinarySearchTree(7)
-    #     >>> left = BinarySearchTree(3)
-    #     >>> left._left = BinarySearchTree(2)
-    #     >>> left._right = BinarySearchTree(5)
-    #     >>> right = BinarySearchTree(11)
-    #     >>> right._left = BinarySearchTree(9)
-    #     >>> right._right = BinarySearchTree(13)
-    #     >>> bst._left = left
-    #     >>> bst._right = right
-    #     >>> print(bst)
-    #     7
-    #       3
-    #         2
-    #         5
-    #       11
-    #         9
-    #         13
-    #     <BLANKLINE>
-    #     >>> bst.rotate_left()
-    #     >>> print(bst)
-    #     11
-    #       7
-    #         3
-    #           2
-    #           5
-    #         9
-    #       13
-    #     <BLANKLINE>
-    #     >>> bst.rotate_left()
-    #     >>> print(bst)
-    #     13
-    #       11
-    #         7
-    #           3
-    #             2
-    #             5
-    #           9
-    #     <BLANKLINE>
-    #     """
-    #     # TODO: implement this method!
+        >>> bst = BinarySearchTree(7)
+        >>> left = BinarySearchTree(3)
+        >>> left._left = BinarySearchTree(2)
+        >>> left._right = BinarySearchTree(5)
+        >>> right = BinarySearchTree(11)
+        >>> right._left = BinarySearchTree(9)
+        >>> right._right = BinarySearchTree(13)
+        >>> bst._left = left
+        >>> bst._right = right
+        >>> print(bst)
+        7
+          3
+            2
+            5
+          11
+            9
+            13
+        <BLANKLINE>
+        >>> bst.rotate_left()
+        >>> print(bst)
+        11
+          7
+            3
+              2
+              5
+            9
+          13
+        <BLANKLINE>
+        >>> bst.rotate_left()
+        >>> print(bst)
+        13
+          11
+            7
+              3
+                2
+                5
+              9
+        <BLANKLINE>
+        """
+        if self.is_empty() or self._left.is_empty():
+            pass
+        else:
+            new_left = BinarySearchTree(self._root)
+            new_left._left = self._left
+            new_left._right = self._right._left
+            new_right = self._right._right
+            self._root, self._left, self._right = self._right._root, new_left, new_right
 
 
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
 
-    import python_ta
-    python_ta.check_all()
+    # import python_ta
+    # python_ta.check_all()

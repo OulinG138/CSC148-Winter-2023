@@ -1,17 +1,5 @@
-def reverse_nodes(self, i: int) -> None:
-	if i == 0:
-		curr = self._first
+import numpy as np
 
-		self._first = curr.next
-		curr.next = self._first.next
-		self._first.next = curr
+arr = np.array([1, 2, 3]) 
+print(arr)
 
-	else:
-		curr = self._first
-
-		for unused_ in range(i - 1):
-			curr = curr.next
-
-		temp = curr.next
-		curr.next = curr.next.next.next
-		temp.next = curr

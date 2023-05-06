@@ -78,15 +78,24 @@ def nested_max(obj: Union[int, list]) -> int:
     >>> nested_max([1, 2, [1, 2, [3], 4, 5], 4])
     5
     """
+    # if isinstance(obj, int):
+    #     return obj
+    # else:
+    #     max_ = 0
+    #     for sublist in obj:
+    #         if (num := nested_max(sublist)) > max_:
+    #             max_ = num
+    #     return max_
     if isinstance(obj, int):
         return obj
+    elif not obj:
+        return 0
     else:
-        max_ = 0
+        res = []
         for sublist in obj:
-            num = nested_max(sublist)
-            if num > max_:
-                max_ = num
-        return max_
+            res.append(nested_max(sublist))
+
+        return max(res)
 
 
 def max_length(obj: Union[int, list]) -> int:
@@ -108,7 +117,7 @@ def max_length(obj: Union[int, list]) -> int:
     """
     if isinstance(obj, int):
         return 0
-    else:
+    else:                          
         length_list = [len(obj)]
         for sublist in obj:
             length_list.append(max_length(sublist))
@@ -119,5 +128,5 @@ if __name__ == '__main__':
     import doctest
     doctest.testmod()
 
-    import python_ta
-    python_ta.check_all(config={'disable': ['E1136']})
+    # import python_ta
+    # python_ta.check_all(config={'disable': ['E1136']})

@@ -21,7 +21,7 @@ def greater_than_all(obj: Union[int, List], n: int) -> bool:
     True
     """
     if isinstance(obj, int):
-        return obj <= n
+        return obj < n
     else:
         for sublist in obj:
             if not greater_than_all(sublist, n):
@@ -37,13 +37,6 @@ def add_n(obj: Union[int, List], n: int) -> Union[int, List]:
     >>> add_n([1, 2, [1, 2], 4], 10)
     [11, 12, [11, 12], 14]
     """
-    # if isinstance(obj, int):
-    #     return obj + n
-    # else:
-    #     for i in range(len(obj)):
-    #         if isinstance(add_n(obj[i], n), int):
-    #             obj[i] += n
-    #     return obj
     if isinstance(obj, int):
         return obj + n
     else:
@@ -70,19 +63,19 @@ def nested_list_equal(obj1: Union[int, List], obj2: Union[int, List]) -> bool:
     >>> nested_list_equal([1, 2, 4, [1, 2]], [1, 2, [1, 2], 4])
     False
     """
-#     try:
-#         if isinstance(obj1, int) and isinstance(obj2, int):
-#             return obj1 == obj2
-#         elif len(obj1) != len(obj2):
-#                 return False
-#         else:
-#             for i in range(len(obj1)):
-#                 status = nested_list_equal(obj1[i], obj2[i])
-#                 if not status:
-#                     return False
-#             return True
-#     except TypeError:
-#         return False
+    try:
+        if isinstance(obj1, int) and isinstance(obj2, int):
+            return obj1 == obj2
+        elif len(obj1) != len(obj2):
+                return False
+        else:
+            for i in range(len(obj1)):
+                status = nested_list_equal(obj1[i], obj2[i])
+                if not status:
+                    return False
+            return True
+    except TypeError:
+        return False
         
 
 
@@ -107,7 +100,6 @@ def duplicate(obj: Union[int, List]) -> Union[int, List]:
     # HINT: in the recursive case, you'll need to distinguish between
     # a <sublist> that is an int and a <sublist> that is a list
     # (put an isinstance check inside the loop).
-
     if isinstance(obj, int):
         return [obj, obj]
     else:
@@ -118,7 +110,6 @@ def duplicate(obj: Union[int, List]) -> Union[int, List]:
             else:
                 output.append(duplicate(sublist))
         return output
-
 
 if __name__ == '__main__':
     import doctest

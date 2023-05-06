@@ -175,8 +175,8 @@ class Gym:
         >>> ac.add_instructor(diane)
         True
         """
-        if instructor.get_id() not in self._instructors:
-            self._instructors[instructor.get_id()] = instructor
+        if (id_ := instructor.get_id()) not in self._instructors:
+            self._instructors[id_] = instructor
             return True
         return False
 
@@ -191,8 +191,8 @@ class Gym:
         >>> ac.add_workout_class(kickboxing)
         True
         """
-        if workout_class.name not in self._workouts:
-            self._workouts[workout_class.name] = workout_class
+        if (name := workout_class.name) not in self._workouts:
+            self._workouts[name] = workout_class
             return True
         return False
 
@@ -269,8 +269,8 @@ class Gym:
             return True
         elif room_name not in self._schedule[time_point] and \
             self._instructors[instr_id] not in \
-            [instr_name[0] for instr_name in
-             list(self._schedule[time_point].values())]:
+            [instr_name[0] for instr_name in 
+             self._schedule[time_point].values()]:
             self._schedule[time_point].update({room_name: (self._instructors[
                                                            instr_id],
                                                            self._workouts[
@@ -322,7 +322,7 @@ class Gym:
 
         # Check if client is registered for any of the course at <time_point>
         # Get the list of clients
-        for tup in list(self._schedule[time_point].values()):
+        for tup in self._schedule[time_point].values():
             client_list.extend(tup[2])
 
         # Get all the registered clients for <workout_name> at <time_point>
@@ -344,9 +344,9 @@ class Gym:
         if not not_full_rooms:
             return False
         else:
+            max_value = max(not_full_rooms.values())
             for room_name in not_full_rooms:
-                if not_full_rooms[room_name] == max(
-                   list(not_full_rooms.values())):
+                if not_full_rooms[room_name] == max_value:
                     self._schedule[time_point][room_name][2].append(client)
                     break
         return True
@@ -389,11 +389,7 @@ class Gym:
         >>> ac.instructor_hours(t1, t2) == {1: 2, 2: 0}
         True
         """
-        time_dict = {}
-
-        for instr_id in list(self._instructors.keys()):
-            if instr_id not in time_dict:
-                time_dict[instr_id] = 0
+        time_dict = dict.fromkeys(self._instructors.keys(), 0)
 
         for dt in self._schedule:
             if time1 <= dt <= time2:
@@ -480,9 +476,9 @@ class Gym:
         >>> ac._is_instructor_name_unique(third_hire)
         True
         """
-        name_list = [instr.name for instr in list(self._instructors.values())]
+        name_list = [instr.name for instr in self._instructors.values()]
 
-        return True if name_list.count(instructor.name) <= 1 else False
+        return name_list.count(instructor.name) <= 1
 
     def offerings_at(self, time_point: datetime) -> list[dict[str, str | int]]:
         """Return a list of dictionaries, each representing a workout offered
@@ -558,8 +554,7 @@ class Gym:
         if not self._schedule or time_point not in self._schedule:
             return []
         else:
-            for room_name in sorted(list(self._schedule[time_point].keys())):
-
+            for room_name in sorted(self._schedule[time_point].keys()):
                 registered = len(self._schedule[time_point][room_name][2])
                 instructor = self._schedule[time_point][room_name][0]
                 instr = f'{instructor.name}' if \
@@ -634,7 +629,7 @@ class Gym:
         """
         result_list = []
 
-        for dt in sorted(list(self._schedule.keys())):
+        for dt in sorted(self._schedule.keys()):
             if in_week(dt, week):
                 result_list.extend(self.offerings_at(dt))
 

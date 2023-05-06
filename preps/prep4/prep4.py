@@ -129,6 +129,29 @@ def remove_all_but_one(queue: Queue) -> None:
     queue.enqueue(var)
 
 
+def insert_at_bottom(s: Stack, item: Any) -> None:
+    """
+    >>> stack = Stack()
+    >>> stack.push(1)
+    >>> stack.push(2)
+    >>> insert_at_bottom(stack, 3)
+    >>> stack.pop()
+    2
+    >>> stack.pop()
+    1
+    >>> stack.pop()
+    3
+    >>> stack.is_empty()
+    True
+    """
+    if s.is_empty():
+        s.push(item)
+    else:
+        var = s.pop()
+        insert_at_bottom(s, item)
+        s.push(var)
+
+
 ################################################################################
 # Part 2
 # In Part 2 of the prep, we have given you the buggy function add_in_order().

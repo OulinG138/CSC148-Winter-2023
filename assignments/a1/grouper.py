@@ -176,7 +176,8 @@ class Group:
         Preconditions:
             - len(members) >= 1
         """
-        self._members = sorted(list(set(members)), key=members.index)
+        # self._members = sorted(list(set(members)), key=members.index)
+        self._members = list(dict.fromkeys(members))
 
     def __len__(self) -> int:
         """Return the number of members in this group """

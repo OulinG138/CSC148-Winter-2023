@@ -46,7 +46,6 @@ class RecursiveList:
             self._first = items[0]
             self._rest = RecursiveList(items[1:])
 
-
     def is_empty(self) -> bool:
         """Return whether this list is empty.
 
@@ -270,10 +269,10 @@ class RecursiveList:
         Note that it is possible to add to the end of the list
         (when index == len(self)).
 
-        >>> lst = RecursiveList(['c']) # self._first = 'c' self._rest = None
-        >>> lst.insert(0, 'a')  RecursiveList(['a', 'c'])
+        >>> lst = RecursiveList([]) # self._first = 'c' self._rest = None
+        >>> lst.insert(0, 'a')
         >>> str(lst)
-        'a -> c'
+        'a'
         >>> lst.insert(1, 'b')
         >>> str(lst)
         'a -> b -> c'
@@ -285,6 +284,20 @@ class RecursiveList:
         ...
         IndexError
         """
+        if self.is_empty():
+            if index == 0:
+                self._first = item
+                self._rest = RecursiveList([])
+            if index > 0:
+                raise IndexError
+        else:
+            if index == 0:
+                temp = RecursiveList([])
+                temp._first = self._first
+                temp._rest = self._rest
+                self._first, self._rest = item, temp
+            else:
+                return self._rest.insert(index-1, item)
         
             
 
@@ -295,12 +308,21 @@ class RecursiveList:
     #     """
     #     pass
 
-    # def _insert_first(self, item: Any) -> None:
-    #     """Insert item at the front of this list.
+    def _insert_first(self, item: Any) -> None:
+        """Insert item at the front of this list.
 
-    #     This should work even if this list is empty.
-    #     """
-    #     pass
+        This should work even if this list is empty.
+        """
+        if self.is_empty():
+            self._first = item
+            self._rest = RecursiveList([])
+        else:
+            self._first = item
+            new_rest = RecursiveList([])
+            new_rest._first = self._first
+            new_rest._rest = self._rest
+            self._rest = new_rest
+
 
     # ###########################################################################
     # # Additional Exercises
