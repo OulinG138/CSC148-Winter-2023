@@ -298,52 +298,6 @@ class BinarySearchTree:
                 right = self._right.smaller(item)
                 return left + [self._root] + right
 
-    def distribution(self) -> dict:
-        if self.is_empty():
-            return {}
-  
-        left = self._left.distribution() # {}
-        right = self._right.distribution() # {}
-        absorb(left, right)
-
-        if self._root not in left:
-            left[self._root] = 1
-        else:
-            left[self._root] += 1
-   
-        return left
-
-    def levels(self):
-        """Return a list of items in the tree, separated by level."""
-        if self.is_empty():
-           return [(0, [])]
-        else:
-            result = [(1, [self._root])]
-            tmp = [*self._left.levels(), *self._right.levels()]
-            # Or alternatively:
-            # tmp = []
-            # tmp.extend(self._left.levels())
-            # tmp.extend(self._right.levels())
-            
-            for tuple_ in tmp:
-                depth, lst = tuple_
-                if all(depth + 1 != tup[0] for tup in result):
-                    result.append((depth + 1, lst))
-                else:
-                    for tup in result:
-                        if tup[0] == depth + 1:
-                            tup[1].extend(lst)
-            return result
-
-def absorb(d1, d2):
-    for key, value in d2.items():
-        if key not in d1:
-            d1[key] = d2[key]
-        else:
-            d1[key] += d2[key]
-
-    d2.clear()
-
 
 if __name__ == '__main__':
     # import doctest
@@ -351,13 +305,3 @@ if __name__ == '__main__':
 
     # import python_ta
     # python_ta.check_all(config={"disable": ["E9959", "E1136"]})
-    bst = BinarySearchTree(90)
-    left = BinarySearchTree(50)
-    right = BinarySearchTree(150)
-    left._left = BinarySearchTree(20)
-    left._right = BinarySearchTree(75)
-    right._left = BinarySearchTree(95)
-    right._right = BinarySearchTree(175)
-    bst._left = left
-    bst._right = right
-    print(bst.levels())
