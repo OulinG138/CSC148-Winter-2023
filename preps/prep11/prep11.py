@@ -134,12 +134,19 @@ def mergesort3(lst: list) -> list:
     >>> mergesort3([10, 2, 5, -6, 17, 10])
     [-6, 2, 5, 10, 10, 17]
     """
-    # TODO: Complete the implementation of this function!
-    # You must NOT use mergesort, sort, or sorted.
     if len(lst) < 2:  # We've provided the base case for you.
         return lst[:]
+    elif len(lst) == 2:
+        return lst if lst[0] <= lst[1] else list(reversed(lst))
     else:
-        pass
+        first = len(lst) // 3
+        second = 2 * first
+
+        left_sorted = mergesort3(lst[:first])
+        mid_sorted = mergesort3(lst[first:second])
+        right_sorted = mergesort3(lst[second:])
+
+        return merge3(left_sorted, mid_sorted, right_sorted)
 
 
 def merge3(lst1: list, lst2: list, lst3: list) -> list:
@@ -155,13 +162,19 @@ def merge3(lst1: list, lst2: list, lst3: list) -> list:
     up your code into one or more helpers to divide up (and test!) each part
     separately.
     """
-    # TODO: Implement this function
-	# Note that we've made it public because we'll be testing it directly.
+    index1, index2 = 0, 0
+    merged = []
 
-	# You may call _merge in this function, but you should only call it ONCE
-	# at most.
-	# i.e. merge the three lists together and use _merge as needed when
-	# there's only two lists left to merge.
+    while index1 < len(lst1) and index2 < len(lst2):
+        if lst1[index1] <= lst2[index2]:
+            merged.append(lst1[index1])
+            index1 += 1
+        else:
+            merged.append(lst2[index2])
+            index2 += 1
+    list_to_merge = merged + lst1[index1:] + lst2[index2:]
+
+    return _merge(list_to_merge, lst3)
 
 
 def kth_smallest(lst: list, k: int) -> Any:
@@ -177,14 +190,18 @@ def kth_smallest(lst: list, k: int) -> Any:
     >>> kth_smallest([10, 20, -4, 3], 2)
     10
     """
-    # TODO: Implement this function
-    # You may *not* sort the list here (this is easy but not very efficient).
-    # Instead, use the following approach, based on quicksort:
-    #   1. partition the list based on a chosen pivot:
-    #       smaller, bigger = partition(...)
-    #   2. Compare len(smaller) against k, and use the result to decide which
-    #      list to recurse on (if any). As in your BST prep, you should only
-    #      make one recursive call into either <smaller> or <bigger>, not both!
+    if k < 0 or k >= len(lst):
+        raise IndexError
+    else:
+        pivot = lst[0]
+        smaller, bigger = _partition(lst[1:], pivot)
+
+        if len(smaller) == k:
+            return pivot
+        elif len(smaller) > k:
+            return kth_smallest(smaller, k)
+        else:
+            return kth_smallest(bigger, k - len(smaller) - 1)
 
 
 if __name__ == '__main__':
@@ -193,3 +210,4 @@ if __name__ == '__main__':
 
     import python_ta
     python_ta.check_all(config={'disable': ['E1136']})
+    
