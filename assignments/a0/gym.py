@@ -651,7 +651,8 @@ class Gym:
         return (self.name == other.name
                 and self._instructors == other._instructors
                 and self._workouts == other._workouts
-                and self._room_capacities == other._room_capacities)
+                and self._room_capacities == other._room_capacities
+                and self._schedule == other._schedule)
 
     def to_webpage(self, filename: str = 'schedule.html') -> None:
         """Create a simple html webpage from data exported by
