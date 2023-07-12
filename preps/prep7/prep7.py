@@ -78,6 +78,7 @@ def nested_max(obj: Union[int, list]) -> int:
     >>> nested_max([1, 2, [1, 2, [3], 4, 5], 4])
     5
     """
+    ##### Alternatively #####
     # if isinstance(obj, int):
     #     return obj
     # else:
@@ -86,6 +87,7 @@ def nested_max(obj: Union[int, list]) -> int:
     #         if (num := nested_max(sublist)) > max_:
     #             max_ = num
     #     return max_
+    
     if isinstance(obj, int):
         return obj
     elif not obj:
