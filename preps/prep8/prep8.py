@@ -87,6 +87,7 @@ class Tree:
             for subtree in self._subtrees:
                 size += subtree.__len__()  # could also do len(subtree) here
             return size
+
     def __str__(self) -> str:
         """Return a string representation of this tree.
         For each node, its item is printed before any of its
@@ -109,7 +110,6 @@ class Tree:
             # modified.
                 s += subtree._str_indented(depth + 1)
             return s
-
 
     def num_negatives(self) -> int:
         """Return the number of negative integers in this tree.
