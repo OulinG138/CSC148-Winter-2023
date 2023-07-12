@@ -6,7 +6,7 @@ A public repo for CSC148
 - Preps
 
 # Marks for CSC148 Assignments
-- Assignment 0: 99.67
+- Assignment 0: 100
 - Assignment 1: 95.33
 - Assignment 2: 98.78
 
